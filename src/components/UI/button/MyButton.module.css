@@ -1,0 +1,28 @@
+.myBtn {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 125px;
+  height: 44px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  letter-spacing: 0.86;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+
+  border: 2px solid #F6F7FC;
+  border-radius: 16px;
+  color: #FFFFFF;
+
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.myActivBtn {
+  background: #FF751D;
+  border-radius: 16px;
+}
