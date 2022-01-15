@@ -1,4 +1,5 @@
-.myTitle {
+.myTitle,
+.myActTitle {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -12,5 +13,5 @@
 }
 
 .myActTitle {
-  color: #FF751D;
+  color: #ff751d;
 }

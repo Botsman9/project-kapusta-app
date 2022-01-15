@@ -1,0 +1,62 @@
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1300;
+}
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 380px;
+  height: 194px;
+
+  padding-top: 50px;
+
+  background: #ffffff;
+  box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+  border-radius: 30px;
+}
+
+.closeBtn {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+
+  right: 26px;
+  top: 20px;
+
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.closeBtnImg {
+  width: 12px;
+  height: 12px;
+
+  cursor: pointer;
+}
+
+.content {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.OverlayBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
