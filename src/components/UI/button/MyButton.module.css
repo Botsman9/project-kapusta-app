@@ -1,6 +1,5 @@
-.myBtn {
-  display: flex;
-  align-items: center;
+.myBtn,
+.myActivBtn {
   text-align: center;
   width: 125px;
   height: 44px;
@@ -9,20 +8,20 @@
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
-  letter-spacing: 0.86;
-  letter-spacing: 0.02em;
-  text-align: center;
+  line-height: 0.86;
   text-transform: uppercase;
 
-  border: 2px solid #F6F7FC;
+  border: 2px solid #f6f7fc;
   border-radius: 16px;
-  color: #FFFFFF;
+  background: #ffffff;
 
   padding-top: 12px;
   padding-bottom: 12px;
+  margin: 15px;
+  cursor: pointer;
 }
 
 .myActivBtn {
-  background: #FF751D;
+  background: #ff751d;
   border-radius: 16px;
 }
