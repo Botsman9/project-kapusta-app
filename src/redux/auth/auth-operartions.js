@@ -15,17 +15,17 @@ const token = {
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const { data } = await axios.post('/auth/register', credentials);
-    token.set(data.token);
+    token.set(data.accessToken);
     return data;
   } catch (error) {
-    return alert('Something went wrong.');
+    return alert('Wrong email or password.');
   }
 });
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/auth/login', credentials);
-    token.set(data.token);
+    token.set(data.accessToken);
     return data;
   } catch (error) {
     return alert('Wrong email or password.');
