@@ -46,7 +46,7 @@ const MyModal = ({ toggleModal, onClick, children }) => {
               onClick={toggleModal}
               className={classes.closeBtn}
             >
-              <img src={icon} className={classes.closeBtnImg} />
+              <img src={icon} alt="icon" className={classes.closeBtnImg} />
             </button>
 
             <div className={classes.content}>{children}</div>

@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <SignForm />
+      {/* <SignForm /> */}
       <Container>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting

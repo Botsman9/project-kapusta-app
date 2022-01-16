@@ -1,0 +1,19 @@
+.icon {
+  width: 32px;
+  height: 32px;
+
+  margin-right: 16px;
+}
+
+.iconExit {
+  width: 12px;
+  height: 16px;
+
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
