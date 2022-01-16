@@ -20,6 +20,7 @@ function App() {
           including versions of Lorem Ipsum.
         </p>
       </Container>
+      <AllRoutes />
     </>
   );
 }
