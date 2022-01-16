@@ -1,5 +1,4 @@
-.myBtn,
-.myActivBtn {
+.myBtn {
   text-align: center;
   width: 125px;
   height: 44px;
@@ -11,17 +10,26 @@
   line-height: 0.86;
   text-transform: uppercase;
 
-  border: 2px solid #f6f7fc;
   border-radius: 16px;
-  background: #ffffff;
 
   padding-top: 12px;
   padding-bottom: 12px;
-  margin: 15px;
   cursor: pointer;
+
+  transition: transform 250ms ease;
 }
 
 .myActivBtn {
   background: #ff751d;
-  border-radius: 16px;
+  border: 2px solid #ff751d;
+  color: #ffffff;
+}
+
+.mySecondaryBtn {
+  background: #ffffff;
+  border: 2px solid #f6f7fc;
+}
+
+.myBtn:hover {
+  transform: scale3d(1.1, 1.1, 1.1);
 }
