@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import s from './Balance.module.css';
 import { getTotalBalance } from 'redux/transactions/transactions-selectors';
+import transactionOp from 'redux/transactions/transactions-operations';
 
 import ModalBalance from '../modalBalance/modalBalance';
 
@@ -22,6 +23,7 @@ const Balance = ({ hide, width }) => {
 
   const onhandleSubmit = e => {
     e.preventDefault();
+    dispatch(transactionOp.setBalance(sum));
   };
   return (
     <form onSubmit={onhandleSubmit} className={s.reportBalance}>
