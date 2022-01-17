@@ -18,7 +18,7 @@ export async function fetchIncomeCategories() {
 }
 
 export async function fetchExpenseCategories() {
-  const { data } = await axios.get(`transaction/income-categories`);
+  const { data } = await axios.get(`transaction/expense-categories`);
   return data;
 }
 

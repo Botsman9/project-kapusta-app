@@ -1,12 +1,11 @@
 import Container from './components/Container/Container';
 import Header from './components/Header/Header';
-import SignForm from './components/SignForm/SignForm';
+import AllRoutes from './routes/AllRoutes.jsx';
 
 function App() {
   return (
     <>
       <Header />
-      <SignForm />
       <Container>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -20,6 +19,7 @@ function App() {
           including versions of Lorem Ipsum.
         </p>
       </Container>
+      <AllRoutes />
     </>
   );
 }
