@@ -17,6 +17,7 @@ const Balance = ({ hide, width }) => {
   };
 
   const onHandleChange = e => setSum(e.currentTarget.value);
+
   useEffect(() => {
     setSum(balance);
   }, [balance]);

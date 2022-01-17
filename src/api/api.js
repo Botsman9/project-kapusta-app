@@ -1,53 +1,51 @@
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
+import instanceAxios from './Axios';
 
 export async function fetchIncome() {
-  const { data } = await axios.get(`/transaction/income`);
+  const { data } = await instanceAxios.get(`/transaction/income`);
   return data;
 }
 
 export async function fetchExpense() {
-  const { data } = await axios.get(`/transaction/expense`);
+  const { data } = await instanceAxios.get(`/transaction/expense`);
   return data;
 }
 
 export async function fetchIncomeCategories() {
-  const { data } = await axios.get(`/transaction/income-categories`);
+  const { data } = await instanceAxios.get(`/transaction/income-categories`);
   return data;
 }
 
 export async function fetchExpenseCategories() {
-  const { data } = await axios.get(`transaction/expense-categories`);
+  const { data } = await instanceAxios.get(`transaction/expense-categories`);
   return data;
 }
 
 export async function createIncome(obj) {
-  const { data } = await axios.post(`/transaction/income`, obj);
+  const { data } = await instanceAxios.post(`/transaction/income`, obj);
   return data;
 }
 
 export async function createExpense(obj) {
-  const { data } = await axios.post(`/transaction/expense`, obj);
+  const { data } = await instanceAxios.post(`/transaction/expense`, obj);
   return data;
 }
 
 export async function getPeriod(period) {
-  const { data } = await axios.get(`/transaction/period-data`, period);
+  const { data } = await instanceAxios.get(`/transaction/period-data`, period);
   return data;
 }
 
 export async function deleteTransaction(id) {
-  const { data } = await axios.delete(`/transaction/${id}`);
+  const { data } = await instanceAxios.delete(`/transaction/${id}`);
   return data;
 }
 
 export async function chengeUserBalance(balance) {
-  const { data } = await axios.patch(`/user/balance`, balance);
+  const { data } = await instanceAxios.patch(`/user/balance`, balance);
   return data;
 }
 
 export async function getUserInfo() {
-  const { data } = await axios.get(`/user`);
+  const { data } = await instanceAxios.get(`/user`);
   return data;
 }
