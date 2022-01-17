@@ -1,0 +1,29 @@
+.icon {
+  width: 32px;
+  height: 32px;
+
+  margin-right: 10px;
+}
+
+.iconLine {
+  width: 2px;
+  height: 36px;
+
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exit {
+  cursor: pointer;
+}
+
+.exit:hover,
+.exit:focus {
+  color: #ff751d;
+}
