@@ -21,8 +21,7 @@ const UserMenu = () => {
       <span>
         <img src={group42} alt="icon" className={classes.icon} />
       </span>
-      {/* <p>{getUserName(email)}</p> */}
-      <p>UserName</p>
+      <p>{email ? getUserName(email) : <p>UserName</p>}</p>
       <span>
         <img src={line} alt="icon" className={classes.iconLine} />
       </span>

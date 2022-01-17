@@ -12,6 +12,11 @@
   cursor: pointer;
 }
 
+/* .iconExit:focus,
+.iconExit:hover {
+  color: #FF751D;
+} */
+
 .container {
   display: flex;
   align-items: center;
