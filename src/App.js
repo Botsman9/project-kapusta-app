@@ -13,11 +13,12 @@ function App() {
 
   useEffect(() => {
     dispatch(userOperations.getAllUserInfo());
+    dispatch(operations.refresh({ sid: '61e5acbe38e99a6e6d8ac33a' }));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(operations.refresh({ sid: '61e5acbe38e99a6e6d8ac33a' }));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(operations.refresh({ sid: '61e5acbe38e99a6e6d8ac33a' }));
+  // }, []);
 
   return (
     <>
