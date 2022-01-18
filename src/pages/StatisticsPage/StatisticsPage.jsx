@@ -1,15 +1,12 @@
 import React from 'react';
-
-import BalanceTesting from '../../components/Balance/Balance';
-import ToGoBack from '../../components/toGoBack/toGoBack';
+import Balance from '../../components/Balance/Balance';
+import s from './StatisticsPage.module.css';
 
 const StatisticsPage = () => {
   return (
     <div>
       3 страница со статистикой
-      {/* <Balance /> */}
-      <BalanceTesting />
-      <ToGoBack />
+      <Balance />
     </div>
   );
 };

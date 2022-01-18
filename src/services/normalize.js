@@ -20,4 +20,8 @@ const dateNow = () => {
   return today;
 };
 
-export { normalizeName, dateNow };
+const normalizeDateRender = date => date.split('-').reverse().join('.');
+
+const normalizeDateApi = date => new Date(date).toISOString().split('T')[0];
+
+export { normalizeName, dateNow, normalizeDateApi, normalizeDateRender };

@@ -1,0 +1,37 @@
+.backgroundLogin {
+  position: absolute;
+  display: block;
+  width: 100%;
+  max-height: 342px;
+  background-color: #f5f6fb;
+
+  padding-top: 28px;
+  background-origin: content-box;
+  border-radius: 0 0 0 150px;
+}
+
+@media screen and (min-width: 768px) {
+  .backgroundLogin {
+    max-height: 583px;
+  }
+  .kapustaLogin {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    bottom: -35%;
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-image: url(../../imges/svg/kapusta2.svg);
+    background-repeat: no-repeat;
+    background-position: right 20% bottom 5%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .kapustaLogin {
+    background-image: url(../../imges/svg/kapusta1.svg);
+    background-repeat: repeat-x;
+    background-position: left 0% bottom 0%;
+  }
+}
