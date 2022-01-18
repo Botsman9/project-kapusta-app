@@ -23,6 +23,9 @@
   height: 194px;
 
   padding-top: 50px;
+  padding-bottom: 60px;
+  padding-left: 56px;
+  padding-right: 56px;
 
   background: #ffffff;
   box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
@@ -53,10 +56,22 @@
   display: block;
   margin: 0 auto;
   text-align: center;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 0.86;
+  text-align: center;
+  letter-spacing: 0.02em;
+
+  color: #52555f;
+
+  margin-bottom: 20px;
 }
 
 .OverlayBtns {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }

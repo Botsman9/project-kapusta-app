@@ -4,7 +4,7 @@ import classes from './MyButton.module.css';
 
 const MyButton = ({ children, classCss, ...props }) => {
   return (
-    <button {...props} role={myBtn} className={classes[classCss]}>
+    <button {...props} role="myBtn" className={classes[classCss]}>
       {children}
     </button>
   );
@@ -19,6 +19,6 @@ export default MyButton;
 /*
   classCss ?
 
-  myAccentButton - orage;
-  myMinorButton - black;
+  myAccentBtn - orage;
+  myMinorBtn - black;
 */
