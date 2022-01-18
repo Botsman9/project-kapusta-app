@@ -1,20 +1,11 @@
-import axios from 'axios';
+import instanceAxios from '../../api/Axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { token } from '../../api/Axios';
 import * as API from '../../api/api';
-axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/auth/register', credentials);
+    const { data } = await instanceAxios.post('/auth/register', credentials);
     token.set(data.accessToken);
     return data;
   } catch (error) {
@@ -24,7 +15,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/auth/login', credentials);
+    const { data } = await instanceAxios.post('/auth/login', credentials);
     token.set(data.accessToken);
     return data;
   } catch (error) {
@@ -34,7 +25,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axios.post('/auth/logout');
+    await instanceAxios.post('/auth/logout');
     token.unset();
   } catch (error) {
     return alert('Something went wrong.');
@@ -53,9 +44,10 @@ const refresh = createAsyncThunk(
     }
 
     const info = await API.getUserInfo();
+
     token.set(persistedToken);
     try {
-      const request = await axios.post('/auth/refresh', { sid });
+      const request = await instanceAxios.post('/auth/refresh', { sid });
       console.log(`sid`, sid);
       console.log(`request`, request);
       return { request, info };
