@@ -13,6 +13,8 @@ const getExpenseMonthsStats = state =>
 const getUserLoading = state => state.user.loading;
 const getUserError = state => state.user.error;
 
+const getCurrentDay = state => state.user.transaction.currentDay;
+
 const userSelectors = {
   getUserBalance,
 
@@ -26,6 +28,8 @@ const userSelectors = {
 
   getUserLoading,
   getUserError,
+
+  getCurrentDay,
 };
 
 export default userSelectors;
