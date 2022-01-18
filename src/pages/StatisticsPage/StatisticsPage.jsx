@@ -1,7 +1,7 @@
 import React from 'react';
-// import Balance from '../../components/Balance/Balance';
+
 import BalanceTesting from '../../components/Balance/Balance';
-// import s from './StatisticsPage.module.css';
+import ToGoBack from '../../components/toGoBack/toGoBack';
 
 const StatisticsPage = () => {
   return (
@@ -9,6 +9,7 @@ const StatisticsPage = () => {
       3 страница со статистикой
       {/* <Balance /> */}
       <BalanceTesting />
+      <ToGoBack />
     </div>
   );
 };

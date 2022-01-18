@@ -48,6 +48,7 @@ const AllRoutes = () => {
         <Route
           path="statistics"
           element={!isLoggedIn ? <Navigate to="/home" /> : <StatisticsPage />}
+          // element={<StatisticsPage />}
         />
       </Routes>
     </Suspense>
