@@ -20,7 +20,7 @@ const statisticsSlice = createSlice({
   initialState,
   reducers: {
     changeCurrentMonth: (state, { payload }) => {
-      state.changeCurrentMonth = payload;
+      state.currentMonth = payload;
     },
   },
   extraReducers: builder => {
