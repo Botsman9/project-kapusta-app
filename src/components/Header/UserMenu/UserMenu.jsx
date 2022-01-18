@@ -12,7 +12,7 @@ const UserMenu = () => {
   const getUserName = email => {
     const str = email;
     const position = str.indexOf('@');
-    const name = str.splice(position, 1);
+    const name = str.slice(0, position);
     return name;
   };
 
@@ -21,7 +21,7 @@ const UserMenu = () => {
       <span>
         <img src={group42} alt="icon" className={classes.icon} />
       </span>
-      <p>{email ? getUserName(email) : <p>UserName</p>}</p>
+      <p>{`Wellcome ${getUserName(email)}`}</p>
       <span>
         <img src={line} alt="icon" className={classes.iconLine} />
       </span>

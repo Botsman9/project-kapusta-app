@@ -1,0 +1,40 @@
+.background {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 342px;
+  background-color: #f5f6fb;
+  background-image: url(../../imges/svg/kapusta1.svg);
+  background-repeat: repeat-x;
+  padding-top: 28px;
+  background-origin: content-box;
+  border-radius: 0 0 0 150px;
+}
+
+.kapusta {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  bottom: -90%;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-image: url(../../imges/svg/kapusta2.svg);
+  background-repeat: no-repeat;
+  background-position: left 20% bottom 5%;
+}
+
+@media screen and (min-width: 768px) {
+  .background {
+    height: 583px;
+  }
+  .kapusta {
+    bottom: -35%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .background {
+    height: 583px;
+  }
+}
