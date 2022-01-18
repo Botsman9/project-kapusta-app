@@ -14,7 +14,7 @@ const IncomePage = () => {
   const incomesTransactions = useSelector(
     userSelectors.getIncomesAllTransactions,
   );
-  console.log('🚀 ~ incomesTransactions', incomesTransactions);
+
   const incomesMonthsStats = useSelector(userSelectors.getIncomesMonthsStats);
   const currentDay = useSelector(userSelectors.getCurrentDay);
 

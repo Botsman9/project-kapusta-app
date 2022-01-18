@@ -1,0 +1,50 @@
+.form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 59px;
+}
+.iDescriptions {
+  font-family: Roboto;
+  padding-left: 21px;
+  height: 44px;
+  width: 290px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.02em;
+  border-radius: 16px 0px 0px 0px;
+  border: 2px solid #f5f6fb;
+}
+.selected {
+  height: 44px;
+  width: 188px;
+  border: 2px solid #f5f6fb;
+  border-left: 0px;
+  box-sizing: border-box;
+}
+.iAmount {
+  height: 44px;
+  width: 125px;
+  border: 2px solid #f5f6fb;
+  border-left: 0px;
+  box-sizing: border-box;
+  border-radius: 0px 16px 16px 0px;
+}
+.wrapperBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.wrapperInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 27px;
+}
+
+/* .wrapperDP {
+  margin-right: 23px;
+} */
