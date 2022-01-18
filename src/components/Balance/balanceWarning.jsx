@@ -1,4 +1,4 @@
-import s from './modalBalance.css';
+import s from './balanceWarning.module.css';
 
 const ModalBalance = ({ onClose }) => {
   const handleClickWindow = e => {

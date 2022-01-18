@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import s from './Balance.module.css';
-import { getTotalBalance } from 'redux/transactions/transactions-selectors';
-import transactionOp from 'redux/transactions/transactions-operations';
+import userSelectors from '../../redux/user/userSelectors';
+import * as userOperations from '../../redux/user/userOperations';
 
-import ModalBalance from '../modalBalance/modalBalance';
+import ModalBalance from './balanceWarning';
 
 const Balance = ({ hide, width }) => {
-  const balance = useSelector(getTotalBalance);
+  const balance = useSelector(userSelectors.getUserBalance);
   const dispatch = useDispatch();
-  const [sum, setSum] = useState('');
+  const [sum, setSum] = useState(() => balance);
   const [setPromptClose, setClosePrompt] = useState(true);
   const toggleWindow = () => {
     setClosePrompt(setClosePrompt => !setClosePrompt);
@@ -24,8 +24,10 @@ const Balance = ({ hide, width }) => {
 
   const onhandleSubmit = e => {
     e.preventDefault();
-    dispatch(transactionOp.setBalance(sum));
+    //обязательно balance в стейте должен быть 0, иначе будут конфликты с формой транзакций
+    dispatch(userOperations.patchNewBalance({ newBalance: +sum }));
   };
+
   return (
     <form onSubmit={onhandleSubmit} className={s.reportBalance}>
       <label htmlFor="balans" className={s.balanceLabel}>

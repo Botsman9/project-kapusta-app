@@ -1,7 +1,7 @@
 import React from 'react';
 // import Balance from '../../components/Balance/Balance';
-import BalanceTesting from '../../components/Balance/forTestingBalance';
-import s from './StatisticsPage.module.css';
+import BalanceTesting from '../../components/Balance/Balance';
+// import s from './StatisticsPage.module.css';
 
 const StatisticsPage = () => {
   return (
