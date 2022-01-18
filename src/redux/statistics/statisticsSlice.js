@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchAllStatistics } from './statisticsOperations';
 
 const initialState = {
-  changeCurrentMonth: '2022-01',
+  currentMonth: '2022-01',
   incomes: {
     total: 0,
     data: {},
