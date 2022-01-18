@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import s from './GoToReports.module.css';
+import s from './GoToRepotrs.module.css';
 
 const GoToReports = () => {
   return (
     <div>
-      <NavLink to="/reports" className={s.link}>
+      <NavLink to="/statistics" className={s.link}>
         Перейти к отчетам
         <svg
           width="14"
