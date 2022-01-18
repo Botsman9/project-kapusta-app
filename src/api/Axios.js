@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage';
 storage.getItem('persist:auth').then(data => {
   const dataLS = JSON.parse(data);
   const token = JSON.parse(dataLS?.token);
+  console.log(`token`, token);
   if (!token) return;
   instanceAxios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 });

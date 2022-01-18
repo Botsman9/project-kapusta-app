@@ -21,7 +21,8 @@ function SignForm() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    switch (e.target.id) {
+    console.log(`submit`, e.nativeEvent.submitter.id);
+    switch (e.nativeEvent.submitter.id) {
       case 'sign-google':
         break;
       case 'signIn':
@@ -34,7 +35,7 @@ function SignForm() {
       default:
         break;
     }
-    // reset();
+    reset();
   };
 
   const reset = () => {
@@ -44,7 +45,7 @@ function SignForm() {
 
   return (
     <div className={s.FormContainer}>
-      <form className={s.SignForm} onClick={handleSubmit}>
+      <form className={s.SignForm} onSubmit={handleSubmit}>
         <p>Вы можете авторизоваться с помощью Google Account:</p>
         <button className={s.GoogleBtn} type="button" id="sign-google">
           Google
@@ -72,12 +73,12 @@ function SignForm() {
         ></input>
         <ul className={s.SignBtnsWrap}>
           <li>
-            <button type="button" className={s.SignInBtn} id="signIn">
+            <button type="submit" className={s.SignInBtn} id="signIn">
               войти
             </button>
           </li>
           <li>
-            <button type="button" className={s.SignUpBtn} id="signUp">
+            <button type="submit" className={s.SignUpBtn} id="signUp">
               регистрация
             </button>
           </li>

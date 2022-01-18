@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Balance from '../../components/Balance/Balance';
 import s from './StatisticsPage.module.css';
@@ -12,3 +13,4 @@ const StatisticsPage = () => {
 };
 
 export default StatisticsPage;
+

@@ -16,16 +16,17 @@ import statisticsReducer from './statistics/statisticsSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
+    serializableCheck: false,
+    // serializableCheck: {
+    //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    // },
   }),
 ];
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'sid'],
+  whitelist: ['token', 'sid', 'email'],
 };
 
 export const store = configureStore({
@@ -34,7 +35,10 @@ export const store = configureStore({
     user: userReducer,
     statistics: statisticsReducer,
   },
-  middleware,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   devTools: process.env.NODE_ENV === 'development',
 });
 

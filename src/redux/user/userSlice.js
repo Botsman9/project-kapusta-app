@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import * as userOperations from './userOperations';
 
 const initialState = {
+  email: null,
   balance: 0,
   transaction: {
     currentDay: '',
@@ -210,7 +211,8 @@ const userSlice = createSlice({
       })
       .addCase(
         userOperations.getAllUserInfo.fulfilled,
-        (state, { payload: { balance } }) => {
+        (state, { payload: { balance, email } }) => {
+          state.email = email;
           state.balance = balance;
           state.loading = false;
         },
