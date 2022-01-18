@@ -19,17 +19,22 @@
   transition: transform 250ms ease;
 }
 
-.myActivBtn {
+.myAccentBtn {
+  composes: myBtn;
   background: #ff751d;
   border: 2px solid #ff751d;
   color: #ffffff;
 }
 
-.mySecondaryBtn {
+.myMinorBtn {
+  composes: myBtn;
   background: #ffffff;
   border: 2px solid #f6f7fc;
 }
 
-.myBtn:hover {
+.myAccentBtn:hover,
+.myAccentBtn:focus,
+.myMinorBtn:hover,
+.myMinorBtn:focus {
   transform: scale3d(1.1, 1.1, 1.1);
 }
