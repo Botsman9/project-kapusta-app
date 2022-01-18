@@ -3,24 +3,26 @@ import s from './Summary.module.css';
 
 const Summary = ({ monthsStats }) => {
   return (
-    <table className={s.table}>
-      <thead>
-        <tr>
-          <th>Сводка</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.entries(monthsStats).map(([month, amount]) => {
-          if (amount === 'N/A') return false;
-          return (
-            <tr key={month}>
-              <td>{month}</td>
-              <td>{amount}</td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <div className={s.summaryContainer}>
+      <table className={s.summaryContainer}>
+        <thead>
+          <tr>
+            <th className={s.summaryTitle}>Сводка</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(monthsStats).map(([month, amount]) => {
+            if (amount === 'N/A') return false;
+            return (
+              <tr key={month} className={s.summaryList}>
+                <td className={s.summaryItem}>{month}</td>
+                <td className={s.summaryItem}>{amount}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
