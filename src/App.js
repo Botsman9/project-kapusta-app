@@ -8,17 +8,20 @@ import operations from './redux/auth/auth-operartions';
 function App() {
   const dispatch = useDispatch();
   const sid = useSelector(state => state.auth.sid);
-  const token = useSelector(state => state.auth.token);
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const isRefresh = useSelector(state => state.auth.isRefresh);
 
   useEffect(() => {
-    dispatch(userOperations.getAllUserInfo());
-    dispatch(operations.refresh({ sid: '61e5acbe38e99a6e6d8ac33a' }));
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(userOperations.getAllUserInfo());
+    }
+  }, [dispatch, isLoggedIn]);
 
-  // useEffect(() => {
-  //   dispatch(operations.refresh({ sid: '61e5acbe38e99a6e6d8ac33a' }));
-  // }, []);
+  useEffect(() => {
+    if (sid) {
+      dispatch(operations.refresh({ sid }));
+    }
+  }, [dispatch, sid]);
 
   return (
     <>

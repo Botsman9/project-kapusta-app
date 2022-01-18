@@ -33,10 +33,13 @@ const authSlice = createSlice({
     },
 
     [authOperations.logOut.fulfilled](state, action) {
+      // if (!state.isLoggedIn) {
       state.email = null;
       state.token = null;
+      state.refreshToken = null;
       state.sid = null;
       state.isLoggedIn = false;
+      // }
     },
 
     [authOperations.refresh.pending](state, action) {
@@ -44,17 +47,13 @@ const authSlice = createSlice({
     },
     [authOperations.refresh.fulfilled](state, { payload }) {
       if (payload) {
-        console.log(`payload`, payload);
         state.email = payload.info.email;
         state.token = payload.request.data.newAccessToken;
         state.refreshToken = payload.request.data.newRefreshToken;
         state.sid = payload.request.data.newSid;
         state.isLoggedIn = true;
+        state.isRefresh = false;
       }
-      // state.email = action.payload.email;
-      // state.token = action.payload.accessToken;
-      // state.sid = action.payload.sid;
-      state.isRefresh = false;
     },
     [authOperations.refresh.rejected](state) {
       state.isRefresh = false;
