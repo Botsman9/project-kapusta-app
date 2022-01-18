@@ -1,0 +1,5 @@
+.wrapperTables {
+  display: flex;
+  align-items: baseline;
+  gap: 30px;
+}

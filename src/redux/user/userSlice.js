@@ -4,6 +4,7 @@ import * as userOperations from './userOperations';
 const initialState = {
   balance: 0,
   transaction: {
+    currentDay: '',
     incomes: {
       categories: [],
       data: [],
@@ -15,7 +16,6 @@ const initialState = {
       monthsStats: {},
     },
   },
-  allTransactions: [],
   loading: false,
   error: null,
 };
@@ -23,7 +23,11 @@ const initialState = {
 const userSlice = createSlice({
   name: 'user',
   initialState,
-
+  reducers: {
+    changeCurrentDay: (state, { payload }) => {
+      state.transaction.currentDay = payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(userOperations.fetchIncome.pending, (state, _) => {
@@ -140,7 +144,16 @@ const userSlice = createSlice({
       })
       .addCase(
         userOperations.deleteIncomeTransaction.fulfilled,
-        (state, { payload: { id, newBalance, data } }) => {
+        (
+          state,
+          {
+            payload: {
+              id,
+              newBalance: { newBalance },
+              data,
+            },
+          },
+        ) => {
           const idx = state.transaction.incomes.data.findIndex(
             item => item._id === id,
           );
@@ -164,7 +177,16 @@ const userSlice = createSlice({
       })
       .addCase(
         userOperations.deleteExpenseTransaction.fulfilled,
-        (state, { payload: { id, newBalance, data } }) => {
+        (
+          state,
+          {
+            payload: {
+              id,
+              newBalance: { newBalance },
+              data,
+            },
+          },
+        ) => {
           const idx = state.transaction.expense.data.findIndex(
             item => item._id === id,
           );
@@ -188,9 +210,8 @@ const userSlice = createSlice({
       })
       .addCase(
         userOperations.getAllUserInfo.fulfilled,
-        (state, { payload: { balance, transactions } }) => {
+        (state, { payload: { balance } }) => {
           state.balance = balance;
-          state.allTransactions = transactions;
           state.loading = false;
         },
       )
@@ -219,5 +240,7 @@ const userSlice = createSlice({
       );
   },
 });
+
+export const { changeCurrentDay } = userSlice.actions;
 
 export default userSlice.reducer;
