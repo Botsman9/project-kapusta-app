@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes from 'prop-types';
-import MyButton from '../button/MyButtom';
+import PropTypes, { func } from 'prop-types';
+import MyButton from '../button/MyButton';
 import classes from './MyModal.module.css';
 import icon from '../../../imges/svg/close.svg';
 
@@ -57,11 +57,13 @@ const MyModal = ({ toggleModal, onClick, children }) => {
                   toggleModal();
                   onClick();
                 }}
-                isActiv={true}
+                classCss="myAccentBtn"
               >
                 да
               </MyButton>
-              <MyButton onClick={toggleModal}>Нет</MyButton>
+              <MyButton onClick={toggleModal} classCss="myMinorBtn">
+                Нет
+              </MyButton>
             </div>
           </div>
         </div>
@@ -75,6 +77,7 @@ MyModal.propTypes = {
   icon: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 };
 
 export default MyModal;

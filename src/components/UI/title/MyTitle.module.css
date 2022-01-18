@@ -1,5 +1,4 @@
-.myTitle,
-.myActTitle {
+.myTitle {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -8,10 +7,14 @@
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-
-  color: #000000;
 }
 
-.myActTitle {
+.myAccentTitle {
+  composes: myTitle;
   color: #ff751d;
+}
+
+.myMinorTitle {
+  composes: myTitle;
+  color: #000000;
 }
