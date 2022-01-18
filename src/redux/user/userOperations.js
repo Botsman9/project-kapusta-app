@@ -103,12 +103,15 @@ const deleteExpenseTransaction = createAsyncThunk(
 
 const getAllUserInfo = createAsyncThunk(
   'transaction/getAllUserInfo',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
     try {
+      const token = getState().auth.token;
+      if (!token) return rejectWithValue(null);
+
       const info = await API.getUserInfo();
       return info;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   },
 );

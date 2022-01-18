@@ -8,19 +8,33 @@ const initialState = {
   sid: null,
   isLoggedIn: false,
   isRefresh: false,
+  error: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    getToken: (state, { payload }) => {
+      state.token = payload;
+      // state.isLoggedIn = true;
+    },
+  },
   extraReducers: {
     [authOperations.register.fulfilled](state, { payload }) {
+      console.log(`payload`, payload);
       if (payload) {
-        state.email = payload.userData.email;
+        state.email = payload.email;
         state.token = payload.accessToken;
         state.sid = payload.sid;
         state.isLoggedIn = true;
       }
+    },
+    [authOperations.register.pending](state) {
+      state.error = null;
+    },
+    [authOperations.register.rejected](state, { payload }) {
+      state.error = payload;
     },
 
     [authOperations.logIn.fulfilled](state, { payload }) {
@@ -46,14 +60,12 @@ const authSlice = createSlice({
       state.isRefresh = true;
     },
     [authOperations.refresh.fulfilled](state, { payload }) {
-      if (payload) {
-        state.email = payload.info.email;
-        state.token = payload.request.data.newAccessToken;
-        state.refreshToken = payload.request.data.newRefreshToken;
-        state.sid = payload.request.data.newSid;
-        state.isLoggedIn = true;
-        state.isRefresh = false;
-      }
+      console.log(`payload`, payload);
+      state.token = payload.data.newAccessToken;
+      state.refreshToken = payload.data.newRefreshToken;
+      state.sid = payload.data.newSid;
+      state.isLoggedIn = true;
+      state.isRefresh = false;
     },
     [authOperations.refresh.rejected](state) {
       state.isRefresh = false;
@@ -63,4 +75,5 @@ const authSlice = createSlice({
 
 const authReducer = authSlice.reducer;
 
+export const { getToken } = authSlice.actions;
 export default authReducer;

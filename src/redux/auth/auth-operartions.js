@@ -2,16 +2,20 @@ import instanceAxios from '../../api/Axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from '../../api/Axios';
 import * as API from '../../api/api';
+import { getToken } from './auth-slise';
 
-const register = createAsyncThunk('auth/register', async credentials => {
-  try {
-    const { data } = await instanceAxios.post('/auth/register', credentials);
-    token.set(data.accessToken);
-    return data;
-  } catch (error) {
-    return alert('Wrong email or password.');
-  }
-});
+const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await instanceAxios.post('/auth/register', credentials);
+      token.set(data.accessToken);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  },
+);
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
@@ -36,23 +40,18 @@ const refresh = createAsyncThunk(
   'auth/refresh',
   async (credentials, thunkAPI) => {
     const persistedToken = thunkAPI.getState().auth.token;
+    const sid = thunkAPI.getState().auth.sid;
 
-    const sid = credentials.sid;
+    if (!persistedToken || !sid) return thunkAPI.rejectWithValue();
 
-    if (persistedToken === null) {
-      return thunkAPI.rejectWithValue();
-    }
-
-    const info = await API.getUserInfo();
-
-    token.set(persistedToken);
     try {
       const request = await instanceAxios.post('/auth/refresh', { sid });
-      console.log(`sid`, sid);
-      console.log(`request`, request);
-      return { request, info };
+      thunkAPI.dispatch(getToken(request.data.newAccessToken));
+      token.set(request.data.newAccessToken);
+      return request;
     } catch (error) {
-      return alert('Something went wrong!!!');
+      alert('Something went wrong!!!');
+      return thunkAPI.rejectWithValue(error);
     }
   },
 );
