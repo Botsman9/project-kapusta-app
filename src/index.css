@@ -1,8 +1,23 @@
+:root {
+  --primary-text-color: #000000;
+  --second-text-color: #52555f;
+  --warning-text-color: #eb5757;
+  --background-color: #f2f5fc;
+  --white-color: #ffffff;
+  --accent-color: #ff751d;
+  --expense-color: #e7192e;
+  --income-color: #407946;
+  --category-color: #c7ccdc;
+  --icon-color: #071f41;
+  --icon-background-color: #f5f6fb;
+  --chart-color: #ffdac0;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
+  line-height: calc(14 / 12);
+  letter-spacing: 0.04em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
