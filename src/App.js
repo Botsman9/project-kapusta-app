@@ -1,11 +1,11 @@
 import Container from './components/Container/Container';
-import Header from './components/Header/Header';
+// import Header from './components/Header/Header';
 import AllRoutes from './routes/AllRoutes.jsx';
 
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Container>
         <p>
           Lorem Ipsum is simply dummy text of the printing and typesetting
