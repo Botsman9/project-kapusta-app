@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import * as API from '../../api/api';
 axios.defaults.baseURL = 'https://kapusta-backend.goit.global';
 
 const token = {
@@ -41,22 +41,26 @@ const logOut = createAsyncThunk('auth/logout', async () => {
   }
 });
 
-const fetchCurrentUser = createAsyncThunk(
+const refresh = createAsyncThunk(
   'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+  async (credentials, thunkAPI) => {
+    const persistedToken = thunkAPI.getState().auth.token;
+
+    const sid = credentials.sid;
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue();
     }
 
+    const info = await API.getUserInfo();
     token.set(persistedToken);
     try {
-      const { data } = await axios.post('/auth/refresh');
-      return data;
+      const request = await axios.post('/auth/refresh', { sid });
+      console.log(`sid`, sid);
+      console.log(`request`, request);
+      return { request, info };
     } catch (error) {
-      return alert('Something went wrong.');
+      return alert('Something went wrong!!!');
     }
   },
 );
@@ -65,6 +69,6 @@ const operations = {
   register,
   logOut,
   logIn,
-  fetchCurrentUser,
+  refresh,
 };
 export default operations;
