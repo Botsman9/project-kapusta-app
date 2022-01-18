@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/auth-slise';
 import userReducer from './user/userSlice';
+import statisticsReducer from './statistics/statisticsSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -24,13 +25,14 @@ const middleware = [
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'sid'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     user: userReducer,
+    statistics: statisticsReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

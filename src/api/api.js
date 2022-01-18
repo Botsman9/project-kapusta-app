@@ -30,8 +30,16 @@ export async function createExpense(obj) {
   return data;
 }
 
+// export async function getPeriod(period) {
+//   console.log(getPeriod);
+//   const { data } = await instanceAxios.get(`/transaction/period-data`, period);
+//   return data;
+// }
 export async function getPeriod(period) {
-  const { data } = await instanceAxios.get(`/transaction/period-data`, period);
+  console.log(period);
+  const { data } = await instanceAxios.get(
+    `/transaction/period-data?date=${period}`,
+  );
   return data;
 }
 

@@ -4,8 +4,10 @@ import authOperations from './auth-operartions';
 const initialState = {
   email: null,
   token: null,
+  refreshToken: null,
+  sid: null,
   isLoggedIn: false,
-  isFetchingCurrentUser: false,
+  isRefresh: false,
 };
 
 const authSlice = createSlice({
@@ -16,6 +18,7 @@ const authSlice = createSlice({
       if (payload) {
         state.email = payload.userData.email;
         state.token = payload.accessToken;
+        state.sid = payload.sid;
         state.isLoggedIn = true;
       }
     },
@@ -24,26 +27,36 @@ const authSlice = createSlice({
       if (payload) {
         state.email = payload.userData.email;
         state.token = payload.accessToken;
+        state.sid = payload.sid;
         state.isLoggedIn = true;
       }
     },
 
     [authOperations.logOut.fulfilled](state, action) {
+      // if (!state.isLoggedIn) {
       state.email = null;
       state.token = null;
+      state.refreshToken = null;
+      state.sid = null;
       state.isLoggedIn = false;
+      // }
     },
-    [authOperations.fetchCurrentUser.pending](state) {
-      state.isFetchingCurrentUser = true;
+
+    [authOperations.refresh.pending](state, action) {
+      state.isRefresh = true;
     },
-    [authOperations.fetchCurrentUser.fulfilled](state, { payload }) {
-      state.email = payload.userData.email;
-      state.token = payload.accessToken;
-      state.isLoggedIn = true;
-      state.isFetchingCurrentUser = false;
+    [authOperations.refresh.fulfilled](state, { payload }) {
+      if (payload) {
+        state.email = payload.info.email;
+        state.token = payload.request.data.newAccessToken;
+        state.refreshToken = payload.request.data.newRefreshToken;
+        state.sid = payload.request.data.newSid;
+        state.isLoggedIn = true;
+        state.isRefresh = false;
+      }
     },
-    [authOperations.fetchCurrentUser.rejected](state) {
-      state.isFetchingCurrentUser = false;
+    [authOperations.refresh.rejected](state) {
+      state.isRefresh = false;
     },
   },
 });
