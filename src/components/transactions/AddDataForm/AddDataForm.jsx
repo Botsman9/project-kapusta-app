@@ -54,48 +54,61 @@ const AddDataForm = ({ allCategory, onAddDataApi }) => {
   };
 
   return (
-    <form onSubmit={onSubmiteForm}>
-      {datePicker && (
-        <DatePicker
-          selected={datePicker}
-          dateFormat="dd.MM.y"
-          onChange={date =>
-            dispatch(userActions.changeCurrentDay(date.getTime()))
-          }
+    <form onSubmit={onSubmiteForm} className={s.form}>
+      <div className={s.wrapperDP}>
+        {datePicker && (
+          <DatePicker
+            selected={datePicker}
+            dateFormat="dd.MM.y"
+            onChange={date =>
+              dispatch(userActions.changeCurrentDay(date.getTime()))
+            }
+          />
+        )}
+      </div>
+      <div className={s.wrapperInput}>
+        <input
+          type="text"
+          onChange={addData}
+          className={s.iDescriptions}
+          name="description"
+          value={description}
+          placeholder="Описание товара"
+          required
         />
-      )}
 
-      <input
-        type="text"
-        onChange={addData}
-        name="description"
-        value={description}
-        placeholder="Описание товара"
-        required
-      />
-
-      <select name="category" value={category} onChange={addData} required>
-        <option value="">Категория товара</option>
-        {allCategory.map(value => (
-          <option key={value} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
-      <input
-        placeholder="0.00"
-        type="amount"
-        onChange={addData}
-        name="amount"
-        value={amount}
-        required
-      />
-      <MyButton isActiv={true} type="submite">
-        Ввод
-      </MyButton>
-      <MyButton type="button" onClick={reset}>
-        Очистить
-      </MyButton>
+        <select
+          name="category"
+          value={category}
+          onChange={addData}
+          className={s.selected}
+          required
+        >
+          <option value="">Категория товара</option>
+          {allCategory.map(value => (
+            <option key={value} value={value}>
+              {value}
+            </option>
+          ))}
+        </select>
+        <input
+          placeholder="0.00"
+          type="amount"
+          onChange={addData}
+          className={s.iAmount}
+          name="amount"
+          value={amount}
+          required
+        />
+      </div>
+      <div className={s.wrapperBtn}>
+        <MyButton classCss="myAccentBtn" type="submite">
+          Ввод
+        </MyButton>
+        <MyButton classCss="myMinorBtn" type="button" onClick={reset}>
+          Очистить
+        </MyButton>
+      </div>
     </form>
   );
 };
