@@ -2,27 +2,32 @@ import React from 'react';
 import s from './Summary.module.css';
 
 const Summary = ({ monthsStats }) => {
+  console.log(monthsStats);
   return (
-    <div className={s.summaryContainer}>
-      <table className={s.summaryContainer}>
-        <thead>
-          <tr>
-            <th className={s.summaryTitle}>Сводка</th>
-          </tr>
-        </thead>
-        <tbody>
+    // <div className={s.summaryContainer}>
+    <table className={s.summaryContainer}>
+      <thead>
+        <tr>
+          <th className={s.summaryTitle}>СВОДКА</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className={s.summaryList}>
           {Object.entries(monthsStats).map(([month, amount]) => {
             if (amount === 'N/A') return false;
             return (
-              <tr key={month} className={s.summaryList}>
-                <td className={s.summaryItem}>{month}</td>
-                <td className={s.summaryItem}>{amount}</td>
-              </tr>
+              //
+              <td key={month} className={s.summaryItem}>
+                {month.toUpperCase()} <span>{amount}.00</span>
+              </td>
+              //
             );
           })}
-        </tbody>
-      </table>
-    </div>
+          {/* .slice(monthsStats.amount !== 'N/A', 6) */}
+        </tr>
+      </tbody>
+    </table>
+    // </div>
   );
 };
 

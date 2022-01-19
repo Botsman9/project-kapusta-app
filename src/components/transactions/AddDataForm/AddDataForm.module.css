@@ -1,0 +1,73 @@
+.form {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.formDesc {
+  border: 2px solid #f4f6fb;
+  width: 268px;
+  height: 40px;
+  padding: 2px 21px;
+  border-top-left-radius: 15px;
+  margin-left: 30px;
+}
+
+@media screen and (min-width: 1280px) {
+  .formDesc {
+    width: 155px;
+  }
+}
+
+.formCategory {
+  border: 2px solid #f4f6fb;
+  width: 168px;
+  height: 40px;
+  padding: 2px 21px;
+  border-left: none;
+  color: var(--second-text-color);
+}
+
+.formSum {
+  border: 2px solid #f4f6fb;
+  width: 126px;
+  height: 40px;
+  padding: 2px 21px;
+  border-left: none;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-image: url(../../../imges/svg/calculator.svg);
+  background-repeat: no-repeat;
+  background-position: top 50% right 25%;
+}
+
+.formText {
+  color: var(--second-text-color);
+  height: 33px;
+  padding: 10px;
+}
+
+.formText:hover {
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+
+.formDate {
+  font-weight: 900;
+  color: var(--second-text-color);
+  background-image: url(../../../imges/svg/calendar.svg);
+  background-repeat: no-repeat;
+  background-position: top 50% left 0%;
+  padding-left: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 120px;
+}
+.datePicker {
+  width: 100px;
+}
+
+.formBtn {
+  margin-left: 15px;
+}

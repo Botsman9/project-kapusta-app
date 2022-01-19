@@ -36,6 +36,8 @@
   table-layout: fixed;
   border: none;
   overflow-x: hidden;
+  height: 344px;
+  overflow-y: auto;
 }
 
 .bodyTableScroll {
@@ -72,7 +74,6 @@
   height: 38px;
   font-size: 13px;
   font-weight: normal;
-  color: #52555f;
 }
 
 .th {
@@ -82,9 +83,6 @@
   align-items: center;
   letter-spacing: 0.02em;
   font-weight: bold;
-  font-size: 12px;
-  line-height: 14px;
-  font-family: Roboto;
   font-style: normal;
 }
 
@@ -96,7 +94,7 @@
   background: #ffffff;
   color: #52555f;
   border-bottom: 2px solid #f4f6fb;
-  font-family: Roboto;
+
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
@@ -104,11 +102,11 @@
   letter-spacing: 0.04em;
 }
 
-.thData {
+/* .thData {
   width: 100px;
-}
+} */
 
-.thDesc {
+/* .thDesc {
   max-width: 200px;
 }
 
@@ -118,29 +116,31 @@
 
 .thSum {
   width: 130px;
-}
+} */
 .tdSum {
   font-weight: bold;
-  width: 130px;
-  color: #407946;
+
+  color: var(--income-color);
 }
 .tdSumExpense {
   font-weight: bold;
-  color: #e7192e;
+  color: var(--expense-color);
 }
-.tdDesc {
+/* .tdDesc {
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-.thIcon {
+} */
+/* .thIcon {
   width: 40px;
-}
+} */
 
 @media screen and (min-width: 1280px) {
   .main {
     width: 760px;
+    height: 344px;
+    overflow-y: scroll;
   }
 }
 
@@ -154,11 +154,15 @@
   margin-right: auto;
   margin-left: auto;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  padding: 0;
+  display: block;
+  width: 18px;
+  height: 18px;
+  padding: 16px;
   border: transparent;
   background-color: transparent;
+  background-image: url(../../../imges/svg/delete.svg);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .deleteBtnIcon {
@@ -166,8 +170,11 @@
   height: 18px;
 }
 
-.deleteBtn:hover svg path {
-  color: #ff751d;
+.deleteBtn:hover {
+  background-color: var(--icon-background-color);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   fill: currentColor;
 }
 
@@ -175,4 +182,19 @@
   .bodyTable {
     width: 75%;
   }
+}
+
+#style2::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+#style2::-webkit-scrollbar {
+  width: 6px;
+  background-color: #f5f5f5;
+}
+
+#style2::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--accent-color);
 }
