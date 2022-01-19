@@ -139,20 +139,28 @@ const TableData = ({
               ({ _id, date, description, category, amount }) => (
                 <li key={_id} className={sMobile.itemTransactions}>
                   <div className={sMobile.leftColum}>
-                    <p>
+                    <p className={sMobile.elem}>
                       <span>{description}</span>
                     </p>
-                    <p>
+                    <p className={sMobile.data}>
                       <span>{normalizeDateRender(date)}</span>
                       <span>{category}</span>
                     </p>
                   </div>
                   <div className={sMobile.rigthColum}>
-                    <p>
+                    <p
+                      role="total"
+                      className={
+                        sMobile[isExpense ? 'totalDecrement' : 'totalIncrement']
+                      }
+                    >
                       {isExpense ? '- ' : ''}
                       {amount}.грн
                     </p>
-                    <button onClick={() => onTakeIdForDel(_id)}>del</button>
+                    <button
+                      onClick={() => onTakeIdForDel(_id)}
+                      className={sMobile.deleteBtn}
+                    ></button>
                   </div>
                 </li>
               ),

@@ -4,6 +4,7 @@
 .itemTransactions {
   display: flex;
   justify-content: space-between;
+  height: 38px;
 }
 
 .leftColum {
@@ -14,4 +15,63 @@
 .rigthColum {
   display: flex;
   align-items: center;
+}
+
+.elem {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 0.86;
+  letter-spacing: 0.04em;
+
+  color: #52555f;
+  margin-bottom: 3px;
+}
+
+.data {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 8px;
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: #52555f;
+}
+
+.data span:last-child {
+  margin-left: 20px;
+}
+
+.total {
+  composes: data;
+}
+
+.totalIncrement {
+  columns: total;
+
+  color: #407946;
+}
+
+.totalDecrement {
+  composes: total;
+
+  color: #e7192e;
+}
+
+.deleteBtn {
+  margin-right: auto;
+  margin-left: auto;
+  cursor: pointer;
+  display: block;
+  width: 18px;
+  height: 18px;
+  padding: 16px;
+  border: transparent;
+  background-color: transparent;
+  background-image: url(../../../imges/svg/delete.svg);
+  background-position: center;
+  background-repeat: no-repeat;
 }

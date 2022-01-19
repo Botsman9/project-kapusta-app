@@ -1,0 +1,9 @@
+.wrapperMobileBalance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapperDatePickerForm {
+  margin-left: 44%;
+}
