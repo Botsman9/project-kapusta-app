@@ -74,7 +74,6 @@ const MyModal = ({ toggleModal, onClick, children }) => {
 };
 
 MyModal.propTypes = {
-  icon: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   toggleModal: PropTypes.func.isRequired,
