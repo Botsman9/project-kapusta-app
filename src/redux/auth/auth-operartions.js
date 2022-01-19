@@ -1,8 +1,20 @@
 import instanceAxios from '../../api/Axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from '../../api/Axios';
-import * as API from '../../api/api';
 import { getToken } from './auth-slise';
+
+const googleAuth = createAsyncThunk(
+  'auth/register',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await instanceAxios.get('/auth/google');
+      token.set(data.accessToken);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  },
+);
 
 const register = createAsyncThunk(
   'auth/register',
@@ -17,41 +29,48 @@ const register = createAsyncThunk(
   },
 );
 
-const logIn = createAsyncThunk('auth/login', async credentials => {
-  try {
-    const { data } = await instanceAxios.post('/auth/login', credentials);
-    token.set(data.accessToken);
-    return data;
-  } catch (error) {
-    return alert('Wrong email or password.');
-  }
-});
+const logIn = createAsyncThunk(
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { data } = await instanceAxios.post('/auth/login', credentials);
+      token.set(data.accessToken);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
+  },
+);
 
-const logOut = createAsyncThunk('auth/logout', async () => {
-  try {
-    await instanceAxios.post('/auth/logout');
-    token.unset();
-  } catch (error) {
-    return alert('Something went wrong.');
-  }
-});
+const logOut = createAsyncThunk(
+  'auth/logout',
+  async (_, { rejectWithValue }) => {
+    try {
+      await instanceAxios.post('/auth/logout');
+      token.unset();
+    } catch (error) {
+      console.log(`error`, error());
+      return rejectWithValue(error.response.data.message);
+    }
+  },
+);
 
 const refresh = createAsyncThunk(
   'auth/refresh',
-  async (credentials, thunkAPI) => {
-    const persistedToken = thunkAPI.getState().auth.token;
-    const sid = thunkAPI.getState().auth.sid;
+  async (_, { getState, rejectWithValue, dispatch }) => {
+    const persistedToken = getState().auth.token;
+    const sid = getState().auth.sid;
 
-    if (!persistedToken || !sid) return thunkAPI.rejectWithValue();
+    if (!persistedToken || !sid) return rejectWithValue();
 
     try {
       const request = await instanceAxios.post('/auth/refresh', { sid });
-      thunkAPI.dispatch(getToken(request.data.newAccessToken));
+      dispatch(getToken(request.data.newAccessToken));
       token.set(request.data.newAccessToken);
       return request;
     } catch (error) {
-      alert('Something went wrong!!!');
-      return thunkAPI.rejectWithValue(error);
+      console.log(`error`, error());
+      return rejectWithValue(error.response.data.message);
     }
   },
 );
@@ -61,5 +80,6 @@ const operations = {
   logOut,
   logIn,
   refresh,
+  googleAuth,
 };
 export default operations;

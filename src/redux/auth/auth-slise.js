@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './auth-operartions';
 
 const initialState = {
-  email: null,
+  // email: null,
   token: null,
   refreshToken: null,
   sid: null,
@@ -17,18 +17,23 @@ const authSlice = createSlice({
   reducers: {
     getToken: (state, { payload }) => {
       state.token = payload;
-      // state.isLoggedIn = true;
     },
   },
   extraReducers: {
+    [authOperations.googleAuth.fulfilled](state, { payload }) {
+      state.token = payload.accessToken;
+      state.sid = payload.sid;
+      state.isLoggedIn = true;
+    },
+    [authOperations.googleAuth.pending](state) {
+      state.error = null;
+    },
+
     [authOperations.register.fulfilled](state, { payload }) {
-      console.log(`payload`, payload);
-      if (payload) {
-        state.email = payload.email;
-        state.token = payload.accessToken;
-        state.sid = payload.sid;
-        state.isLoggedIn = true;
-      }
+      // // state.email = payload.email;
+      state.token = payload.accessToken;
+      state.sid = payload.sid;
+      state.isLoggedIn = true;
     },
     [authOperations.register.pending](state) {
       state.error = null;
@@ -38,22 +43,18 @@ const authSlice = createSlice({
     },
 
     [authOperations.logIn.fulfilled](state, { payload }) {
-      if (payload) {
-        state.email = payload.userData.email;
-        state.token = payload.accessToken;
-        state.sid = payload.sid;
-        state.isLoggedIn = true;
-      }
+      // // state.email = payload.userData.email;
+      state.token = payload.accessToken;
+      state.sid = payload.sid;
+      state.isLoggedIn = true;
     },
 
     [authOperations.logOut.fulfilled](state, action) {
-      // if (!state.isLoggedIn) {
-      state.email = null;
+      // state.email = null;
       state.token = null;
       state.refreshToken = null;
       state.sid = null;
       state.isLoggedIn = false;
-      // }
     },
 
     [authOperations.refresh.pending](state, action) {

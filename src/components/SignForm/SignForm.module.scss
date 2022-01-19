@@ -1,10 +1,12 @@
 .FormContainer {
   position: absolute;
   max-width: 436px;
+  top: 117px;
+  right: 110px;
 }
 
 .GoogleBtn {
-  margin: 0 auto;
+  margin: 0 auto 20px;
   padding: 10px 20px;
 
   background-color: #f6f7fb;
@@ -32,9 +34,21 @@
   color: black;
 }
 
+.SignForm p {
+  margin-bottom: 10px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .SignInput {
-  border-radius: 30px;
   padding: 17px 20px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+
+  border-radius: 30px;
   border: none;
   background-color: #f6f7fb;
 }
@@ -48,10 +62,22 @@
 .SignBtnsWrap {
   display: flex;
   justify-content: center;
-  text-transform: uppercase;
   gap: 15px;
+  margin-top: 30px;
 
   font-weight: 700;
+  line-height: calc(14 / 12);
+  letter-spacing: 0.02em;
+}
+
+.SignBtnsWrap button {
+  text-transform: uppercase;
+  width: 125px;
+  height: 44px;
+
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 12px;
   line-height: calc(14 / 12);
   letter-spacing: 0.02em;
 }
@@ -59,12 +85,22 @@
 .SignInBtn {
   background-color: #ff751d;
   padding: 12px 34px;
-  border-radius: 16px;
   color: white;
 }
 
 .SignUpBtn {
   background-color: #f5f6fb;
   padding: 12px 15px;
-  border-radius: 16px;
+  color: #52555f;
+}
+
+.error {
+  color: #eb5757;
+  font-size: 10px;
+  line-height: calc(12 / 10);
+  letter-spacing: 0.04em;
+}
+
+.show {
+  display: block;
 }
