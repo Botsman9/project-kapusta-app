@@ -8,6 +8,7 @@ import useWResize from '../../hooks/useWResize';
 import DatePickerForm from '../../components/transactions/AddDataForm/DatePickerForm/DatePickerForm';
 import { useSelector } from 'react-redux';
 import userSelectors from '../../redux/user/userSelectors';
+import mob from './TransactionsPageMob.module.css';
 
 const TransactionsPage = () => {
   const viewPort = useWResize();
@@ -28,11 +29,13 @@ const TransactionsPage = () => {
 
       {viewPort.width < 768 && (
         <>
-          <div className={s.wrapperMobileBalance}>
+          <div className={mob.wrapperMobileBalance}>
             <GoToReport />
             <Balance />
           </div>
-          <div>{datePicker && <DatePickerForm piker={datePicker} />}</div>
+          <div className={mob.wrapperDatePickerForm}>
+            {datePicker && <DatePickerForm piker={datePicker} />}
+          </div>
           <Outlet />
           <TransactionsNav />
         </>
