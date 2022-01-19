@@ -1,0 +1,38 @@
+.input {
+  font-family: Roboto;
+  width: 104px;
+  height: 40px;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  padding-left: 35px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #52555f;
+}
+
+.wrapperSvg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 20px;
+  height: 20px;
+  z-index: 2;
+}
+
+.calendarDate {
+  font-family: Roboto;
+  border: 2px solid #f8d4b7;
+  font-size: 12px;
+  line-height: 14px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f6fb;
+}

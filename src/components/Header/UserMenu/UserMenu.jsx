@@ -6,8 +6,8 @@ import line from '../../../imges/svg/line.svg';
 import classes from './UserMenu.module.css';
 
 const UserMenu = () => {
-  const email = useSelector(state => state.auth.email);
-  const dispath = useDispatch();
+  const email = useSelector(state => state.user.email);
+  const dispatch = useDispatch();
 
   const getUserName = email => {
     const str = email;
@@ -26,7 +26,7 @@ const UserMenu = () => {
         <img src={line} alt="icon" className={classes.iconLine} />
       </span>
       <span
-        onClick={() => dispath(operations.logOut())}
+        onClick={() => dispatch(operations.logOut())}
         className={classes.exit}
       >
         Выйти

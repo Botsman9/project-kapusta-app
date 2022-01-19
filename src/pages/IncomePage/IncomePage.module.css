@@ -1,5 +1,19 @@
 .wrapperTables {
   display: flex;
-  align-items: baseline;
+  /* align-items: baseline; */
+  flex-direction: column;
   gap: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapperTables {
+    flex-direction: column;
+    /* padding-top: 150px; */
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .wrapperTables {
+    flex-direction: row;
+  }
 }

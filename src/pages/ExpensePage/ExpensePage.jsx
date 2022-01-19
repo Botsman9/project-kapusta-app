@@ -44,6 +44,7 @@ const ExpensePage = () => {
     <div>
       <SectionTransactions>
         <AddDataForm
+          isExpense={true}
           allCategory={expenseCategory}
           onAddDataApi={onAddExpenseDataApi}
         />
