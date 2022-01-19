@@ -1,0 +1,77 @@
+.sectionReportAmount {
+  margin-top: 30px;
+}
+.reportAmount {
+  display: flex;
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0px 10px 60px 0px rgba(170, 178, 197, 0.2);
+
+  padding-top: 20px;
+  padding-bottom: 25px;
+}
+.reportAmount::before {
+  content: '';
+  border-right: 1px solid #e0e5eb;
+  position: absolute;
+  right: calc(50%);
+  top: 10%;
+  height: 80%;
+}
+.amountCategory {
+  color: var#52555f;
+  font-weight: 700;
+  font-size: 14px;
+}
+.value {
+  font-size: 14px;
+  font-weight: 700;
+}
+.valueExpence {
+  color: #e7192e;
+}
+.valueIncome {
+  color: #407946;
+}
+.reportAmountItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .reportAmount {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .reportAmount {
+    justify-content: center;
+  }
+  .reportAmountItem {
+    display: flex;
+    flex-direction: row;
+  }
+  .reportAmountItem:not(:last-child) {
+    margin-right: 40px;
+  }
+  .value {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .reportAmount {
+    justify-content: center;
+  }
+  .reportAmount::before {
+    right: 51.5%;
+  }
+  .reportAmountItem:not(:last-child) {
+    margin-right: 40px;
+  }
+  .reportAmountItem {
+    margin-right: 40px;
+  }
+}

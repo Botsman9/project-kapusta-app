@@ -5,21 +5,22 @@ import s from './StatisticsPage.module.css';
 
 import { fetchAllStatistics } from '../../redux/statistics/statisticsOperations.js';
 import statisticsSelectors from '../../redux/statistics/statisticsSelectors.js';
-
+import ReportAmount from '../../components/Report/ReportAmount/ReportAmount';
 const StatisticsPage = () => {
   const dispatch = useDispatch();
 
-  const currentMonth = useSelector(state => state.statistics.currentMonth);
+  const currentMonth = useSelector(statisticsSelectors.getCurrentMonth);
   console.log('currentMonth', currentMonth);
 
   useEffect(() => {
+    if (!currentMonth) return;
     dispatch(fetchAllStatistics(currentMonth));
   }, [dispatch]);
 
   return (
     <div>
-      3 страница со статистикой
       <Balance />
+      <ReportAmount />
     </div>
   );
 };
