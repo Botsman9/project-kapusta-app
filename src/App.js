@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {!isLoggedIn && (
         <BackgroundCont>
           <Container>
