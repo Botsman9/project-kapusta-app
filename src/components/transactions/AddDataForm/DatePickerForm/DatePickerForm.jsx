@@ -32,17 +32,19 @@ const DatePickerForm = ({ piker }) => {
 
   return (
     <>
-      {piker && (
-        <ReactDatePicker
-          selected={piker}
-          dateFormat="dd.MM.y"
-          onChange={date =>
-            dispatch(userActions.changeCurrentDay(date.getTime()))
-          }
-          customInput={<ExampleCustomInput />}
-          // calendarClassName={s.calendarDate}
-        />
-      )}
+      <div className={s.wrraper}>
+        {piker && (
+          <ReactDatePicker
+            selected={piker}
+            dateFormat="dd.MM.y"
+            onChange={date =>
+              dispatch(userActions.changeCurrentDay(date.getTime()))
+            }
+            customInput={<ExampleCustomInput />}
+            // calendarClassName={s.calendarDate}
+          />
+        )}
+      </div>
     </>
   );
 };

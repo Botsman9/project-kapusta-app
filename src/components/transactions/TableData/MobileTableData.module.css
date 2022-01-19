@@ -46,7 +46,7 @@
 }
 
 .total {
-  composes: data;
+  composes: elem;
 }
 
 .totalIncrement {
@@ -74,4 +74,7 @@
   background-image: url(../../../imges/svg/delete.svg);
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.wrapperDatePickerForm {
 }
