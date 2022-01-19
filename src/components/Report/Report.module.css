@@ -1,0 +1,15 @@
+.reportNav {
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.reportMain {
+  margin-top: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 60px 0px rgba(170, 178, 197, 0.2);
+  padding-top: 20px;
+}
+.reportArrow {
+  cursor: pointer;
+  color: #ff751d;
+}

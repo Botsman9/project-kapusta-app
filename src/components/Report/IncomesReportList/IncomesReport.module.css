@@ -1,0 +1,60 @@
+.expenceReport {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.expenceIcon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  fill: #071f41;
+  position: relative;
+}
+.expenceIcon:hover {
+  fill: #ff751d;
+}
+.expenceReportItem::before {
+  content: '';
+  width: 56px;
+  height: 46px;
+  position: absolute;
+  top: 24px;
+  border-radius: 20px;
+}
+.expenceReportItem:hover:before {
+  background-color: #ffdac0;
+}
+.expenceReportItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85px;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .expenceReportItem {
+    width: 100px;
+  }
+}
+.expenceReportItem:nth-child(n-3) {
+  margin-bottom: 40px;
+}
+
+.expenceCategory {
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  color: #52555f;
+}
+.expenceValue {
+  font-size: 12px;
+  font-weight: 400;
+  color: #52555f;
+  text-align: center;
+}
