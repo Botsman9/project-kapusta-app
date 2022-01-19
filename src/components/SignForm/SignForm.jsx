@@ -8,8 +8,32 @@ function SignForm() {
   const [password, setPassword] = useState('');
   const [emailValid, setEmailValid] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
-  const [formValid, setFormValid] = useState(false);
+  const [submited, setSubmited] = useState(false);
   const dispatch = useDispatch();
+
+  const googleAuth = e => {
+    e.preventDefault();
+    dispatch(operations.googleAuth());
+  };
+
+  const inputChanged = () => {
+    if (
+      email.match(
+        /^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$/i,
+      ) &&
+      email.length >= 10
+    ) {
+      setEmailValid(true);
+    } else {
+      setEmailValid(false);
+    }
+
+    if (password.length >= 0) {
+      setPasswordValid(true);
+    } else {
+      setPasswordValid(false);
+    }
+  };
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -18,13 +42,13 @@ function SignForm() {
       case 'password':
         return setPassword(value);
       default:
-        break;
+        return;
     }
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(`submit`, e.nativeEvent.submitter.id);
+    setSubmited(true);
     switch (e.nativeEvent.submitter.id) {
       case 'sign-google':
         break;
@@ -38,6 +62,7 @@ function SignForm() {
       default:
         break;
     }
+    if (emailValid || passwordValid) return false;
     reset();
   };
 
@@ -48,45 +73,60 @@ function SignForm() {
 
   return (
     <div className={s.FormContainer}>
-      <form className={s.SignForm} onSubmit={handleSubmit}>
+      <form
+        className={s.SignForm}
+        onSubmit={handleSubmit}
+        onChange={inputChanged}
+        noValidate
+      >
         <p>Вы можете авторизоваться с помощью Google Account:</p>
-        <button className={s.GoogleBtn} type="button" id="sign-google">
+        <button className={s.GoogleBtn} type="button" onClick={googleAuth}>
           Google
         </button>
         <p>
           Или зайти с помощью e-mail и пароля, предварительно
           зарегистрировавшись:
         </p>
-        <label>Электронная почта:</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          minLength="10"
-          maxLength="63"
-          pattern="([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
-          placeholder="your@email.com"
-          onChange={handleChange}
-          className={s.SignInput}
-          required
-        ></input>
-        <p className={s.error} id="emaiInlvalid">
-          это обязательное поле
-        </p>
-        <label>Пароль:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          placeholder="••••••••"
-          pattern="([A-Za-z0-9])"
-          onChange={handleChange}
-          className={s.SignInput}
-          required
-        ></input>
-        <p className={s.error} id="passInvalid">
-          это обязательное поле
-        </p>
+        <div className={s.inputWrapper}>
+          <label id="mailLabel" htmlFor="email">
+            Электронная почта:
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            minLength="10"
+            maxLength="63"
+            pattern="^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$"
+            placeholder="your@email.com"
+            onChange={handleChange}
+            className={s.SignInput}
+            required
+          ></input>
+          {!emailValid && submited && (
+            <p className={s.error} id="emailValid">
+              это обязательное поле
+            </p>
+          )}
+        </div>
+        <div className={s.inputWrapper}>
+          <label id="passLabel"> Пароль:</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="••••••••"
+            pattern="([A-Za-z0-9])"
+            onChange={handleChange}
+            className={s.SignInput}
+            required
+          ></input>
+          {!passwordValid && submited && (
+            <p className={s.error} id="passValid">
+              это обязательное поле
+            </p>
+          )}
+        </div>
         <ul className={s.SignBtnsWrap}>
           <li>
             <button type="submit" className={s.SignInBtn} id="signIn">
