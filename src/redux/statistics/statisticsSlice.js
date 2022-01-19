@@ -31,9 +31,9 @@ const statisticsSlice = createSlice({
       })
       .addCase(fetchAllStatistics.fulfilled, (state, { payload }) => {
         state.incomes.data = payload.incomes.incomesData;
-        state.incomes.total = payload.incomes.incomesTotal;
+        state.incomes.total = payload.incomes.incomeTotal;
         state.expense.data = payload.expenses.expensesData;
-        state.expense.total = payload.expenses.expensesTotal;
+        state.expense.total = payload.expenses.expenseTotal;
 
         state.loading = false;
       })
