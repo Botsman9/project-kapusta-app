@@ -1,8 +1,19 @@
+.summaryContainer {
+  display: none;
+}
 @media screen and (min-width: 768px) {
   .summaryContainer {
+    display: block;
     width: 230px;
-    height: 278px;
+    /* height: 278px; */
     margin-top: 30px;
+    padding-top: 150px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    .summaryContainer {
+      padding-top: 0px;
+    }
   }
 
   .summaryTitle {
@@ -10,6 +21,7 @@
     align-items: center;
     justify-content: center;
     height: 38px;
+    width: 230px;
     background: #f5f6fb;
     border: 1px solid #ffffff;
     border-radius: 20px 20px 0 0;
@@ -20,7 +32,7 @@
     padding: 0;
     text-align: center;
     list-style: none;
-    height: 136%;
+    /* height: 136%; */
     overflow-x: hidden;
   }
 
@@ -32,6 +44,8 @@
     height: 38px;
     background: #f5f6fb;
     border: 1px solid #ffffff;
+    color: var(--second-text-color);
+    padding: 0 20px;
   }
 
   .summaryItem:last-child {

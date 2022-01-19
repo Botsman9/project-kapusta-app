@@ -69,7 +69,75 @@ const AddDataForm = ({
     onCloseForm();
   };
 
-  return (
+//   return (
+// <<<<<<< rootColors-fontFamily
+//     <form onSubmit={onSubmiteForm} className={s.form}>
+//       {datePicker && (
+//         <DatePicker
+//           wrapperClassName={s.datePicker}
+//           className={s.formDate}
+//           selected={datePicker}
+//           dateFormat="dd.MM.y"
+//           onChange={date =>
+//             dispatch(userActions.changeCurrentDay(date.getTime()))
+//           }
+//         />
+//       )}
+
+//       <input
+//         className={s.formDesc}
+//         type="text"
+//         onChange={addData}
+//         name="description"
+//         value={description}
+//         placeholder="Описание товара"
+//         required
+//       />
+
+//       <select
+//         className={s.formCategory}
+//         name="category"
+//         value={category}
+//         onChange={addData}
+//         required
+//       >
+//         <option className={s.formText} value="">
+//           Категория товара
+//         </option>
+//         {allCategory.map(value => (
+//           <option className={s.formText} key={value} value={value}>
+//             {value}
+//           </option>
+//         ))}
+//       </select>
+//       <input
+//         className={s.formSum}
+//         placeholder="0.00"
+//         type="amount"
+//         onChange={addData}
+//         name="amount"
+//         value={amount}
+//         required
+//       />
+
+//       <MyButton
+//         className={s.formBtn}
+//         isActiv={true}
+//         type="submit"
+//         classCss={'myAccentBtn'}
+//       >
+//         Ввод
+//       </MyButton>
+//       <MyButton
+//         className={s.formBtn}
+//         type="button"
+//         onClick={reset}
+//         classCss={'myMinorBtn'}
+//       >
+//         Очистить
+//       </MyButton>
+//     </form>
+// =======
     <>
       {viewPort.width >= 1280 && (
         <>
@@ -262,6 +330,7 @@ const AddDataForm = ({
         </>
       )}
     </>
+
   );
 };
 
