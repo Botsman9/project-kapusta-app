@@ -7,6 +7,8 @@ const getExpenseMonthTransactions = state => state.statistics.expense.data;
 const getStatisticsLoading = state => state.statistics.loading;
 const getStatisticsError = state => state.statistics.error;
 
-const userSelectors = {};
+const getcurrentMonth = state => state.statistics.currentMonth;
+
+const userSelectors = { getcurrentMonth };
 
 export default userSelectors;

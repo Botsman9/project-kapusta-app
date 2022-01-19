@@ -15,6 +15,8 @@ const getUserError = state => state.user.error;
 
 const getCurrentDay = state => state.user.transaction.currentDay;
 
+const getUserEmail = state => state.user.email;
+
 const userSelectors = {
   getUserBalance,
 
@@ -30,6 +32,7 @@ const userSelectors = {
   getUserError,
 
   getCurrentDay,
+  getUserEmail,
 };
 
 export default userSelectors;
