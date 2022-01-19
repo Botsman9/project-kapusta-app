@@ -11,10 +11,10 @@ function SignForm() {
   const [submited, setSubmited] = useState(false);
   const dispatch = useDispatch();
 
-  const googleAuth = e => {
-    e.preventDefault();
-    dispatch(operations.googleAuth());
-  };
+  // const googleAuth = e => {
+  //   e.preventDefault();
+  //   dispatch(operations.googleAuth());
+  // };
 
   const inputChanged = () => {
     if (
@@ -80,7 +80,11 @@ function SignForm() {
         noValidate
       >
         <p>Вы можете авторизоваться с помощью Google Account:</p>
-        <button className={s.GoogleBtn} type="button" onClick={googleAuth}>
+        <button
+          className={s.GoogleBtn}
+          type="button"
+          onClick={() => dispatch(operations.googleAuth())}
+        >
           Google
         </button>
         <p>

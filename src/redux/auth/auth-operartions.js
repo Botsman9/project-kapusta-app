@@ -4,10 +4,13 @@ import { token } from '../../api/Axios';
 import { getToken } from './auth-slise';
 
 const googleAuth = createAsyncThunk(
-  'auth/register',
+  'auth/google',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await instanceAxios.get('/auth/google');
+      const { data } = await instanceAxios
+        .get('/auth/google')
+        .then(await instanceAxios.get('/user'));
+
       token.set(data.accessToken);
       return data;
     } catch (error) {
