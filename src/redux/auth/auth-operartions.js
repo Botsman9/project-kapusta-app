@@ -7,9 +7,7 @@ const googleAuth = createAsyncThunk(
   'auth/register',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await instanceAxios.get('/auth/google', {
-        mode: 'no-cors',
-      });
+      const { data } = await instanceAxios.get('/auth/google');
       token.set(data.accessToken);
       return data;
     } catch (error) {
