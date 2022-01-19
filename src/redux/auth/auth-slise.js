@@ -22,13 +22,10 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [authOperations.register.fulfilled](state, { payload }) {
-      console.log(`payload`, payload);
-      if (payload) {
-        state.email = payload.email;
-        state.token = payload.accessToken;
-        state.sid = payload.sid;
-        state.isLoggedIn = true;
-      }
+      state.email = payload.email;
+      state.token = payload.accessToken;
+      state.sid = payload.sid;
+      state.isLoggedIn = true;
     },
     [authOperations.register.pending](state) {
       state.error = null;
@@ -38,12 +35,10 @@ const authSlice = createSlice({
     },
 
     [authOperations.logIn.fulfilled](state, { payload }) {
-      if (payload) {
-        state.email = payload.userData.email;
-        state.token = payload.accessToken;
-        state.sid = payload.sid;
-        state.isLoggedIn = true;
-      }
+      state.email = payload.userData.email;
+      state.token = payload.accessToken;
+      state.sid = payload.sid;
+      state.isLoggedIn = true;
     },
 
     [authOperations.logOut.fulfilled](state, action) {

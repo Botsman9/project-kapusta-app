@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import s from './SignForm.module.css';
+import s from './SignForm.module.scss';
 import operations from '../../redux/auth/auth-operartions';
 
 function SignForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailValid, setEmailValid] = useState(false);
+  const [passwordValid, setPasswordValid] = useState(false);
+  const [formValid, setFormValid] = useState(false);
   const dispatch = useDispatch();
 
   const handleChange = ({ target: { name, value } }) => {
@@ -59,18 +62,31 @@ function SignForm() {
           type="email"
           name="email"
           value={email}
+          minLength="10"
+          maxLength="63"
+          pattern="([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})"
           placeholder="your@email.com"
           onChange={handleChange}
           className={s.SignInput}
+          required
         ></input>
+        <p className={s.error} id="emaiInlvalid">
+          это обязательное поле
+        </p>
         <label>Пароль:</label>
         <input
           type="password"
           name="password"
           value={password}
+          placeholder="••••••••"
+          pattern="([A-Za-z0-9])"
           onChange={handleChange}
           className={s.SignInput}
+          required
         ></input>
+        <p className={s.error} id="passInvalid">
+          это обязательное поле
+        </p>
         <ul className={s.SignBtnsWrap}>
           <li>
             <button type="submit" className={s.SignInBtn} id="signIn">
