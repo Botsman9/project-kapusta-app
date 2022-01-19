@@ -1,0 +1,17 @@
+.listTransactions {
+}
+
+.itemTransactions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftColum {
+  display: flex;
+  flex-direction: column;
+}
+
+.rigthColum {
+  display: flex;
+  align-items: center;
+}
