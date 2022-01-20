@@ -3,22 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from '../../api/Axios';
 import { getToken } from './auth-slise';
 
-const googleAuth = createAsyncThunk(
-  'auth/google',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await instanceAxios
-        .get('/auth/google')
-        .then(instanceAxios.get('/user'));
-
-      token.set(data.accessToken);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data.message);
-    }
-  },
-);
-
 const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
@@ -83,6 +67,5 @@ const operations = {
   logOut,
   logIn,
   refresh,
-  googleAuth,
 };
 export default operations;

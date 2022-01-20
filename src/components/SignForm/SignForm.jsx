@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import s from './SignForm.module.scss';
 import operations from '../../redux/auth/auth-operartions';
-import { useLocation } from 'react-router';
 
 function SignForm() {
   const [email, setEmail] = useState('');
@@ -11,19 +10,6 @@ function SignForm() {
   const [passwordValid, setPasswordValid] = useState(false);
   const [submited, setSubmited] = useState(false);
   const dispatch = useDispatch();
-
-  const location = useLocation();
-  console.log('location', location);
-
-  useEffect(() => {
-    // console.log('new', new URLSearchParams().get());
-    console.log(window.location);
-  }, []);
-
-  // const googleAuth = e => {
-  //   e.preventDefault();
-  //   dispatch(operations.googleAuth());
-  // };
 
   const inputChanged = () => {
     if (
