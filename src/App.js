@@ -15,30 +15,32 @@ function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
   const location = useLocation();
+  const { search } = useLocation();
+  console.log('location', location);
 
-  const accessToken = new URLSearchParams(location.search).get('accessToken');
-  const refreshToken = new URLSearchParams(location.search).get('refreshToken');
-  const sid = new URLSearchParams(location.search).get('sid');
+  const accessToken = new URLSearchParams(search).get('accessToken');
+  const refreshToken = new URLSearchParams(search).get('refreshToken');
+  const sid = new URLSearchParams(search).get('sid');
 
   useEffect(() => {
     dispatch(userOperations.getAllUserInfo());
   }, [dispatch]);
 
   useEffect(() => {
-    if (isLoggedIn && !accessToken) {
-      dispatch(operations.refresh());
-    }
-  }, [accessToken, dispatch, isLoggedIn]);
+    // if (isLoggedIn && !accessToken) {
+    dispatch(operations.refresh());
+    // }
+  }, [dispatch]);
 
   useEffect(() => {
     if (!accessToken) return false;
     dispatch(setAuth({ accessToken, refreshToken, sid }));
     dispatch(userOperations.getAllUserInfo());
-  });
+  }, [accessToken, dispatch, refreshToken, sid]);
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       {!isLoggedIn && (
         <BackgroundCont>
           <Container>
