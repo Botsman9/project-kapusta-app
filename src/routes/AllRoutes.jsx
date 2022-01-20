@@ -23,7 +23,7 @@ const IncomePage = lazy(() =>
 );
 const StatisticsPage = lazy(() =>
   import(
-    '../pages/StatisticsPage/StatisticsPage' /* webpackChunkName: "Statistics___page" */
+    '../pages/StatisticsPage/StatisticsPageMonth' /* webpackChunkName: "Statistics___page" */
   ),
 );
 
@@ -48,7 +48,7 @@ const AllRoutes = () => {
         <Route
           path="statistics"
           element={!isLoggedIn ? <Navigate to="/home" /> : <StatisticsPage />}
-          // element={<StatisticsPage />}
+          element={<StatisticsPage />}
         />
       </Routes>
     </Suspense>

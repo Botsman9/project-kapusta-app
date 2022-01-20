@@ -1,8 +1,8 @@
 import sprite from '../icon.svg';
 import category from './income.json';
-import s from './ReportIncomesList.module.css';
+import s from './IncomesReportList.module.css';
 
-const ReportIncomesList = () => {
+const IncomesReportList = () => {
   return (
     <ul className={s.expenceReport}>
       {category.map(el => (
@@ -18,4 +18,4 @@ const ReportIncomesList = () => {
   );
 };
 
-export default ReportIncomesList;
+export default IncomesReportList;

@@ -1,7 +1,7 @@
 import React from 'react';
 import sprite from '../icon.svg';
-import category from './expence.json';
-import s from './ExpencesReportList.module.css';
+import category from './expense.json';
+import s from './ExperencesReportList.module.css';
 
 const ExpencesReportList = () => {
   return (
