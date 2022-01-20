@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Container from 'components/Container';
-import ReportExpencesList from './ReportExpencesList/ReportExpencesList';
-import ReportIncomesList from './ReportIncomesList/ReportIncomesList';
+import Container from '../../components/Container/Container';
+import ExpencesReportList from './ExpencesReportList';
+import IncomesReportList from './IncomesReportList/IncomesReportList';
 import s from './Report.module.css';
 import ArrowBackIos from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
@@ -25,7 +25,7 @@ const Report = () => {
             onClick={() => setChange(!change)}
           />
         </div>
-        {change ? <ReportExpencesList /> : <ReportIncomesList />}
+        {change ? <ExpencesReportList /> : <IncomesReportList />}
       </div>
     </Container>
   );

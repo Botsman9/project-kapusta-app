@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import instanceAxios from 'axios';
 import * as API from '../../api/api';
 
 const fetchAllStatistics = createAsyncThunk(
@@ -13,5 +14,9 @@ const fetchAllStatistics = createAsyncThunk(
     }
   },
 );
-
 export { fetchAllStatistics };
+
+export async function deleteTransaction(id) {
+  const { data } = await instanceAxios.delete(`/transaction/${id}`);
+  return data;
+}
