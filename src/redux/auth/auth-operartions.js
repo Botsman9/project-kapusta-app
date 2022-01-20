@@ -2,7 +2,6 @@ import instanceAxios from '../../api/Axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { token } from '../../api/Axios';
 import { getToken } from './auth-slise';
-import { useDispatch } from 'react-redux';
 import { resetStatisticsUSer } from '../statistics/statisticsSlice';
 import { resetUserInfo } from '../user/userSlice';
 
@@ -34,12 +33,11 @@ const logIn = createAsyncThunk(
 
 const logOut = createAsyncThunk(
   'auth/logout',
-  async (_, { rejectWithValue }) => {
-    const dispatch = useDispatch();
+  async (_, { rejectWithValue, dispatch }) => {
     try {
+      await instanceAxios.post('/auth/logout');
       dispatch(resetUserInfo());
       dispatch(resetStatisticsUSer());
-      await instanceAxios.post('/auth/logout');
       token.unset();
     } catch (error) {
       console.log(`error`, error());
