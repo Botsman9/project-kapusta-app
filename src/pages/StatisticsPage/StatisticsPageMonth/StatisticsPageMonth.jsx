@@ -22,7 +22,6 @@ const StatisticsPage = () => {
 
   return (
     <div>
-      <Balance />
       <ReportNavigation />
       <ReportAmount />
       <Report />

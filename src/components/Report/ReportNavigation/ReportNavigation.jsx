@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import s from './ReportNavigation.module.css';
-import ReportGoBack from './ReportGoBack/ReportGoBack';
-import ReportBalance from './ReportBalance/ReportBalance';
+import ToGoBack from '../../toGoBack/toGoBack';
+import Balance from '../../Balance/Balance';
 import ReportPeriod from './ReportPeriod';
 
 const ReportNavigation = () => {
@@ -19,15 +19,15 @@ const ReportNavigation = () => {
     <>
       {width >= 768 ? (
         <section className={s.reportNav}>
-          <ReportGoBack />
-          <ReportBalance />
+          <ToGoBack />
+          <Balance />
           <ReportPeriod />
         </section>
       ) : (
         <section className={s.reportNav}>
-          <ReportGoBack />
+          <ToGoBack />
           <ReportPeriod />
-          <ReportBalance />
+          <Balance />
         </section>
       )}
     </>
