@@ -64,8 +64,10 @@ const AllRoutes = () => {
               <Navigate to="/home" />
             ) : isMobile ? (
               <MobileFormPage />
-            ) : (
+            ) : currentTransaction ? (
               <Navigate to={`/transactions/${currentTransaction}`} />
+            ) : (
+              <Navigate to="/transactions" />
             )
           }
         />
