@@ -51,5 +51,6 @@ const statisticsSlice = createSlice({
   },
 });
 
-export const { changeCurrentMonth } = statisticsSlice.actions;
+export const { changeCurrentMonth, resetStatisticsUSer } =
+  statisticsSlice.actions;
 export default statisticsSlice.reducer;
