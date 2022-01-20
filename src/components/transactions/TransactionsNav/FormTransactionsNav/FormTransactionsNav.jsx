@@ -11,7 +11,7 @@ const FormTransactionsNav = () => {
   const isExpense = currentTransaction === 'expense';
   return (
     <div>
-      <NavLink to="/mobile-add-trandaction" className={s.link}>
+      <NavLink to="/mobile-add-transaction" className={s.link}>
         {isExpense ? (
           <AddShoppingCartIcon sx={{ color: '#FF751D', fontSize: 20 }} />
         ) : (
