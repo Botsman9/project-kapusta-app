@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { Suspense, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AddDataForm from '../../components/transactions/AddDataForm/AddDataForm';
 import SectionTransactions from '../../components/transactions/SectionTransactions/SectionTransactions';
@@ -7,26 +7,25 @@ import TableData from '../../components/transactions/TableData/TableData';
 import userSelectors from '../../redux/user/userSelectors';
 import * as userOperations from '../../redux/user/userOperations';
 import s from './ExpensePage.module.css';
+import * as userActions from '../../redux/user/userSlice';
 import { normalizeDateApi } from '../../services/normalize';
+import useWResize from '../../hooks/useWResize';
 
 const ExpensePage = () => {
-  const expenseCategory = useSelector(userSelectors.getExpenseCategory);
   const expenseTransactions = useSelector(
     userSelectors.getExpenseAllTransactions,
   );
   const expenseMonthsStats = useSelector(userSelectors.getExpenseMonthsStats);
 
   const currentDay = useSelector(userSelectors.getCurrentDay);
+  const viewPort = useWResize();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(userActions.changeCurrentTransaction('expense'));
     dispatch(userOperations.fetchExpense());
-    dispatch(userOperations.fetchExpenseCategories());
   }, [dispatch]);
-
-  const onAddExpenseDataApi = data =>
-    dispatch(userOperations.createExpense(data));
 
   const onDelExpenseDataApi = id =>
     dispatch(userOperations.deleteExpenseTransaction(id));
@@ -43,16 +42,11 @@ const ExpensePage = () => {
   return (
     <div>
       <SectionTransactions>
-        <AddDataForm
-          isExpense={true}
-          allCategory={expenseCategory}
-          onAddDataApi={onAddExpenseDataApi}
-        />
+        {viewPort.width >= 768 && <AddDataForm />}
         <div className={s.wrapperTables}>
           <TableData
             isExpense={true}
             dataTransactions={filterForDate() || []}
-            // dataTransactions={expenseTransactions}
             onChangeDel={onDelExpenseDataApi}
           />
           <Summary monthsStats={expenseMonthsStats} />

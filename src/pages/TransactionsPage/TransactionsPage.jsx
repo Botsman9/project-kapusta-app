@@ -9,6 +9,7 @@ import DatePickerForm from '../../components/transactions/AddDataForm/DatePicker
 import { useSelector } from 'react-redux';
 import userSelectors from '../../redux/user/userSelectors';
 import mob from './TransactionsPageMob.module.css';
+import FormTransactionsNav from '../../components/transactions/TransactionsNav/FormTransactionsNav/FormTransactionsNav';
 
 const TransactionsPage = () => {
   const viewPort = useWResize();
@@ -35,6 +36,7 @@ const TransactionsPage = () => {
           </div>
           <div className={mob.wrapperDatePickerForm}>
             {datePicker && <DatePickerForm piker={datePicker} />}
+            <FormTransactionsNav />
           </div>
           <Outlet />
           <TransactionsNav />

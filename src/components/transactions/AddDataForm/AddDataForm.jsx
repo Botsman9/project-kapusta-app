@@ -6,31 +6,57 @@ import MyButton from '../../UI/button/MyButton';
 import SelectCategory from './SelectCategory/SelectCategory';
 import useWResize from '../../../hooks/useWResize';
 import DatePickerForm from './DatePickerForm/DatePickerForm';
+import * as userOperations from '../../../redux/user/userOperations';
 import * as userActions from '../../../redux/user/userSlice';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './AddDataForm.module.css';
 
-const AddDataForm = ({
-  allCategory,
-  onAddDataApi,
-  onCloseForm,
-  isExpense = false,
-}) => {
+const AddDataForm = ({ onAddDataApi }) => {
   const dispatch = useDispatch();
-
   const datePicker = useSelector(userSelectors.getCurrentDay);
+  const expenseCategory = useSelector(userSelectors.getExpenseCategory);
+  const incomeCategory = useSelector(userSelectors.getIncomeCategory);
+  const currentTransaction = useSelector(userSelectors.getCurrentTransaction);
+
+  const isExpense = currentTransaction === 'expense';
+
+  const allCategory = isExpense ? expenseCategory : incomeCategory;
 
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
-
   const [amount, setAmount] = useState('');
-
   const viewPort = useWResize();
 
+  let currentDay = datePicker;
+
+  if (!datePicker) {
+    currentDay = Date.now();
+  }
+
   useEffect(() => {
-    const currentDay = Date.now();
+    isExpense
+      ? dispatch(userOperations.fetchExpenseCategories())
+      : dispatch(userOperations.fetchIncomeCategories());
+  }, [dispatch, isExpense]);
+
+  useEffect(() => {
     dispatch(userActions.changeCurrentDay(currentDay));
-  }, [dispatch]);
+  }, [currentDay, dispatch]);
+
+  const addTransactionApi = (value, data) => {
+    switch (value) {
+      case 'expense':
+        dispatch(userOperations.createExpense(data));
+        return;
+
+      case 'income':
+        dispatch(userOperations.createIncome(data));
+        return;
+
+      default:
+        return;
+    }
+  };
 
   const addData = e => {
     const { name, value } = e.target;
@@ -60,84 +86,11 @@ const AddDataForm = ({
     if (!datePicker) return;
     const date = normalizeDateApi(datePicker);
     const newProduct = { date, description, amount, category };
-    onAddDataApi(newProduct);
+    addTransactionApi(currentTransaction, newProduct);
     reset();
   };
 
-  const handleSubmitMobile = e => {
-    onSubmiteForm(e);
-    onCloseForm();
-  };
-
   return (
-    // <<<<<<< rootColors-fontFamily
-    //     <form onSubmit={onSubmiteForm} className={s.form}>
-    //       {datePicker && (
-    //         <DatePicker
-    //           wrapperClassName={s.datePicker}
-    //           className={s.formDate}
-    //           selected={datePicker}
-    //           dateFormat="dd.MM.y"
-    //           onChange={date =>
-    //             dispatch(userActions.changeCurrentDay(date.getTime()))
-    //           }
-    //         />
-    //       )}
-
-    //       <input
-    //         className={s.formDesc}
-    //         type="text"
-    //         onChange={addData}
-    //         name="description"
-    //         value={description}
-    //         placeholder="Описание товара"
-    //         required
-    //       />
-
-    //       <select
-    //         className={s.formCategory}
-    //         name="category"
-    //         value={category}
-    //         onChange={addData}
-    //         required
-    //       >
-    //         <option className={s.formText} value="">
-    //           Категория товара
-    //         </option>
-    //         {allCategory.map(value => (
-    //           <option className={s.formText} key={value} value={value}>
-    //             {value}
-    //           </option>
-    //         ))}
-    //       </select>
-    //       <input
-    //         className={s.formSum}
-    //         placeholder="0.00"
-    //         type="amount"
-    //         onChange={addData}
-    //         name="amount"
-    //         value={amount}
-    //         required
-    //       />
-
-    //       <MyButton
-    //         className={s.formBtn}
-    //         isActiv={true}
-    //         type="submit"
-    //         classCss={'myAccentBtn'}
-    //       >
-    //         Ввод
-    //       </MyButton>
-    //       <MyButton
-    //         className={s.formBtn}
-    //         type="button"
-    //         onClick={reset}
-    //         classCss={'myMinorBtn'}
-    //       >
-    //         Очистить
-    //       </MyButton>
-    //     </form>
-    // =======
     <>
       {viewPort.width >= 1280 && (
         <>
@@ -334,3 +287,72 @@ const AddDataForm = ({
 };
 
 export default AddDataForm;
+
+// <<<<<<< rootColors-fontFamily
+//     <form onSubmit={onSubmiteForm} className={s.form}>
+//       {datePicker && (
+//         <DatePicker
+//           wrapperClassName={s.datePicker}
+//           className={s.formDate}
+//           selected={datePicker}
+//           dateFormat="dd.MM.y"
+//           onChange={date =>
+//             dispatch(userActions.changeCurrentDay(date.getTime()))
+//           }
+//         />
+//       )}
+
+//       <input
+//         className={s.formDesc}
+//         type="text"
+//         onChange={addData}
+//         name="description"
+//         value={description}
+//         placeholder="Описание товара"
+//         required
+//       />
+
+//       <select
+//         className={s.formCategory}
+//         name="category"
+//         value={category}
+//         onChange={addData}
+//         required
+//       >
+//         <option className={s.formText} value="">
+//           Категория товара
+//         </option>
+//         {allCategory.map(value => (
+//           <option className={s.formText} key={value} value={value}>
+//             {value}
+//           </option>
+//         ))}
+//       </select>
+//       <input
+//         className={s.formSum}
+//         placeholder="0.00"
+//         type="amount"
+//         onChange={addData}
+//         name="amount"
+//         value={amount}
+//         required
+//       />
+
+//       <MyButton
+//         className={s.formBtn}
+//         isActiv={true}
+//         type="submit"
+//         classCss={'myAccentBtn'}
+//       >
+//         Ввод
+//       </MyButton>
+//       <MyButton
+//         className={s.formBtn}
+//         type="button"
+//         onClick={reset}
+//         classCss={'myMinorBtn'}
+//       >
+//         Очистить
+//       </MyButton>
+//     </form>
+// =======

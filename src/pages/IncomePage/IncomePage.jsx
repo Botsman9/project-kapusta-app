@@ -7,26 +7,26 @@ import Summary from '../../components/transactions/Summary/Summary';
 import userSelectors from '../../redux/user/userSelectors';
 import { normalizeDateApi } from '../../services/normalize';
 import * as userOperations from '../../redux/user/userOperations';
+import * as userActions from '../../redux/user/userSlice';
+
 import s from './IncomePage.module.css';
+import useWResize from '../../hooks/useWResize';
 
 const IncomePage = () => {
-  const incomeCategory = useSelector(userSelectors.getIncomeCategory);
   const incomesTransactions = useSelector(
     userSelectors.getIncomesAllTransactions,
   );
 
   const incomesMonthsStats = useSelector(userSelectors.getIncomesMonthsStats);
   const currentDay = useSelector(userSelectors.getCurrentDay);
+  const viewPort = useWResize();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(userActions.changeCurrentTransaction('income'));
     dispatch(userOperations.fetchIncome());
-    dispatch(userOperations.fetchIncomeCategories());
   }, [dispatch]);
-
-  const onAddIncomeDataApi = data =>
-    dispatch(userOperations.createIncome(data));
 
   const onDelIncomeDataApi = id =>
     dispatch(userOperations.deleteIncomeTransaction(id));
@@ -43,14 +43,10 @@ const IncomePage = () => {
   return (
     <div>
       <SectionTransactions>
-        <AddDataForm
-          allCategory={incomeCategory}
-          onAddDataApi={onAddIncomeDataApi}
-        />
+        {viewPort.width >= 768 && <AddDataForm />}
         <div className={s.wrapperTables}>
           <TableData
             dataTransactions={filterForDate() || []}
-            // dataTransactions={incomesTransactions}
             onChangeDel={onDelIncomeDataApi}
           />
           <Summary monthsStats={incomesMonthsStats} />

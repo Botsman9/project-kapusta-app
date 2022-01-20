@@ -29,10 +29,16 @@ const authPersistConfig = {
   whitelist: ['token', 'sid', 'email'],
 };
 
+const userPersistConfig = {
+  key: 'current-date',
+  storage,
+  whitelist: ['currentDay', 'currentTrandaction'],
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    user: userReducer,
+    user: persistReducer(userPersistConfig, userReducer),
     statistics: statisticsReducer,
   },
   middleware: getDefaultMiddleware =>
