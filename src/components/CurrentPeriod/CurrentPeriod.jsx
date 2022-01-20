@@ -1,54 +1,38 @@
 import React from 'react';
 
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos.js';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos.js';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos.js';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 import s from './CurrentPeriod.module.css';
 
-import months from '../../utils/dataMonth';
-// const months = [
-//   { id: '1', name: 'Январь' },
-//   { id: '2', name: 'Февраль' },
-//   { id: '3', name: 'Март ' },
-//   { id: '4', name: 'Апрель' },
-//   { id: '5', name: 'Май' },
-//   { id: '6', name: 'Июнь' },
-//   { id: '7', name: 'Июль' },
-//   { id: '8', name: 'Август' },
-//   { id: '9', name: 'Сентябрь' },
-//   { id: '10', name: 'Октябрь' },
-//   { id: '11', name: 'Ноябрь' },
-//   { id: '12', name: 'Декабрь' },
-// ];
+import arrMonths from '../../utils/dataMonth';
 
-const CurrentPeriod = ({
-  currentMonth,
-  currentYear,
-  onHandleClickRight,
-  onHandleClickLeft,
-}) => {
-  const monthToString = String(currentMonth);
-  const selectMonth = months.filter(el => el.id === monthToString);
+export default function CurrentPeriod({
+  month,
+  year,
+  handleChangeMonthLeft,
+  handleChangeMonthRight,
+}) {
+  const currentMonth = arrMonths.filter(item => item.id === String(month));
   return (
-    <div className={s.reportMonth}>
-      <p className={s.title}>Текущий период:</p>
-      <div className={s.transactionWrapper}>
+    <div className={s.navigationMonthTab}>
+      <p className={s.navigationMonthPeriod}>Текущий период:</p>
+      <div className={s.navigationMonth}>
         <ArrowBackIosIcon
-          style={{ color: '#FF751D', width: '12', cursor: 'pointer' }}
-          onClick={onHandleClickLeft}
+          style={{ color: '#FF751D', cursor: 'pointer' }}
+          fontSize="small"
+          onClick={handleChangeMonthLeft}
         />
-
-        {/* {
-          <span
-            className={s.reportMonthTitle}
-          >{`${selectMonth[0].name} ${currentYear}`}</span>
-        } */}
+        <p>январь 2022</p>
+        {/* <p
+          className={s.navigationMonthName}
+        >{`${currentMonth[0].name} ${year}`}</p> */}
         <ArrowForwardIosIcon
-          style={{ color: '#FF751D', width: '12', cursor: 'pointer' }}
-          onClick={onHandleClickRight}
+          style={{ color: '#FF751D', cursor: 'pointer' }}
+          fontSize="small"
+          onClick={handleChangeMonthRight}
         />
       </div>
     </div>
   );
-};
-export default CurrentPeriod;
+}

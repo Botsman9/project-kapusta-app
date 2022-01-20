@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import TransactionsNav from '../../components/transactions/TransactionsNav/TransactionsNav';
 import GoToReport from '../../components/GoToReport/GoToReport';
 import Balance from '../../components/Balance/Balance';
-// import CurrentPeriod from '../../components/CurrentPeriod/CurrentPeriod';
+import CurrentPeriod from '../../components/CurrentPeriod/CurrentPeriod';
 // import ToGoBack from '../../components/toGoBack/toGoBack';
 
 const TransactionsPage = () => {
@@ -12,9 +12,10 @@ const TransactionsPage = () => {
       <div>
         <Balance />
         <GoToReport />
+        <CurrentPeriod />
       </div>
       {/* <ToGoBack /> */}
-      {/* <CurrentPeriod /> */}
+
       <TransactionsNav />
       <Outlet />
     </div>
