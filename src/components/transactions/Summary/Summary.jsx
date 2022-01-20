@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Summary.module.css';
 
 const Summary = ({ monthsStats }) => {
-  console.log(monthsStats);
   return (
     // <div className={s.summaryContainer}>
     <table className={s.summaryContainer}>

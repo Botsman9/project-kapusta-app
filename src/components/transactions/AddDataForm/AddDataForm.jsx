@@ -139,9 +139,9 @@ const AddDataForm = ({ onAddDataApi }) => {
                     value={amount}
                     required
                   />
-                  <div>
+                  {/* <div>
                     <div className={s.calculatorIcon}>♥</div>
-                  </div>
+                  </div> */}
                 </div>
               </label>
             </div>
@@ -201,9 +201,9 @@ const AddDataForm = ({ onAddDataApi }) => {
                       value={amount}
                       required
                     />
-                    <div>
+                    {/* <div>
                       <div className={s.calculatorIcon}>♥</div>
-                    </div>
+                    </div> */}
                   </div>
                 </label>
               </div>
@@ -251,7 +251,7 @@ const AddDataForm = ({ onAddDataApi }) => {
                 </label>
                 <label className={s.lAmount}>
                   <div className={s.wrapperInputA}>
-                    <div>
+                    <div className={s.wrapperIconMob}>
                       <input
                         placeholder="0.00"
                         type="text"
@@ -264,9 +264,7 @@ const AddDataForm = ({ onAddDataApi }) => {
                         required
                       />
                     </div>
-                    <div className={s.wrapperIcon}>
-                      <div className={s.calculatorIcon}>♥</div>
-                    </div>
+                    <div className={s.wrapperIcon}></div>
                   </div>
                 </label>
               </div>

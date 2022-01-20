@@ -1,9 +1,10 @@
 .wrraper {
   display: flex;
+  margin-right: 20px;
+  margin-top: 5px;
 }
 
 .input {
-  font-family: Roboto;
   width: 104px;
   height: 40px;
   font-weight: 900;
@@ -30,7 +31,6 @@
 }
 
 .calendarDate {
-  font-family: Roboto;
   border: 2px solid #f8d4b7;
   font-size: 12px;
   line-height: 14px;
