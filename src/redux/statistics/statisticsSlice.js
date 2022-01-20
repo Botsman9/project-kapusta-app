@@ -22,6 +22,13 @@ const statisticsSlice = createSlice({
     changeCurrentMonth: (state, { payload }) => {
       state.currentMonth = payload;
     },
+    resetStatisticsUSer: (state, _) => {
+      // state.currentMonth = "";
+      state.incomes.data = {};
+      state.incomes.total = 0;
+      state.expense.data = {};
+      state.expense.total = 0;
+    },
   },
   extraReducers: builder => {
     builder
