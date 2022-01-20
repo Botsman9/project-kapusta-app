@@ -1,7 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import userSelectors from '../redux/user/userSelectors';
 import MyLoader from '../components/UI/loader/MyLoader';
+import useWResize from '../hooks/useWResize';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
 const HomePage = lazy(() =>
   import('../pages/HomePage/HomePage' /* webpackChunkName: "Home___page" */),
@@ -33,7 +36,12 @@ const MobileFormPage = lazy(() =>
 );
 
 const AllRoutes = () => {
+  const viewPort = useWResize();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  const currentTransaction = useSelector(userSelectors.getCurrentTransaction);
+
+  const isMobile = viewPort.width < 768;
+
   return (
     <Suspense fallback={<MyLoader />}>
       <Routes>
@@ -52,13 +60,23 @@ const AllRoutes = () => {
         </Route>
         <Route
           path="mobile-add-trandaction"
-          element={!isLoggedIn ? <Navigate to="/home" /> : <MobileFormPage />}
+          element={
+            !isLoggedIn ? (
+              <Navigate to="/home" />
+            ) : isMobile ? (
+              <MobileFormPage />
+            ) : currentTransaction ? (
+              <Navigate to={`/transactions/${currentTransaction}`} />
+            ) : (
+              <Navigate to="/transactions" />
+            )
+          }
         />
         <Route
           path="statistics"
           element={!isLoggedIn ? <Navigate to="/home" /> : <StatisticsPage />}
-          element={<StatisticsPage />}
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );

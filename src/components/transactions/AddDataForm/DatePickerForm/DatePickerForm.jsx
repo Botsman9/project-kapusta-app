@@ -37,6 +37,7 @@ const DatePickerForm = ({ piker }) => {
           <ReactDatePicker
             selected={piker}
             dateFormat="dd.MM.y"
+            maxDate={new Date()}
             onChange={date =>
               dispatch(userActions.changeCurrentDay(date.getTime()))
             }
