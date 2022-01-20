@@ -23,7 +23,7 @@ function SignForm() {
       setEmailValid(false);
     }
 
-    if (password.length >= 0) {
+    if (password.length > 0) {
       setPasswordValid(true);
     } else {
       setPasswordValid(false);

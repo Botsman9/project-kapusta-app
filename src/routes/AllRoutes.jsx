@@ -59,7 +59,7 @@ const AllRoutes = () => {
           <Route path="income" element={<IncomePage />} />
         </Route>
         <Route
-          path="mobile-add-trandaction"
+          path="mobile-add-transaction"
           element={
             !isLoggedIn ? (
               <Navigate to="/home" />

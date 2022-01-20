@@ -24,6 +24,6 @@ function StatisticsTransactions() {
     </div>
   );
 }
-StatisticsTransactions.PropTypes = {};
+// StatisticsTransactions.PropTypes = {};
 
 export default StatisticsTransactions;
