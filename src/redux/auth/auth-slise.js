@@ -17,17 +17,14 @@ const authSlice = createSlice({
     getToken: (state, { payload }) => {
       state.token = payload;
     },
-  },
-  extraReducers: {
-    [authOperations.googleAuth.fulfilled](state, { payload }) {
+    setAuth: (state, { payload }) => {
       state.token = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
       state.sid = payload.sid;
       state.isLoggedIn = true;
     },
-    [authOperations.googleAuth.pending](state) {
-      state.error = null;
-    },
-
+  },
+  extraReducers: {
     [authOperations.register.fulfilled](state, { payload }) {
       state.token = payload.accessToken;
       state.sid = payload.sid;
@@ -71,5 +68,5 @@ const authSlice = createSlice({
 
 const authReducer = authSlice.reducer;
 
-export const { getToken } = authSlice.actions;
+export const { getToken, setAuth } = authSlice.actions;
 export default authReducer;

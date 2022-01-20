@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as API from '../../api/api';
+import { token } from '../../api/Axios';
 
 const fetchIncome = createAsyncThunk(
   'transaction/fetchIncome',
@@ -105,9 +106,9 @@ const getAllUserInfo = createAsyncThunk(
   'transaction/getAllUserInfo',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const token = getState().auth.token;
-      if (!token) return rejectWithValue(null);
-
+      const accessToken = getState().auth.token;
+      if (!accessToken) return rejectWithValue(null);
+      token.set(accessToken);
       const info = await API.getUserInfo();
       return info;
     } catch (error) {
