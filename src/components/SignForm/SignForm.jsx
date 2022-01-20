@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import s from './SignForm.module.scss';
 import operations from '../../redux/auth/auth-operartions';
+import { useLocation } from 'react-router';
 
 function SignForm() {
   const [email, setEmail] = useState('');
@@ -10,6 +11,14 @@ function SignForm() {
   const [passwordValid, setPasswordValid] = useState(false);
   const [submited, setSubmited] = useState(false);
   const dispatch = useDispatch();
+
+  const location = useLocation();
+  console.log('location', location);
+
+  useEffect(() => {
+    // console.log('new', new URLSearchParams().get());
+    console.log(window.location);
+  }, []);
 
   // const googleAuth = e => {
   //   e.preventDefault();
@@ -87,13 +96,13 @@ function SignForm() {
           <p className={s.GoogleTxt}>
             Вы можете авторизоваться с помощью Google Account:
           </p>
-          <button
+          <a
+            href="https://kapusta-backend.goit.global/auth/google"
             className={s.GoogleBtn}
-            type="button"
-            onClick={() => dispatch(operations.googleAuth())}
+            // onClick={() => dispatch(operations.googleAuth())}
           >
             Google
-          </button>
+          </a>
           <p>
             Или зайти с помощью e-mail и пароля, предварительно
             зарегистрировавшись:
