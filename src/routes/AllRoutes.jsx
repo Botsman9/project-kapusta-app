@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import userSelectors from '../redux/user/userSelectors';
 import MyLoader from '../components/UI/loader/MyLoader';
 import useWResize from '../hooks/useWResize';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
 const HomePage = lazy(() =>
   import('../pages/HomePage/HomePage' /* webpackChunkName: "Home___page" */),
@@ -75,6 +76,7 @@ const AllRoutes = () => {
           path="statistics"
           element={!isLoggedIn ? <Navigate to="/home" /> : <StatisticsPage />}
         />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
