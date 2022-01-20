@@ -9,7 +9,7 @@ const googleAuth = createAsyncThunk(
     try {
       const { data } = await instanceAxios
         .get('/auth/google')
-        .then(await instanceAxios.get('/user'));
+        .then(instanceAxios.get('/user'));
 
       token.set(data.accessToken);
       return data;

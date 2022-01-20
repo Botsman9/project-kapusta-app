@@ -72,79 +72,87 @@ function SignForm() {
   };
 
   return (
-    <div className={s.FormContainer}>
-      <form
-        className={s.SignForm}
-        onSubmit={handleSubmit}
-        onChange={inputChanged}
-        noValidate
-      >
-        <p>Вы можете авторизоваться с помощью Google Account:</p>
-        <button
-          className={s.GoogleBtn}
-          type="button"
-          onClick={() => dispatch(operations.googleAuth())}
+    <>
+      <div className={s.TitleWrapper}>
+        <h1 className={s.HomeTitle}>Kapusta</h1>
+        <h2 className={s.HomeSubTitle}>Smart Finance</h2>
+      </div>
+      <div className={s.FormContainer}>
+        <form
+          className={s.SignForm}
+          onSubmit={handleSubmit}
+          onChange={inputChanged}
+          noValidate
         >
-          Google
-        </button>
-        <p>
-          Или зайти с помощью e-mail и пароля, предварительно
-          зарегистрировавшись:
-        </p>
-        <div className={s.inputWrapper}>
-          <label id="mailLabel" htmlFor="email">
-            Электронная почта:
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            minLength="10"
-            maxLength="63"
-            pattern="^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$"
-            placeholder="your@email.com"
-            onChange={handleChange}
-            className={s.SignInput}
-            required
-          ></input>
-          {!emailValid && submited && (
-            <p className={s.error} id="emailValid">
-              это обязательное поле
-            </p>
-          )}
-        </div>
-        <div className={s.inputWrapper}>
-          <label id="passLabel"> Пароль:</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="••••••••"
-            pattern="([A-Za-z0-9])"
-            onChange={handleChange}
-            className={s.SignInput}
-            required
-          ></input>
-          {!passwordValid && submited && (
-            <p className={s.error} id="passValid">
-              это обязательное поле
-            </p>
-          )}
-        </div>
-        <ul className={s.SignBtnsWrap}>
-          <li>
-            <button type="submit" className={s.SignInBtn} id="signIn">
-              войти
-            </button>
-          </li>
-          <li>
-            <button type="submit" className={s.SignUpBtn} id="signUp">
-              регистрация
-            </button>
-          </li>
-        </ul>
-      </form>
-    </div>
+          <p className={s.GoogleTxt}>
+            Вы можете авторизоваться с помощью Google Account:
+          </p>
+          <button
+            className={s.GoogleBtn}
+            type="button"
+            onClick={() => dispatch(operations.googleAuth())}
+          >
+            Google
+          </button>
+          <p>
+            Или зайти с помощью e-mail и пароля, предварительно
+            зарегистрировавшись:
+          </p>
+          <div className={s.inputWrapper}>
+            <label id="mailLabel" htmlFor="email">
+              Электронная почта:
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              minLength="10"
+              maxLength="63"
+              pattern="^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$"
+              placeholder="your@email.com"
+              onChange={handleChange}
+              className={s.SignInput}
+              required
+            ></input>
+            {!emailValid && submited && (
+              <p className={s.error} id="emailValid">
+                это обязательное поле
+              </p>
+            )}
+          </div>
+          <div className={s.inputWrapper}>
+            <label id="passLabel"> Пароль:</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Пароль"
+              pattern="([A-Za-z0-9])"
+              onChange={handleChange}
+              className={s.SignInput}
+              required
+            ></input>
+            {!passwordValid && submited && (
+              <p className={s.error} id="passValid">
+                это обязательное поле
+              </p>
+            )}
+          </div>
+          <ul className={s.SignBtnsWrap}>
+            <li>
+              <button type="submit" className={s.SignInBtn} id="signIn">
+                войти
+              </button>
+            </li>
+            <li>
+              <button type="submit" className={s.SignUpBtn} id="signUp">
+                регистрация
+              </button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </>
   );
 }
 
