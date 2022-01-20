@@ -26,6 +26,11 @@ const StatisticsPage = lazy(() =>
     '../pages/StatisticsPage/StatisticsPage' /* webpackChunkName: "Statistics___page" */
   ),
 );
+const MobileFormPage = lazy(() =>
+  import(
+    '../pages/TransactionsPage/MobileFormPage/MobileFormPage' /* webpackChunkName: "MobileForm___page" */
+  ),
+);
 
 const AllRoutes = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -45,6 +50,10 @@ const AllRoutes = () => {
           <Route path="expense" element={<ExpensePage />} />
           <Route path="income" element={<IncomePage />} />
         </Route>
+        <Route
+          path="mobile-add-trandaction"
+          element={!isLoggedIn ? <Navigate to="/home" /> : <MobileFormPage />}
+        />
         <Route
           path="statistics"
           element={!isLoggedIn ? <Navigate to="/home" /> : <StatisticsPage />}

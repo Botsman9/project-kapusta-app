@@ -13,7 +13,8 @@ const getExpenseMonthsStats = state =>
 const getUserLoading = state => state.user.loading;
 const getUserError = state => state.user.error;
 
-const getCurrentDay = state => state.user.transaction.currentDay;
+const getCurrentDay = state => state.user.currentDay;
+const getCurrentTransaction = state => state.user.currentTrandaction;
 
 const getUserEmail = state => state.user.email;
 
@@ -33,6 +34,8 @@ const userSelectors = {
 
   getCurrentDay,
   getUserEmail,
+
+  getCurrentTransaction,
 };
 
 export default userSelectors;

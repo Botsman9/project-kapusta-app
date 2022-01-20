@@ -4,8 +4,9 @@ import * as userOperations from './userOperations';
 const initialState = {
   email: null,
   balance: 0,
+  currentDay: '',
+  currentTrandaction: 'expense',
   transaction: {
-    currentDay: '',
     incomes: {
       categories: [],
       data: [],
@@ -26,7 +27,22 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     changeCurrentDay: (state, { payload }) => {
-      state.transaction.currentDay = payload;
+      state.currentDay = payload;
+    },
+    changeCurrentTransaction: (state, { payload }) => {
+      state.currentTrandaction = payload;
+    },
+    resetUserInfo: (state, _) => {
+      state.email = null;
+      state.balance = 0;
+      state.currentDay = '';
+      state.currentTrandaction = '';
+      state.transaction.incomes.categories = [];
+      state.transaction.incomes.data = [];
+      state.transaction.incomes.monthsStats = {};
+      state.transaction.expense.categories = [];
+      state.transaction.expense.data = [];
+      state.transaction.expense.monthsStats = {};
     },
   },
   extraReducers: builder => {
@@ -243,6 +259,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { changeCurrentDay } = userSlice.actions;
+export const { changeCurrentDay, changeCurrentTransaction, resetUserInfo } =
+  userSlice.actions;
 
 export default userSlice.reducer;
