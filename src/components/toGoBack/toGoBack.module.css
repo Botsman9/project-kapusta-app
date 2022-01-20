@@ -1,9 +1,11 @@
 .toGoBack {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
+  justify-content: center;
   cursor: pointer;
+}
+.toGoBackTitle {
+  text-decoration: none;
 }
 
 .link {
@@ -13,6 +15,7 @@
   letter-spacing: 0.04em;
   color: rgba(82, 85, 95, 0.7);
 }
+
 @media screen and (max-width: 1279px) {
   .toGoBack {
     margin-right: auto;

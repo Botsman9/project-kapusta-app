@@ -1,14 +1,14 @@
 import { NavLink } from 'react-router-dom';
 
 import s from './toGoBack.module.css';
-import useWindowSize from '../../hooks/useWindowSize';
+import getWindowSize from '../../hooks/useWResize';
 
 const ToGoBack = () => {
-  const viewPort = useWindowSize();
+  const viewPort = getWindowSize();
 
   return (
     <div type="button" className={s.toGoBack}>
-      <NavLink className={s.link} to="/balance">
+      <NavLink className={s.link} to="/transactions">
         <svg
           width="18"
           height="12"
@@ -20,8 +20,8 @@ const ToGoBack = () => {
             fill="#FF751D"
           />
         </svg>
-        <p style={{ marginLeft: 18 }} className={s.arrow}>
-          {viewPort.width > 767 && 'Вернуться на главную'}
+        <p style={{ marginLeft: 18 }} className={s.toGoBackTitle}>
+          {viewPort.width > 767 ? <span>Вернуться на главную</span> : ''}
         </p>
       </NavLink>
     </div>
