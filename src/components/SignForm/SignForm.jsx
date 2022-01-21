@@ -10,23 +10,18 @@ function SignForm() {
   const [passwordValid, setPasswordValid] = useState(false);
   const [submited, setSubmited] = useState(false);
   const dispatch = useDispatch();
+  const wrightEmail = email.match(
+    /^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{1,})$/i,
+  );
+  const wrightEmailLength = email.length >= 10;
 
   const inputChanged = () => {
-    if (
-      email.match(
-        /^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$/i,
-      ) &&
-      email.length >= 10
-    ) {
+    if (wrightEmail && wrightEmailLength) {
       setEmailValid(true);
-    } else {
-      setEmailValid(false);
     }
 
     if (password.length > 0) {
       setPasswordValid(true);
-    } else {
-      setPasswordValid(false);
     }
   };
 
@@ -44,9 +39,17 @@ function SignForm() {
   const handleSubmit = e => {
     e.preventDefault();
     setSubmited(true);
+    if (wrightEmail && wrightEmailLength) setEmailValid(true);
+    if (!wrightEmail || !wrightEmailLength) {
+      alert(
+        'Email не должен содержать дефис в начале, меньше 2 символов перед "@", а также длина Email должна быть более 10 символов',
+      );
+      setEmailValid(false);
+    }
+    if (password.length < 1) setPasswordValid(false);
+
+    if (!wrightEmail || password.length < 1) return false;
     switch (e.nativeEvent.submitter.id) {
-      case 'sign-google':
-        break;
       case 'signIn':
         dispatch(operations.logIn({ email, password }));
         break;
@@ -85,7 +88,6 @@ function SignForm() {
           <a
             href="https://kapusta-backend.goit.global/auth/google"
             className={s.GoogleBtn}
-            // onClick={() => dispatch(operations.googleAuth())}
           >
             Google
           </a>
@@ -103,16 +105,14 @@ function SignForm() {
               value={email}
               minLength="10"
               maxLength="63"
-              pattern="^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$"
+              pattern="^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{1,})$"
               placeholder="your@email.com"
               onChange={handleChange}
               className={s.SignInput}
               required
             ></input>
             {!emailValid && submited && (
-              <p className={s.error} id="emailValid">
-                это обязательное поле
-              </p>
+              <p className={s.error}>это обязательное поле</p>
             )}
           </div>
           <div className={s.inputWrapper}>
@@ -122,15 +122,13 @@ function SignForm() {
               name="password"
               value={password}
               placeholder="Пароль"
-              pattern="([A-Za-z0-9])"
+              // pattern="([A-Za-z0-9])"
               onChange={handleChange}
               className={s.SignInput}
               required
             ></input>
             {!passwordValid && submited && (
-              <p className={s.error} id="passValid">
-                это обязательное поле
-              </p>
+              <p className={s.error}>это обязательное поле</p>
             )}
           </div>
           <ul className={s.SignBtnsWrap}>
