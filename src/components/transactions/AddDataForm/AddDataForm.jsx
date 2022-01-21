@@ -10,7 +10,6 @@ import * as userOperations from '../../../redux/user/userOperations';
 import * as userActions from '../../../redux/user/userSlice';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './AddDataForm.module.css';
-import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const AddDataForm = () => {
@@ -106,7 +105,7 @@ const AddDataForm = () => {
         <>
           <form onSubmit={onSubmiteForm} className={s.containerFormD}>
             <div>
-              <DatePickerForm piker={datePicker} />
+              <DatePickerForm piker={currentDay} />
             </div>
 
             <div className={s.wrapperInput}>
@@ -121,7 +120,7 @@ const AddDataForm = () => {
                   maxLength="20"
                   value={description}
                   placeholder={
-                    isExpense ? 'Описание дохода' : 'Описание товара'
+                    isExpense ? 'Описание товара' : 'Описание дохода'
                   }
                   required
                 />
@@ -172,7 +171,7 @@ const AddDataForm = () => {
           <form onSubmit={onSubmiteForm} className={s.containerFormT}>
             <div className={s.wrapperFT}>
               <div>
-                <DatePickerForm piker={datePicker} />{' '}
+                <DatePickerForm piker={currentDay} />{' '}
               </div>
               <div className={s.wrapperInput}>
                 <label className={s.lDescriptions}>
@@ -185,7 +184,7 @@ const AddDataForm = () => {
                     name="description"
                     value={description}
                     placeholder={
-                      isExpense ? 'Описание дохода' : 'Описание товара'
+                      isExpense ? 'Описание товара' : 'Описание дохода'
                     }
                     required
                   />
@@ -244,7 +243,7 @@ const AddDataForm = () => {
                     maxLength="20"
                     value={description}
                     placeholder={
-                      isExpense ? 'Описание дохода' : 'Описание товара'
+                      isExpense ? 'Описание товара' : 'Описание дохода'
                     }
                     required
                   />
