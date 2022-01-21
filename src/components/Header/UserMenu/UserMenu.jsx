@@ -10,6 +10,7 @@ const UserMenu = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
+  const sum = 1 + 1;
 
   useEffect(() => {
     const getUserName = email => {
