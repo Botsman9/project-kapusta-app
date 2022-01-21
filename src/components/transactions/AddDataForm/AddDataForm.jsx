@@ -11,10 +11,16 @@ import * as userActions from '../../../redux/user/userSlice';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './AddDataForm.module.css';
 import { useNavigate } from 'react-router-dom';
+import {
+  getIsLoggedIn,
+  getIsRefresh,
+} from '../../../redux/auth/auth-selectors';
 
 const AddDataForm = () => {
   const dispatch = useDispatch();
   const datePicker = useSelector(userSelectors.getCurrentDay);
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const isRefresh = useSelector(getIsRefresh);
   const expenseCategory = useSelector(userSelectors.getExpenseCategory);
   const incomeCategory = useSelector(userSelectors.getIncomeCategory);
   const currentTransaction = useSelector(userSelectors.getCurrentTransaction);
@@ -37,10 +43,11 @@ const AddDataForm = () => {
   }
 
   useEffect(() => {
+    if (isRefresh || !isLoggedIn) return;
     isExpense
       ? dispatch(userOperations.fetchExpenseCategories())
       : dispatch(userOperations.fetchIncomeCategories());
-  }, [dispatch, isExpense]);
+  }, [dispatch, isExpense, isLoggedIn, isRefresh]);
 
   useEffect(() => {
     dispatch(userActions.changeCurrentDay(currentDay));

@@ -10,12 +10,16 @@ import s from './ExpensePage.module.css';
 import * as userActions from '../../redux/user/userSlice';
 import { normalizeDateApi } from '../../services/normalize';
 import useWResize from '../../hooks/useWResize';
+import { getIsLoggedIn, getIsRefresh } from '../../redux/auth/auth-selectors';
 
 const ExpensePage = () => {
   const expenseTransactions = useSelector(
     userSelectors.getExpenseAllTransactions,
   );
   const expenseMonthsStats = useSelector(userSelectors.getExpenseMonthsStats);
+
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const isRefresh = useSelector(getIsRefresh);
 
   const currentDay = useSelector(userSelectors.getCurrentDay);
   const viewPort = useWResize();
@@ -24,8 +28,11 @@ const ExpensePage = () => {
 
   useEffect(() => {
     dispatch(userActions.changeCurrentTransaction('expense'));
+
+    if (isRefresh || !isLoggedIn) return;
+
     dispatch(userOperations.fetchExpense());
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn, isRefresh]);
 
   const onDelExpenseDataApi = id =>
     dispatch(userOperations.deleteExpenseTransaction(id));

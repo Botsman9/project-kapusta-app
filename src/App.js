@@ -7,13 +7,18 @@ import operations from './redux/auth/auth-operartions';
 import BackgroundCont from './components/BackgroundCont/BackgroundCont';
 import BackgroundLogin from './components/BackgroundLogin/BackgroundLogin';
 import Container from './components/Container/Container';
-import { getIsLoggedIn, getRefreshToken } from './redux/auth/auth-selectors';
+import {
+  getIsLoggedIn,
+  getIsRefresh,
+  getRefreshToken,
+} from './redux/auth/auth-selectors';
 import { useLocation } from 'react-router';
 import { setAuth } from './redux/auth/auth-slise';
 
 function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const isRefresh = useSelector(getIsRefresh);
   const stateRefreshToken = useSelector(getRefreshToken);
 
   const { search } = useLocation();
@@ -23,10 +28,9 @@ function App() {
   const sid = new URLSearchParams(search).get('sid');
 
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(userOperations.getAllUserInfo());
-    }
-  }, [dispatch, isLoggedIn]);
+    if (isRefresh || !isLoggedIn) return;
+    dispatch(userOperations.getAllUserInfo());
+  }, [dispatch, isLoggedIn, isRefresh]);
 
   useEffect(() => {
     if (isLoggedIn && !stateRefreshToken && !accessToken) {
