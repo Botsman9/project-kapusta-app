@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import MyModal from '../../UI/modal/MyModal';
 import operations from '../../../redux/auth/auth-operartions';
 import group42 from '../../../imges/svg/group42.svg';
 import line from '../../../imges/svg/line.svg';
@@ -10,7 +11,9 @@ const UserMenu = () => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const sum = 1 + 1;
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const toggleModal = e => setIsOpenModal(!isOpenModal);
 
   useEffect(() => {
     const getUserName = email => {
@@ -33,14 +36,21 @@ const UserMenu = () => {
       <span>
         <img src={line} alt="icon" className={classes.iconLine} />
       </span>
-      <span
-        onClick={() => dispatch(operations.logOut())}
-        className={classes.exit}
-      >
+      <span onClick={() => toggleModal()} className={classes.exit}>
         Выйти
       </span>
+
+      {isOpenModal && (
+        <MyModal
+          toggleModal={toggleModal}
+          onClick={() => dispatch(operations.logOut())}
+        >
+          Вы действительно хотите выйти?
+        </MyModal>
+      )}
     </div>
   );
 };
 
 export default UserMenu;
+//dispatch(operations.logOut())

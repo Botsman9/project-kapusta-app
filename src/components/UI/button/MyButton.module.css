@@ -23,14 +23,12 @@
   background: #ff751d;
   border: 2px solid #ff751d;
   color: #ffffff;
-  margin-left: 27px;
 }
 
 .myMinorBtn {
   composes: myBtn;
   background: #ffffff;
   border: 2px solid #f6f7fc;
-  margin-left: 15px;
 }
 
 .myAccentBtn:hover,
