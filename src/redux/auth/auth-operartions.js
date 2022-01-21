@@ -26,6 +26,7 @@ const logIn = createAsyncThunk(
       token.set(data.accessToken);
       return data;
     } catch (error) {
+      alert(error.response.data.message);
       return rejectWithValue(error.response.data.message);
     }
   },
