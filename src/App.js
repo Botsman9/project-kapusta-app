@@ -7,30 +7,32 @@ import operations from './redux/auth/auth-operartions';
 import BackgroundCont from './components/BackgroundCont/BackgroundCont';
 import BackgroundLogin from './components/BackgroundLogin/BackgroundLogin';
 import Container from './components/Container/Container';
-import { getIsLoggedIn } from './redux/auth/auth-selectors';
+import { getIsLoggedIn, getRefreshToken } from './redux/auth/auth-selectors';
 import { useLocation } from 'react-router';
 import { setAuth } from './redux/auth/auth-slise';
 
 function App() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
-  const location = useLocation();
+  const stateRefreshToken = useSelector(getRefreshToken);
+
   const { search } = useLocation();
-  console.log('location', location);
 
   const accessToken = new URLSearchParams(search).get('accessToken');
   const refreshToken = new URLSearchParams(search).get('refreshToken');
   const sid = new URLSearchParams(search).get('sid');
 
   useEffect(() => {
-    dispatch(userOperations.getAllUserInfo());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(userOperations.getAllUserInfo());
+    }
+  }, [dispatch, isLoggedIn]);
 
   useEffect(() => {
-    // if (isLoggedIn && !accessToken) {
-    dispatch(operations.refresh());
-    // }
-  }, [dispatch]);
+    if (isLoggedIn && !stateRefreshToken && !accessToken) {
+      dispatch(operations.refresh());
+    }
+  }, [accessToken, dispatch, isLoggedIn, stateRefreshToken]);
 
   useEffect(() => {
     if (!accessToken) return false;

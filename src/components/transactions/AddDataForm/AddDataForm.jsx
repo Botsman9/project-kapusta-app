@@ -10,8 +10,9 @@ import * as userOperations from '../../../redux/user/userOperations';
 import * as userActions from '../../../redux/user/userSlice';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './AddDataForm.module.css';
+import { useNavigate } from 'react-router-dom';
 
-const AddDataForm = ({ onAddDataApi }) => {
+const AddDataForm = () => {
   const dispatch = useDispatch();
   const datePicker = useSelector(userSelectors.getCurrentDay);
   const expenseCategory = useSelector(userSelectors.getExpenseCategory);
@@ -26,6 +27,8 @@ const AddDataForm = ({ onAddDataApi }) => {
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
   const viewPort = useWResize();
+
+  let navigate = useNavigate();
 
   let currentDay = datePicker;
 
@@ -43,14 +46,21 @@ const AddDataForm = ({ onAddDataApi }) => {
     dispatch(userActions.changeCurrentDay(currentDay));
   }, [currentDay, dispatch]);
 
+  const goBack = () => {
+    reset();
+    currentTransaction
+      ? navigate(`/transactions/${currentTransaction}`)
+      : navigate('/transactions');
+  };
+
   const addTransactionApi = (value, data) => {
     switch (value) {
       case 'expense':
-        dispatch(userOperations.createExpense(data));
+        dispatch(userOperations.createExpense(data)).then(() => goBack());
         return;
 
       case 'income':
-        dispatch(userOperations.createIncome(data));
+        dispatch(userOperations.createIncome(data)).then(() => goBack());
         return;
 
       default:
@@ -87,7 +97,6 @@ const AddDataForm = ({ onAddDataApi }) => {
     const date = normalizeDateApi(datePicker);
     const newProduct = { date, description, amount, category };
     addTransactionApi(currentTransaction, newProduct);
-    reset();
   };
 
   return (
@@ -96,7 +105,7 @@ const AddDataForm = ({ onAddDataApi }) => {
         <>
           <form onSubmit={onSubmiteForm} className={s.containerFormD}>
             <div>
-              <DatePickerForm piker={datePicker} />
+              <DatePickerForm piker={currentDay} />
             </div>
 
             <div className={s.wrapperInput}>
@@ -111,7 +120,7 @@ const AddDataForm = ({ onAddDataApi }) => {
                   maxLength="20"
                   value={description}
                   placeholder={
-                    isExpense ? 'Описание дохода' : 'Описание товара'
+                    isExpense ? 'Описание товара' : 'Описание дохода'
                   }
                   required
                 />
@@ -162,7 +171,7 @@ const AddDataForm = ({ onAddDataApi }) => {
           <form onSubmit={onSubmiteForm} className={s.containerFormT}>
             <div className={s.wrapperFT}>
               <div>
-                <DatePickerForm piker={datePicker} />{' '}
+                <DatePickerForm piker={currentDay} />{' '}
               </div>
               <div className={s.wrapperInput}>
                 <label className={s.lDescriptions}>
@@ -175,7 +184,7 @@ const AddDataForm = ({ onAddDataApi }) => {
                     name="description"
                     value={description}
                     placeholder={
-                      isExpense ? 'Описание дохода' : 'Описание товара'
+                      isExpense ? 'Описание товара' : 'Описание дохода'
                     }
                     required
                   />
@@ -234,7 +243,7 @@ const AddDataForm = ({ onAddDataApi }) => {
                     maxLength="20"
                     value={description}
                     placeholder={
-                      isExpense ? 'Описание дохода' : 'Описание товара'
+                      isExpense ? 'Описание товара' : 'Описание дохода'
                     }
                     required
                   />

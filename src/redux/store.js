@@ -26,7 +26,7 @@ const middleware = [
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'sid'],
+  whitelist: ['token', 'sid', 'isLoggedIn'],
 };
 
 const userPersistConfig = {

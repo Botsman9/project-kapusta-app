@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as userOperations from './userOperations';
+import authOperations from '../auth/auth-operartions';
 
 const initialState = {
   email: null,
@@ -255,7 +256,10 @@ const userSlice = createSlice({
           state.loading = false;
           state.error = payload?.message || payload;
         },
-      );
+      )
+      .addCase(authOperations.logIn.fulfilled, (state, { payload }) => {
+        state.balance = payload.userData.balance;
+      });
   },
 });
 
