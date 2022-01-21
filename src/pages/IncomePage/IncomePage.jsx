@@ -11,11 +11,15 @@ import * as userActions from '../../redux/user/userSlice';
 
 import s from './IncomePage.module.css';
 import useWResize from '../../hooks/useWResize';
+import { getIsLoggedIn, getIsRefresh } from '../../redux/auth/auth-selectors';
 
 const IncomePage = () => {
   const incomesTransactions = useSelector(
     userSelectors.getIncomesAllTransactions,
   );
+
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const isRefresh = useSelector(getIsRefresh);
 
   const incomesMonthsStats = useSelector(userSelectors.getIncomesMonthsStats);
   const currentDay = useSelector(userSelectors.getCurrentDay);
@@ -25,8 +29,11 @@ const IncomePage = () => {
 
   useEffect(() => {
     dispatch(userActions.changeCurrentTransaction('income'));
+
+    if (isRefresh || !isLoggedIn) return;
+
     dispatch(userOperations.fetchIncome());
-  }, [dispatch]);
+  }, [dispatch, isLoggedIn, isRefresh]);
 
   const onDelIncomeDataApi = id =>
     dispatch(userOperations.deleteIncomeTransaction(id));

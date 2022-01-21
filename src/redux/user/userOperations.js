@@ -9,7 +9,7 @@ const fetchIncome = createAsyncThunk(
       const income = await API.fetchIncome();
       return income;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -21,7 +21,7 @@ const fetchExpense = createAsyncThunk(
       const expese = await API.fetchExpense();
       return expese;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -33,7 +33,7 @@ const fetchIncomeCategories = createAsyncThunk(
       const categories = API.fetchIncomeCategories();
       return categories;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -45,7 +45,7 @@ const fetchExpenseCategories = createAsyncThunk(
       const categories = await API.fetchExpenseCategories();
       return categories;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -58,7 +58,7 @@ const createIncome = createAsyncThunk(
       const data = await API.fetchIncome();
       return { income, data };
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -71,7 +71,7 @@ const createExpense = createAsyncThunk(
       const data = await API.fetchExpense();
       return { expense, data };
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -84,7 +84,7 @@ const deleteIncomeTransaction = createAsyncThunk(
       const data = await API.fetchIncome();
       return { id, newBalance, data };
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -97,7 +97,7 @@ const deleteExpenseTransaction = createAsyncThunk(
       const data = await API.fetchExpense();
       return { id, newBalance, data };
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -112,7 +112,7 @@ const getAllUserInfo = createAsyncThunk(
       const info = await API.getUserInfo();
       return info;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message || error);
     }
   },
 );
@@ -124,7 +124,7 @@ const patchNewBalance = createAsyncThunk(
       const data = await API.chengeUserBalance(balance);
       return data.newBalance;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message || error);
     }
   },
 );
