@@ -13,7 +13,7 @@ const ModalBalance = ({ onClose }) => {
       <p className={s.bubbleText}>
         Ты не можешь тратить деньги пока их у тебя нет :)
       </p>
-      <h6 className={s.prompt}>Кликни на меня, что бы закрыть</h6>
+      <h6 className={s.prompt}>Кликни здесь для закрытия</h6>
     </div>
   );
 };

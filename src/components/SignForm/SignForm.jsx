@@ -69,7 +69,9 @@ function SignForm() {
   return (
     <>
       <div className={s.TitleWrapper}>
-        <h1 className={s.HomeTitle}>Kapusta</h1>
+        <h1 className={s.HomeTitle}>
+          Kapu<span className={s.dollar}>s</span>ta
+        </h1>
         <h2 className={s.HomeSubTitle}>Smart Finance</h2>
       </div>
       <div className={s.FormContainer}>

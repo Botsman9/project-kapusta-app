@@ -13,7 +13,6 @@
 }
 
 .HomeTitle {
-  position: relative;
   margin-bottom: 4.5px;
 
   font-weight: 900;
@@ -35,12 +34,14 @@
   }
 }
 
-.HomeTitle::before {
-  position: absolute;
+.dollar::before {
+  position: relative;
   content: '';
+  display: inline-block;
+  margin-left: -3.98px;
 
-  top: 12px;
-  left: 108px;
+  top: -22px;
+  left: 13px;
 
   width: 3.98px;
   height: 6.46px;
@@ -48,44 +49,50 @@
   background-color: black;
 
   @media screen and (min-width: 768px) {
+    margin-left: -6.66px;
     width: 6.66px;
     height: 10.82px;
-    top: 18px;
-    left: 183px;
+    top: -38px;
+    left: 22px;
   }
 
   @media screen and (min-width: 1280px) {
-    top: 32px;
-    left: 260px;
+    margin-left: -8px;
+    top: -54px;
+    left: 30px;
     width: 8px;
-    height: 13px;
+    height: 16px;
   }
 }
 
-.HomeTitle::after {
-  position: absolute;
+.dollar::after {
+  position: relative;
   content: '';
+  display: inline-block;
+  margin-left: -3.98px;
 
-  bottom: 2px;
-  left: 108px;
+  bottom: -6px;
+  left: -9px;
 
   width: 3.98px;
   height: 6.46px;
   background-color: black;
 
   @media screen and (min-width: 768px) {
+    margin-left: -6.66px;
     width: 6.66px;
     height: 10.82px;
 
-    bottom: 2px;
-    left: 183px;
+    bottom: -10px;
+    left: -15px;
   }
 
   @media screen and (min-width: 1280px) {
-    bottom: 8px;
-    left: 260px;
+    margin-left: -8px;
+    bottom: -16px;
+    left: -23px;
     width: 8px;
-    height: 13px;
+    height: 16px;
   }
 }
 
