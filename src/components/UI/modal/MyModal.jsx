@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import PropTypes, { func } from 'prop-types';
+import PropTypes from 'prop-types';
 import MyButton from '../button/MyButton';
 import classes from './MyModal.module.css';
 import icon from '../../../imges/svg/close.svg';

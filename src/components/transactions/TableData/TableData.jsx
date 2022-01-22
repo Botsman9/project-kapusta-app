@@ -1,9 +1,11 @@
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import React, { useState } from 'react';
 import useWResize from '../../../hooks/useWResize';
 import { normalizeDateRender } from '../../../services/normalize';
 import MyModal from '../../UI/modal/MyModal';
 import s from './TableData.module.css';
 import sMobile from './MobileTableData.module.css';
+import './style.css';
 
 const TableData = ({
   dataTransactions = [],
@@ -33,7 +35,6 @@ const TableData = ({
 
       {viewPort.width >= 768 && (
         <div className={s.bodyTable} id={s.style2}>
-          {' '}
           <table className={s.main}>
             <thead className={s.theadTable}>
               <tr>
@@ -47,7 +48,7 @@ const TableData = ({
             <tbody>
               {dataTransactions.map(
                 ({ _id, date, description, category, amount }) => (
-                  <tr key={_id} className={s.td}>
+                  <tr className={s.td}>
                     <td className={s.thData}>{normalizeDateRender(date)}</td>
                     <td className={s.tdDesc}>{description}</td>
                     <td className={s.thCateg}>{category}</td>
@@ -134,38 +135,50 @@ const TableData = ({
 
       {viewPort.width < 768 && (
         <div>
-          <ul className={sMobile.listTransactions}>
+          <TransitionGroup component="ul" className={sMobile.listTransactions}>
+            {/* <ul className={sMobile.listTransactions}> */}
             {dataTransactions.map(
               ({ _id, date, description, category, amount }) => (
-                <li key={_id} className={sMobile.itemTransactions}>
-                  <div className={sMobile.leftColum}>
-                    <p className={sMobile.elem}>
-                      <span>{description}</span>
-                    </p>
-                    <p className={sMobile.data}>
-                      <span>{normalizeDateRender(date)}</span>
-                      <span>{category}</span>
-                    </p>
-                  </div>
-                  <div className={sMobile.rigthColum}>
-                    <p
-                      role="total"
-                      className={
-                        sMobile[isExpense ? 'totalDecrement' : 'totalIncrement']
-                      }
-                    >
-                      {isExpense ? '- ' : ''}
-                      {amount}.грн
-                    </p>
-                    <button
-                      onClick={() => onTakeIdForDel(_id)}
-                      className={sMobile.deleteBtn}
-                    ></button>
-                  </div>
-                </li>
+                <CSSTransition
+                  key={_id}
+                  timeout={500}
+                  classNames="item"
+                  mountOnEnter
+                  unmountOnExit
+                >
+                  <li className={sMobile.itemTransactions}>
+                    <div className={sMobile.leftColum}>
+                      <p className={sMobile.elem}>
+                        <span>{description}</span>
+                      </p>
+                      <p className={sMobile.data}>
+                        <span>{normalizeDateRender(date)}</span>
+                        <span>{category}</span>
+                      </p>
+                    </div>
+                    <div className={sMobile.rigthColum}>
+                      <p
+                        role="total"
+                        className={
+                          sMobile[
+                            isExpense ? 'totalDecrement' : 'totalIncrement'
+                          ]
+                        }
+                      >
+                        {isExpense ? '- ' : ''}
+                        {amount}.грн
+                      </p>
+                      <button
+                        onClick={() => onTakeIdForDel(_id)}
+                        className={sMobile.deleteBtn}
+                      ></button>
+                    </div>
+                  </li>
+                </CSSTransition>
               ),
             )}
-          </ul>
+            {/* </ul> */}
+          </TransitionGroup>
         </div>
       )}
     </>

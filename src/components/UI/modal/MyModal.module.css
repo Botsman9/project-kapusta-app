@@ -19,13 +19,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 380px;
-  height: 194px;
+  width: 320px;
+  height: 174px;
 
-  padding-top: 50px;
-  padding-bottom: 60px;
-  padding-left: 56px;
-  padding-right: 56px;
+  padding-top: 40px;
+  padding-bottom: 48px;
+  padding-left: 28px;
+  padding-right: 28px;
 
   background: #ffffff;
   box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
@@ -59,7 +59,7 @@
 
   font-family: Roboto;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 14px;
   line-height: 0.86;
   text-align: center;
@@ -67,11 +67,19 @@
 
   color: #52555f;
 
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
-
 .OverlayBtns {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media screen and (min-width: 380px) {
+  .Modal {
+    width: 380px;
+    height: 194px;
+    padding-left: 56px;
+    padding-right: 56px;
+  }
 }
