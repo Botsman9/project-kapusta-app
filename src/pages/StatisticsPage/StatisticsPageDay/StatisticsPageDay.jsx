@@ -14,7 +14,6 @@ import Summary from 'components/Summary';
 import TransactionForm from 'components/TransactionForm';
 import { ReactComponent as ReportPic } from 'images/bar-chart.svg';
 import { Link } from 'react-router-dom';
-import { getBalance } from 'redux/user';
 import BalanceForm from 'components/BalanceForm';
 
 const StatisticsPageDay = () => {

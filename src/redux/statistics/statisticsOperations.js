@@ -7,7 +7,6 @@ const fetchAllStatistics = createAsyncThunk(
   async (period, { rejectWithValue }) => {
     try {
       const data = await API.getPeriod(period);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

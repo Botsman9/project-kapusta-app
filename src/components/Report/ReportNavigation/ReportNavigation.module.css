@@ -10,3 +10,8 @@
     align-items: center;
   }
 }
+.wrapperBalance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

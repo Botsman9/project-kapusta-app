@@ -1,23 +1,16 @@
-import { useState } from 'react';
 import s from './ReportNavigation.module.css';
 import ToGoBack from '../../toGoBack/toGoBack';
 import Balance from '../../Balance/Balance';
 import ReportPeriod from './ReportPeriod';
+import useWResize from '../../../hooks/useWResize';
+import mob from './ReportNavigationMob.module.css';
 
 const ReportNavigation = () => {
-  const [width, setWidth] = useState(window.innerWidth);
-
-  window.addEventListener(
-    `resize`,
-    event => {
-      setWidth(event.target.innerWidth);
-    },
-    false,
-  );
+  const viewPort = useWResize();
 
   return (
     <>
-      {width >= 768 ? (
+      {viewPort.width >= 768 ? (
         <section className={s.reportNav}>
           <ToGoBack />
           <Balance />
@@ -27,7 +20,9 @@ const ReportNavigation = () => {
         <section className={s.reportNav}>
           <ToGoBack />
           <ReportPeriod />
-          <Balance />
+          <div className={mob.wrapperMobileBalance}>
+            <Balance />
+          </div>
         </section>
       )}
     </>

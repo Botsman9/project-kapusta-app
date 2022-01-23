@@ -1,9 +1,10 @@
 import s from './ReportAmount.module.css';
 import { useSelector } from 'react-redux';
+import statisticsSelectors from '../../../redux/statistics/statisticsSelectors';
 
 const ReportAmount = () => {
-  const incomesTotal = useSelector(state => state.statistics.incomes.total);
-  const expenseTotal = useSelector(state => state.statistics.expense.total);
+  const incomesTotal = useSelector(statisticsSelectors.getIncomeMonthTotal);
+  const expenseTotal = useSelector(statisticsSelectors.getExpenseMonthTotal);
   return (
     <section className={`${s.section} ${s.sectionReportAmount}`}>
       <ul className={s.reportAmount}>
