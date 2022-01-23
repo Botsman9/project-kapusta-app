@@ -15,9 +15,9 @@
 
 .Modal {
   position: absolute;
-  top: 50%;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 
   width: 320px;
   height: 174px;
@@ -60,7 +60,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
-  line-height: 0.86;
+  line-height: 1.17;
   text-align: center;
   letter-spacing: 0.02em;
 
