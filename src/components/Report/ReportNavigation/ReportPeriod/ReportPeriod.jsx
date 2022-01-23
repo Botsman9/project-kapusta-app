@@ -31,7 +31,6 @@ export default function ReportPeriod() {
   const [selectedYear, setSelectedYear] = useState(year);
 
   useEffect(() => {
-    console.log('useEffect');
     const selectedDate = `${selectedYear}-${selectedMonth
       .toString()
       .padStart(2, 0)}`;
