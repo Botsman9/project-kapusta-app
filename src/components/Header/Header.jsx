@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import logo from '../../imges/svg/logo.svg';
 import s from './Header.module.css';
 import UserMenuMob from './UserMenu/UserMenuMob';
@@ -10,7 +11,10 @@ function Header() {
   const [height, width] = useWindowSize();
   return (
     <div className={s.HeaderContainer}>
-      <img src={logo} alt="logo" className={s.logo} />
+      <Link to={'/'}>
+        <img src={logo} alt="logo" className={s.logo} />
+      </Link>
+
       {isLoggedIn && (width <= 787 ? <UserMenuMob /> : <UserMenu />)}
     </div>
   );

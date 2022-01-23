@@ -14,13 +14,16 @@ const Report = () => {
       <div className={s.reportMain}>
         <div className={s.reportNav}>
           <ArrowBackIos
-            style={{ height: '14px' }}
             className={s.reportArrow}
             onClick={() => setChange(!change)}
           />
-          {change ? <span>Расходы</span> : <span>Доходы</span>}
+          {change ? (
+            <span className={s.reportTitle}>Расходы</span>
+          ) : (
+            <span className={s.reportTitle}>Доходы</span>
+          )}
           <ArrowForwardIos
-            style={{ height: '14px' }}
+            // style={{ height: '14px' }}
             className={s.reportArrow}
             onClick={() => setChange(!change)}
           />

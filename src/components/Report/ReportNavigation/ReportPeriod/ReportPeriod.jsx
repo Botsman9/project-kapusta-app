@@ -60,12 +60,20 @@ export default function ReportPeriod() {
     <div className={s.container}>
       <span className={s.label}>Текущий период:</span>
       <div className={s.wrapper}>
-        <ArrowBackIos className={s.icon} onClick={onClickLeft} />
+        <ArrowBackIos
+          style={{ fill: '#ff751d' }}
+          className={s.icon}
+          onClick={onClickLeft}
+        />
 
         <div className={s.data}>
           {months[selectedMonth]} {selectedYear}
         </div>
-        <ArrowForwardIos className={s.icon} onClick={onClickRight} />
+        <ArrowForwardIos
+          style={{ fill: '#ff751d' }}
+          className={s.icon}
+          onClick={onClickRight}
+        />
       </div>
     </div>
   );
