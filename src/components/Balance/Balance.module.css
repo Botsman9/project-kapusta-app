@@ -56,6 +56,7 @@
 
   .buttonsGroup {
     display: flex;
+    justify-content: center;
     margin-top: 12px;
   }
 }
@@ -63,7 +64,8 @@
 @media screen and (min-width: 768px) {
   .reportBalance {
     display: flex;
-    margin-right: auto;
+    margin: 0 auto;
+    padding-right: 20px;
   }
 
   .balanceLabel {

@@ -1,16 +1,16 @@
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
   .container {
     position: relative;
     top: -100px;
   }
-}
+} */
 
 .icon {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 8px;
+  width: 15px;
   height: 20px;
 
   fill: #ff751d;
@@ -29,7 +29,6 @@
   justify-content: center;
   margin-bottom: 5px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -45,7 +44,6 @@
   margin: 0 15px;
   min-width: 110px;
 
-  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
