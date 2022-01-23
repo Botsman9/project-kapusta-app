@@ -6,6 +6,7 @@ import operations from '../../../redux/auth/auth-operartions';
 import group42 from '../../../imges/svg/group42.svg';
 import line from '../../../imges/svg/line.svg';
 import classes from './UserMenu.module.css';
+import './modal.css';
 import UserIcon from './UserIcon';
 
 const UserMenu = () => {
@@ -56,14 +57,12 @@ const UserMenu = () => {
         mountOnEnter
         unmountOnExit
       >
-        <div>
-          <MyModal
-            toggleModal={toggleModal}
-            onClick={() => dispatch(operations.logOut())}
-          >
-            Вы действительно хотите выйти?
-          </MyModal>
-        </div>
+        <MyModal
+          toggleModal={toggleModal}
+          onClick={() => dispatch(operations.logOut())}
+        >
+          Вы действительно хотите выйти?
+        </MyModal>
       </CSSTransition>
     </div>
   );

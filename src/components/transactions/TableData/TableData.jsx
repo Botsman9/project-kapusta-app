@@ -12,26 +12,43 @@ const TableData = ({
   onChangeDel,
   isExpense = false,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [idTransaction, setIdTransaction] = useState('');
+
+  const toggleModal = e => setIsOpenModal(!isOpenModal);
 
   const onTakeIdForDel = id => {
     setIdTransaction(id);
-    setIsOpen(!isOpen);
+    setIsOpenModal(!isOpenModal);
   };
 
   const viewPort = useWResize();
 
   return (
     <>
-      {isOpen && (
+      {/* {isOpen && (
         <MyModal
           onClick={() => onChangeDel(idTransaction)}
           toggleModal={() => setIsOpen(!isOpen)}
         >
           Вы уверены?
         </MyModal>
-      )}
+      )} */}
+
+      <CSSTransition
+        in={isOpenModal}
+        classNames="modal"
+        timeout={500}
+        mountOnEnter
+        unmountOnExit
+      >
+        <MyModal
+          toggleModal={toggleModal}
+          onClick={() => onChangeDel(idTransaction)}
+        >
+          Вы действительно хотите выйти?
+        </MyModal>
+      </CSSTransition>
 
       {viewPort.width >= 768 && (
         <div className={s.bodyTable} id={s.style2}>
@@ -146,7 +163,7 @@ const TableData = ({
                   mountOnEnter
                   unmountOnExit
                 >
-                  <li className={sMobile.itemTransactions}>
+                  <li className={sMobile.itemTransactions} key={_id}>
                     <div className={sMobile.leftColum}>
                       <p className={sMobile.elem}>
                         <span>{description}</span>
@@ -166,7 +183,7 @@ const TableData = ({
                         }
                       >
                         {isExpense ? '- ' : ''}
-                        {amount}.грн
+                        {amount}.00 грн.
                       </p>
                       <button
                         onClick={() => onTakeIdForDel(_id)}

@@ -40,7 +40,7 @@ const MyModal = ({ toggleModal, onClick, children }) => {
     <>
       {
         <div onClick={onBackdropClick} className={classes.Overlay}>
-          <div className={classes.Modal}>
+          <div className={`${classes.Modal} modalContent`}>
             <button
               type="button"
               onClick={toggleModal}
