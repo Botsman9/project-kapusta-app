@@ -1,18 +1,25 @@
 import React from 'react';
-import sprite from '../icon.svg';
+import { useSelector } from 'react-redux';
+import statisticsSelectors from '../../../redux/statistics/statisticsSelectors';
+import sprite from '../iconCategories/icon.svg';
 import category from './expense.json';
 import s from './ExperencesReportList.module.css';
 
 const ExpencesReportList = () => {
+  const expenseData = useSelector(
+    statisticsSelectors.getExpenseStatisticsCategories,
+  );
+  const expenseArray = Object.entries(expenseData);
+
   return (
     <ul className={s.expenceReport}>
-      {category.map(el => (
-        <li key={el.id} className={s.expenceReportItem}>
-          <p className={s.expenceValue}>500.00</p>
+      {expenseArray.map((el, idx) => (
+        <li key={idx} className={s.expenceReportItem}>
+          <p className={s.expenceValue}>{el[1].total}.00</p>
           <svg className={s.expenceIcon}>
-            <use xlinkHref={`${sprite}#${el.label}`} />
+            <use xlinkHref={`${sprite}#${el[0]}`} />
           </svg>
-          <p className={s.expenceCategory}>{el.label}</p>
+          <p className={s.expenceCategory}>{el[0]}</p>
         </li>
       ))}
     </ul>

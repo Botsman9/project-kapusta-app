@@ -3,6 +3,7 @@ import { fetchAllStatistics } from './statisticsOperations';
 
 const initialState = {
   currentMonth: '2022-01',
+  isExpense: true,
   incomes: {
     total: 0,
     data: {},
@@ -19,6 +20,9 @@ const statisticsSlice = createSlice({
   name: 'statistics',
   initialState,
   reducers: {
+    changeIsExpense: (state, { payload }) => {
+      state.isExpense = payload;
+    },
     changeCurrentMonth: (state, { payload }) => {
       state.currentMonth = payload;
     },
@@ -51,6 +55,6 @@ const statisticsSlice = createSlice({
   },
 });
 
-export const { changeCurrentMonth, resetStatisticsUSer } =
+export const { changeCurrentMonth, resetStatisticsUSer, changeIsExpense } =
   statisticsSlice.actions;
 export default statisticsSlice.reducer;
