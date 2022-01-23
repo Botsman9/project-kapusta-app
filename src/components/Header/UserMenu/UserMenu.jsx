@@ -6,7 +6,7 @@ import operations from '../../../redux/auth/auth-operartions';
 import group42 from '../../../imges/svg/group42.svg';
 import line from '../../../imges/svg/line.svg';
 import classes from './UserMenu.module.css';
-// import './style.css';
+import UserIcon from './UserIcon';
 
 const UserMenu = () => {
   const email = useSelector(state => state.user.email);
@@ -31,9 +31,7 @@ const UserMenu = () => {
 
   return (
     <div className={classes.container}>
-      <span>
-        <img src={group42} alt="icon" className={classes.icon} />
-      </span>
+      <UserIcon />
       <p>{`Wellcome ${name ? name : 'User'}`}</p>
       <span>
         <img src={line} alt="icon" className={classes.iconLine} />
