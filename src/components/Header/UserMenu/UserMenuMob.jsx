@@ -5,6 +5,7 @@ import operations from '../../../redux/auth/auth-operartions';
 import classes from './UserMenuMob.module.css';
 import group42 from '../../../imges/svg/group42.svg';
 import logout from '../../../imges/svg/logout.svg';
+import UserIcon from './UserIcon';
 
 const UserMenuMob = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,7 @@ const UserMenuMob = () => {
 
   return (
     <div className={classes.container}>
-      <span>
-        <img src={group42} alt="icon" className={classes.icon} />
-      </span>
+      <UserIcon />
       <span onClick={() => toggleModal()}>
         <img src={logout} alt="icon" className={classes.iconExit} />
       </span>
