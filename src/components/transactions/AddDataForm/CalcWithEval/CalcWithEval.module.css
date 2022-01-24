@@ -1,0 +1,45 @@
+.wrapperAll {
+  padding: 20px 10px 10px;
+  width: 250px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: #ff7629;
+  /* backdrop-filter: blur(102px); */
+  border-radius: 39px 39px 39px 0px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 8px 10px 8px rgba(0, 0, 0, 0.29);
+  border-radius: 16px;
+}
+
+.wrapperResult {
+  width: 220px;
+  height: 60px;
+  font-size: 25px;
+  margin: 0 0 20px 0;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow-wrap: anywhere;
+}
+
+.btnNumber {
+}

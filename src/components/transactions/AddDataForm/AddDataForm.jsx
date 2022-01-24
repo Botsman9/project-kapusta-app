@@ -14,6 +14,8 @@ import {
   getIsLoggedIn,
   getIsRefresh,
 } from '../../../redux/auth/auth-selectors';
+import CalcWithEval from './CalcWithEval/CalcWithEval';
+import { ReactComponent as CalcIcon } from '../../../imges/svg/calculator.svg';
 import 'react-datepicker/dist/react-datepicker.css';
 import s from './AddDataForm.module.css';
 
@@ -33,6 +35,8 @@ const AddDataForm = () => {
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
+
+  const [isOpenCalc, onOpenCalc] = useState(false);
   const viewPort = useWResize();
 
   let navigate = useNavigate();
@@ -42,6 +46,8 @@ const AddDataForm = () => {
   if (!datePicker) {
     currentDay = Date.now();
   }
+
+  const ontoggleCalc = () => onOpenCalc(prev => !prev);
 
   useEffect(() => {
     if (isRefresh || !isLoggedIn) return;
@@ -106,6 +112,10 @@ const AddDataForm = () => {
       return toast.error('Добвьте, пожалуйста, категорию.', {
         theme: 'colored',
       });
+    if (amount < 1)
+      return toast.error('Сумма транзакции должна быть минимум 1.', {
+        theme: 'colored',
+      });
     const date = normalizeDateApi(datePicker);
     const newProduct = { date, description, amount, category };
     addTransactionApi(currentTransaction, newProduct);
@@ -163,9 +173,18 @@ const AddDataForm = () => {
                     value={amount}
                     required
                   />
-                  {/* <div>
-                    <div className={s.calculatorIcon}>♥</div>
-                  </div> */}
+                  <button type="button" onClick={ontoggleCalc}>
+                    <CalcIcon />
+                  </button>
+                  {isOpenCalc && (
+                    <div className={s.modalCalc}>
+                      <CalcWithEval
+                        onCloseModal={ontoggleCalc}
+                        addAmount={setAmount}
+                        amount={amount}
+                      />
+                    </div>
+                  )}
                 </div>
               </label>
             </div>
@@ -229,9 +248,18 @@ const AddDataForm = () => {
                       value={amount}
                       required
                     />
-                    {/* <div>
-                      <div className={s.calculatorIcon}>♥</div>
-                    </div> */}
+                    <button type="button" onClick={ontoggleCalc}>
+                      <CalcIcon />
+                    </button>
+                    {isOpenCalc && (
+                      <div className={s.modalCalc}>
+                        <CalcWithEval
+                          onCloseModal={ontoggleCalc}
+                          addAmount={setAmount}
+                          amount={amount}
+                        />
+                      </div>
+                    )}
                   </div>
                 </label>
               </div>
@@ -295,8 +323,23 @@ const AddDataForm = () => {
                         value={amount}
                         required
                       />
+                      <button
+                        type="button"
+                        className={s.btnSvgWrap}
+                        onClick={ontoggleCalc}
+                      >
+                        <CalcIcon />
+                      </button>
+                      {isOpenCalc && (
+                        <div className={s.modalCalc}>
+                          <CalcWithEval
+                            onCloseModal={ontoggleCalc}
+                            addAmount={setAmount}
+                            amount={amount}
+                          />
+                        </div>
+                      )}
                     </div>
-                    <div className={s.wrapperIcon}></div>
                   </div>
                 </label>
               </div>
