@@ -65,7 +65,7 @@ const TableData = ({
             <tbody>
               {dataTransactions.map(
                 ({ _id, date, description, category, amount }) => (
-                  <tr className={s.td}>
+                  <tr className={s.td} key={_id}>
                     <td className={s.thData}>{normalizeDateRender(date)}</td>
                     <td className={s.tdDesc}>{description}</td>
                     <td className={s.thCateg}>{category}</td>

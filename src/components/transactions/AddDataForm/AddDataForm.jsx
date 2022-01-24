@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import userSelectors from '../../../redux/user/userSelectors';
+import { toast } from 'react-toastify';
 import { normalizeDateApi } from '../../../services/normalize';
 import MyButton from '../../UI/button/MyButton';
 import SelectCategory from './SelectCategory/SelectCategory';
@@ -8,13 +9,13 @@ import useWResize from '../../../hooks/useWResize';
 import DatePickerForm from './DatePickerForm/DatePickerForm';
 import * as userOperations from '../../../redux/user/userOperations';
 import * as userActions from '../../../redux/user/userSlice';
-import 'react-datepicker/dist/react-datepicker.css';
-import s from './AddDataForm.module.css';
 import { useNavigate } from 'react-router-dom';
 import {
   getIsLoggedIn,
   getIsRefresh,
 } from '../../../redux/auth/auth-selectors';
+import 'react-datepicker/dist/react-datepicker.css';
+import s from './AddDataForm.module.css';
 
 const AddDataForm = () => {
   const dispatch = useDispatch();
@@ -101,6 +102,10 @@ const AddDataForm = () => {
   const onSubmiteForm = e => {
     e.preventDefault();
     if (!datePicker) return;
+    if (!category)
+      return toast.error('Добвьте, пожалуйста, категорию.', {
+        theme: 'colored',
+      });
     const date = normalizeDateApi(datePicker);
     const newProduct = { date, description, amount, category };
     addTransactionApi(currentTransaction, newProduct);
