@@ -28,7 +28,7 @@ const logIn = createAsyncThunk(
       token.set(data.accessToken);
       return data;
     } catch (error) {
-      toast.error('Неправивльно введен пароль или Email', {
+      toast.error('Неправильный Email или пароль', {
         position: 'top-center',
         autoClose: 5000,
         hideProgressBar: false,
