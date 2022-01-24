@@ -14,6 +14,8 @@ import {
 } from './redux/auth/auth-selectors';
 import { useLocation } from 'react-router';
 import { setAuth } from './redux/auth/auth-slise';
+import { ToastContainer, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -61,6 +63,8 @@ function App() {
           </Container>
         </BackgroundLogin>
       )}
+
+      <ToastContainer autoClose={3000} transition={Zoom} />
     </>
   );
 }
