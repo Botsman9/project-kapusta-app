@@ -122,7 +122,8 @@ const AddDataForm = () => {
                   onChange={addData}
                   className={s.iDescriptions}
                   name="description"
-                  pattern="^[A-Za-zА-Яа-яЁё\s]+$"
+                  title="Разрешено использовать только пробелы и русские/латинские буквы, не менее 3 и не более 20"
+                  pattern="^[A-Za-zА-Яа-яЁё\s]{3,20}"
                   minLength="3"
                   maxLength="20"
                   value={description}
@@ -147,6 +148,8 @@ const AddDataForm = () => {
                   <input
                     placeholder="0.00"
                     type="text"
+                    title="Используйте числовой формат"
+                    pattern="^[0-9]+$"
                     minLength="1"
                     maxLength="10"
                     onChange={addData}
@@ -184,6 +187,8 @@ const AddDataForm = () => {
                 <label className={s.lDescriptions}>
                   <input
                     type="text"
+                    title="Разрешено использовать только пробелы и русские/латинские буквы, не менее 3 и не более 20"
+                    pattern="^[A-Za-zА-Яа-яЁё\s]{3,20}"
                     minLength="3"
                     maxLength="20"
                     onChange={addData}
@@ -209,6 +214,8 @@ const AddDataForm = () => {
                     <input
                       placeholder="0.00"
                       type="text"
+                      title="Используйте числовой формат"
+                      pattern="^[0-9]+$"
                       minLength="1"
                       maxLength="10"
                       onChange={addData}
@@ -243,6 +250,8 @@ const AddDataForm = () => {
                 <label className={s.lDescriptions}>
                   <input
                     type="text"
+                    title="Разрешено использовать только пробелы и русские/латинские буквы, не менее 3 и не более 20"
+                    pattern="^[A-Za-zА-Яа-яЁё\s]{3,20}"
                     onChange={addData}
                     className={s.iDescriptions}
                     name="description"
@@ -271,6 +280,8 @@ const AddDataForm = () => {
                       <input
                         placeholder="0.00"
                         type="text"
+                        title="Используйте числовой формат"
+                        pattern="^[0-9]+$"
                         minLength="1"
                         maxLength="10"
                         onChange={addData}
@@ -301,72 +312,3 @@ const AddDataForm = () => {
 };
 
 export default AddDataForm;
-
-// <<<<<<< rootColors-fontFamily
-//     <form onSubmit={onSubmiteForm} className={s.form}>
-//       {datePicker && (
-//         <DatePicker
-//           wrapperClassName={s.datePicker}
-//           className={s.formDate}
-//           selected={datePicker}
-//           dateFormat="dd.MM.y"
-//           onChange={date =>
-//             dispatch(userActions.changeCurrentDay(date.getTime()))
-//           }
-//         />
-//       )}
-
-//       <input
-//         className={s.formDesc}
-//         type="text"
-//         onChange={addData}
-//         name="description"
-//         value={description}
-//         placeholder="Описание товара"
-//         required
-//       />
-
-//       <select
-//         className={s.formCategory}
-//         name="category"
-//         value={category}
-//         onChange={addData}
-//         required
-//       >
-//         <option className={s.formText} value="">
-//           Категория товара
-//         </option>
-//         {allCategory.map(value => (
-//           <option className={s.formText} key={value} value={value}>
-//             {value}
-//           </option>
-//         ))}
-//       </select>
-//       <input
-//         className={s.formSum}
-//         placeholder="0.00"
-//         type="amount"
-//         onChange={addData}
-//         name="amount"
-//         value={amount}
-//         required
-//       />
-
-//       <MyButton
-//         className={s.formBtn}
-//         isActiv={true}
-//         type="submit"
-//         classCss={'myAccentBtn'}
-//       >
-//         Ввод
-//       </MyButton>
-//       <MyButton
-//         className={s.formBtn}
-//         type="button"
-//         onClick={reset}
-//         classCss={'myMinorBtn'}
-//       >
-//         Очистить
-//       </MyButton>
-//     </form>
-// =======
