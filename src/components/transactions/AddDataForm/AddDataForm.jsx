@@ -117,7 +117,7 @@ const AddDataForm = () => {
         theme: 'colored',
       });
     const date = normalizeDateApi(datePicker);
-    const newProduct = { date, description, amount, category };
+    const newProduct = { date, description, amount: Number(amount), category };
     addTransactionApi(currentTransaction, newProduct);
   };
 
