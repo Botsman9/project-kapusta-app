@@ -1,0 +1,80 @@
+.wrapperAll {
+  padding: 20px 8px 10px;
+  width: 250px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  /* backdrop-filter: blur(102px); */
+
+  background: rgb(232, 232, 232);
+  background: linear-gradient(
+    100deg,
+    rgba(232, 232, 232, 1) 0%,
+    rgba(136, 136, 136, 1) 100%
+  );
+  border-radius: 39px 39px 39px 39px;
+
+  -webkit-box-shadow: 5px 5px 8px 0px rgba(34, 60, 80, 0.6);
+  -moz-box-shadow: 5px 5px 8px 0px rgba(34, 60, 80, 0.6);
+  box-shadow: 5px 5px 8px 0px rgba(34, 60, 80, 0.6);
+
+  @media screen and (min-width: 768px) {
+    border-radius: 39px 0 39px 39px;
+    gap: 10px;
+  }
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
+    inset 8px 10px 8px rgba(0, 0, 0, 0.29);
+  border-radius: 16px;
+}
+
+.wrapperResult {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  width: 100%;
+  max-width: 200px;
+  padding: 10px;
+  margin: 10px 0;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  background: rgb(75, 75, 75);
+  background: linear-gradient(
+    0deg,
+    rgba(75, 75, 75, 1) 0%,
+    rgba(113, 102, 102, 1) 100%
+  );
+  border-radius: 4px;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+
+  -webkit-box-shadow: 7px 7px 10px 0px rgba(34, 60, 80, 0.6) inset;
+  -moz-box-shadow: 7px 7px 10px 0px rgba(34, 60, 80, 0.6) inset;
+  box-shadow: 7px 7px 10px 0px rgba(34, 60, 80, 0.6) inset;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 20px;
+    height: 60px;
+  }
+}
+
+.btnNumber {
+}
