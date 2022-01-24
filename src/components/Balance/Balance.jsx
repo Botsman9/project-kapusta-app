@@ -39,8 +39,10 @@ const Balance = ({ hide, width }) => {
               <input
                 type="text"
                 name="name"
+                title="Используйте числовой формат"
+                pattern="^[0-9]+$"
                 maxLength="10"
-                placeholder="00.00"
+                placeholder="0"
                 onChange={onHandleChange}
                 className={
                   width
