@@ -173,7 +173,11 @@ const AddDataForm = () => {
                     value={amount}
                     required
                   />
-                  <button type="button" onClick={ontoggleCalc}>
+                  <button
+                    type="button"
+                    onClick={ontoggleCalc}
+                    className={s.btnSvgWrap}
+                  >
                     <CalcIcon />
                   </button>
                   {isOpenCalc && (
@@ -248,7 +252,11 @@ const AddDataForm = () => {
                       value={amount}
                       required
                     />
-                    <button type="button" onClick={ontoggleCalc}>
+                    <button
+                      type="button"
+                      onClick={ontoggleCalc}
+                      className={s.btnSvgWrap}
+                    >
                       <CalcIcon />
                     </button>
                     {isOpenCalc && (
@@ -311,7 +319,7 @@ const AddDataForm = () => {
                   <div className={s.wrapperInputA}>
                     <div className={s.wrapperIconMob}>
                       <input
-                        placeholder="0.00"
+                        placeholder="00.00"
                         type="text"
                         title="Используйте числовой формат"
                         pattern="^[0-9]+$"
@@ -323,13 +331,6 @@ const AddDataForm = () => {
                         value={amount}
                         required
                       />
-                      <button
-                        type="button"
-                        className={s.btnSvgWrap}
-                        onClick={ontoggleCalc}
-                      >
-                        <CalcIcon />
-                      </button>
                       {isOpenCalc && (
                         <div className={s.modalCalc}>
                           <CalcWithEval
@@ -340,6 +341,13 @@ const AddDataForm = () => {
                         </div>
                       )}
                     </div>
+                    <button
+                      type="button"
+                      className={s.btnSvgWrap}
+                      onClick={ontoggleCalc}
+                    >
+                      <CalcIcon />
+                    </button>
                   </div>
                 </label>
               </div>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import s from './CalcWithEval.module.css';
+import s from './CalcWithEval.module.scss';
 
 const CalcWithEval = ({ onCloseModal, addAmount, amount }) => {
   const [calculateInfo, setcalculateInfo] = useState(() => amount);
@@ -8,6 +8,14 @@ const CalcWithEval = ({ onCloseModal, addAmount, amount }) => {
   const numbVal = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const firstSymbol = ['0', '+', '/', '*', ')'];
   const symb = ['+', '-', '*', '/'];
+
+  useEffect(() => {
+    window.addEventListener('keydown', onCloseModal);
+
+    return () => {
+      window.removeEventListener('keydown', onCloseModal);
+    };
+  }, [onCloseModal]);
 
   const onClearResult = () => setcalculateInfo('');
   const onDelLastOne = () => setcalculateInfo(calculateInfo.slice(0, -1));
