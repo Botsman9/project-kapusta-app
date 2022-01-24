@@ -36,7 +36,7 @@ const UserMenu = () => {
         <>
           <UserIcon />
           <p>
-            Wellcome, <span className={classes.name}>{name}</span>
+            <span className={classes.name}>{name}</span>
           </p>
           <span>
             <img src={line} alt="icon" className={classes.iconLine} />
