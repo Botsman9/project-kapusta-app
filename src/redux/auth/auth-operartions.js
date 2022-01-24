@@ -12,6 +12,10 @@ const register = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await instanceAxios.post('/auth/register', credentials);
+      toast.success(`Регистрация по почте ${data.email} выполнена успешно!`, {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       const dataLogin = await instanceAxios.post('/auth/login', credentials);
       token.set(dataLogin.data.accessToken);
       return dataLogin.data;
