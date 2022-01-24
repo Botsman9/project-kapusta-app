@@ -19,7 +19,7 @@
   .celect .celectBtn {
     position: relative;
     height: 44px;
-    padding: 15px 20px;
+    padding: 13px 20px;
 
     color: #c7ccdc;
     background: #f5f6fb;
@@ -28,6 +28,7 @@
 
     cursor: pointer;
   }
+
   .celect .celectBtn .crownSvg {
     position: absolute;
     top: 45%;
@@ -74,7 +75,6 @@
     background: #fff;
     border: 2px solid #f5f6fb;
     border-radius: 0;
-    margin-top: 1px;
   }
 
   .celect .celectContent {
