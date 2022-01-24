@@ -19,13 +19,13 @@
   left: 50%;
   transform: translate(-50%, -50%); */
 
-  width: 320px;
+  width: 310px;
   height: 174px;
 
-  padding-top: 40px;
-  padding-bottom: 48px;
-  padding-left: 28px;
-  padding-right: 28px;
+  padding-top: 38px;
+  padding-bottom: 46px;
+  padding-left: 22px;
+  padding-right: 22px;
 
   background: #ffffff;
   box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
@@ -80,5 +80,7 @@
     height: 194px;
     padding-left: 56px;
     padding-right: 56px;
+    padding-top: 50px;
+    padding-bottom: 60px;
   }
 }

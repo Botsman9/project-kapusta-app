@@ -8,6 +8,11 @@
   text-decoration: none;
 }
 
+.toGoBackTitle:hover,
+.toGoBackTitle:focus {
+  color: #ff751d;
+}
+
 .link {
   display: flex;
   font-size: 12px;
