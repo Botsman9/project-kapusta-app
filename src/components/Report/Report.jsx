@@ -7,7 +7,7 @@ import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
 import { useDispatch } from 'react-redux';
 import { changeIsExpense } from '../../redux/statistics/statisticsSlice';
 
-const Report = ({ setCategoryRender }) => {
+const Report = ({ setCategoryRender, categoryRender }) => {
   const [change, setChange] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -19,7 +19,10 @@ const Report = ({ setCategoryRender }) => {
         <div className={s.reportNav}>
           <ArrowBackIos
             className={s.reportArrow}
-            onClick={() => setChange(!change)}
+            onClick={() => {
+              setChange(!change);
+              setCategoryRender(null);
+            }}
           />
           {change ? (
             <span className={s.reportTitle}>Расходы</span>
@@ -29,13 +32,22 @@ const Report = ({ setCategoryRender }) => {
           <ArrowForwardIos
             // style={{ height: '14px' }}
             className={s.reportArrow}
-            onClick={() => setChange(!change)}
+            onClick={() => {
+              setChange(!change);
+              setCategoryRender(null);
+            }}
           />
         </div>
         {change ? (
-          <ExpencesReportList setCategoryRender={setCategoryRender} />
+          <ExpencesReportList
+            setCategoryRender={setCategoryRender}
+            categoryRender={categoryRender}
+          />
         ) : (
-          <IncomesReportList setCategoryRender={setCategoryRender} />
+          <IncomesReportList
+            setCategoryRender={setCategoryRender}
+            categoryRender={categoryRender}
+          />
         )}
       </div>
     </>

@@ -5,7 +5,7 @@ import sprite from '../iconCategories/icon.svg';
 import category from './expense.json';
 import s from './ExperencesReportList.module.css';
 
-const ExpencesReportList = ({ setCategoryRender }) => {
+const ExpencesReportList = ({ setCategoryRender, categoryRender }) => {
   const expenseData = useSelector(
     statisticsSelectors.getExpenseStatisticsCategories,
   );
@@ -16,7 +16,9 @@ const ExpencesReportList = ({ setCategoryRender }) => {
       {expenseArray.map((el, idx) => (
         <li
           key={idx}
-          className={s.expenceReportItem}
+          className={`${s.expenceReportItem} ${
+            el[0] === categoryRender ? s.activeItem : ''
+          }`}
           onClick={() => setCategoryRender(el[0])}
         >
           <p className={s.expenceValue}>{el[1].total}.00</p>

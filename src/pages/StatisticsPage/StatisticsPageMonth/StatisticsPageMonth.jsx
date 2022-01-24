@@ -26,11 +26,18 @@ const StatisticsPage = () => {
   const viewPort = useWResize();
   return (
     <>
-      {viewPort.width >= 768 && (
+      <ReportNavigation />
+      <ReportAmount />
+      <Report
+        setCategoryRender={setCategoryRender}
+        categoryRender={categoryRender}
+      />
+      <ChartComp categoryRender={categoryRender} />
+      {/* {viewPort.width >= 768 && (
         <>
           <ReportNavigation />
           <ReportAmount />
-          <Report setCategoryRender={setCategoryRender} />
+          <Report setCategoryRender={setCategoryRender} categoryRender={categoryRender} />
           <ChartComp categoryRender={categoryRender} />
         </>
       )}
@@ -39,10 +46,10 @@ const StatisticsPage = () => {
         <>
           <ReportNavigation />
           <ReportAmount />
-          <Report setCategoryRender={setCategoryRender} />
+          <Report setCategoryRender={setCategoryRender} categoryRender={categoryRender} />
           <ChartComp categoryRender={categoryRender} />
         </>
-      )}
+      )} */}
     </>
   );
 };
