@@ -18,12 +18,10 @@ export function ChartComp({ categoryRender }) {
   const incomesData = useSelector(
     statisticsSelectors.getIncomeStatisticsCategories,
   );
-  console.log('categoryRender', categoryRender);
 
   const expenseData = useSelector(
     statisticsSelectors.getExpenseStatisticsCategories,
   );
-  console.log('🚀 ~ expenseData', expenseData);
 
   const isExpense = useSelector(state => state.statistics.isExpense);
   const viewPort = useWResize();
@@ -80,13 +78,11 @@ export function ChartComp({ categoryRender }) {
     const props = Object.entries(data).sort((a, b) => b[1].total - a[1].total);
     const labels = props.map(([label]) => label);
     const values = props.map(([, stats]) => stats.total);
-    console.log('🚀 ~ values', values);
     return { labels, values };
   };
 
   const getCategoryData = data => {
     const { total, ...categoryData } = data[categoryRender];
-    console.log('🚀 ~ categoryData', categoryData);
     const props = Object.entries(categoryData).sort((a, b) => b[1] - a[1]);
     const labels = props.map(([label]) => label);
     const values = props.map(([, stats]) => stats);

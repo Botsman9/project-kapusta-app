@@ -19,7 +19,6 @@ const StatisticsPage = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   const currentMonth = useSelector(statisticsSelectors.getCurrentMonth);
-  // console.log('categoryRender===', categoryRender);
   useEffect(() => {
     if (isRefresh || !isLoggedIn || !currentMonth) return;
     dispatch(fetchAllStatistics(currentMonth));
