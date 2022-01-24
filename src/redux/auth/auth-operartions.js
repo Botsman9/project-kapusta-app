@@ -20,6 +20,15 @@ const register = createAsyncThunk(
       token.set(dataLogin.data.accessToken);
       return dataLogin.data;
     } catch (error) {
+      toast.error('Пользователь с таким Email уже существует', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return rejectWithValue(error.response.data.message);
     }
   },
@@ -56,7 +65,15 @@ const logOut = createAsyncThunk(
       dispatch(resetStatisticsUSer());
       token.unset();
     } catch (error) {
-      console.log(`error`, error());
+      toast.warn('Что-то пошло не так... Обратитесь к администратору.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return rejectWithValue(error.response.data.message);
     }
   },
@@ -76,7 +93,15 @@ const refresh = createAsyncThunk(
       token.set(request.data.newAccessToken);
       return request;
     } catch (error) {
-      console.log(`error`, error());
+      toast.warn('Что-то пошло не так... ', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return rejectWithValue(error.response.data.message);
     }
   },
