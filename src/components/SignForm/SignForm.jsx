@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import s from './SignForm.module.scss';
 import operations from '../../redux/auth/auth-operartions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignForm() {
   const [email, setEmail] = useState('');
@@ -11,23 +13,14 @@ function SignForm() {
   const [submited, setSubmited] = useState(false);
   const dispatch = useDispatch();
 
-  const inputChanged = () => {
-    if (
-      email.match(
-        /^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$/i,
-      ) &&
-      email.length >= 10
-    ) {
-      setEmailValid(true);
-    } else {
-      setEmailValid(false);
-    }
+  const wrightEmail = email.match(
+    /^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{1,})$/i,
+  );
+  const wrightEmailLength = email.length >= 10;
 
-    if (password.length > 0) {
-      setPasswordValid(true);
-    } else {
-      setPasswordValid(false);
-    }
+  const inputChanged = () => {
+    if (wrightEmail && wrightEmailLength) setEmailValid(true);
+    if (password.length > 0) setPasswordValid(true);
   };
 
   const handleChange = ({ target: { name, value } }) => {
@@ -44,6 +37,37 @@ function SignForm() {
   const handleSubmit = e => {
     e.preventDefault();
     setSubmited(true);
+    if (wrightEmail && wrightEmailLength) setEmailValid(true);
+    if (password.length > 0) setPasswordValid(true);
+    if (!wrightEmail || !wrightEmailLength) {
+      toast.warn(
+        'Email не должен содержать дефис в начале, меньше 2 символов перед "@", а также длина Email должна быть более 10 символов.',
+        {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        },
+      );
+      setEmailValid(false);
+    }
+    if (password.length === 0) {
+      toast.warn('Пароль должен содержать цифры и буквы.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setPasswordValid(false);
+    }
+
+    if (!wrightEmail || password.length < 1) return false;
     switch (e.nativeEvent.submitter.id) {
       case 'sign-google':
         break;
@@ -87,7 +111,6 @@ function SignForm() {
           <a
             href="https://kapusta-backend.goit.global/auth/google"
             className={s.GoogleBtn}
-            // onClick={() => dispatch(operations.googleAuth())}
           >
             Google
           </a>
@@ -105,16 +128,14 @@ function SignForm() {
               value={email}
               minLength="10"
               maxLength="63"
-              pattern="^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{2,8})$"
+              pattern="^([^-])([A-z0-9_.-]{1,})@([A-z0-9_.-]{1,}).([A-z]{1,})$"
               placeholder="your@email.com"
               onChange={handleChange}
               className={s.SignInput}
               required
             ></input>
             {!emailValid && submited && (
-              <p className={s.error} id="emailValid">
-                это обязательное поле
-              </p>
+              <p className={s.error}>это обязательное поле</p>
             )}
           </div>
           <div className={s.inputWrapper}>
@@ -124,15 +145,13 @@ function SignForm() {
               name="password"
               value={password}
               placeholder="Пароль"
-              pattern="([A-Za-z0-9])"
+              // pattern="([A-Za-z0-9])"
               onChange={handleChange}
               className={s.SignInput}
               required
             ></input>
             {!passwordValid && submited && (
-              <p className={s.error} id="passValid">
-                это обязательное поле
-              </p>
+              <p className={s.error}>это обязательное поле</p>
             )}
           </div>
           <ul className={s.SignBtnsWrap}>
