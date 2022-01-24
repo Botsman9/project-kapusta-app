@@ -11,16 +11,6 @@
     margin-right: auto;
   }
 
-  .calculatorIcon {
-    cursor: pointer;
-  }
-
-  .iconForm {
-    position: absolute;
-    top: 50%;
-    right: 20px;
-  }
-
   .iDescriptions {
     width: 282px;
     height: 44px;
@@ -103,24 +93,18 @@
     flex-direction: row;
     margin-left: 18%;
     margin-top: 30px;
-    background-image: url(../../../imges/svg/calculator.svg);
-    background-position: right 31% top 50%;
-    background-repeat: no-repeat;
   }
 
   .wrapperIcon {
-    position: relative;
     width: 60px;
     height: 44px;
     border: 2px solid #fff;
     border-radius: 0 22px 22px 0;
   }
 
-  /* .wrapperIconMob {
-    background-image: url(../../../imges/svg/calculator.svg);
-    background-position: right 20% top 50%;
-    background-repeat: no-repeat;
-  } */
+  .wrapperIconMob {
+    position: relative;
+  }
 
   .wrapperBtn {
     margin-top: 83px;
@@ -128,6 +112,12 @@
     justify-content: center;
     align-items: center;
     gap: 15px;
+  }
+
+  .modalCalc {
+    position: absolute;
+    top: -120px;
+    left: -35px;
   }
 }
 
@@ -176,9 +166,9 @@
     background-color: #fff;
     padding-right: 45px;
     text-align: right;
-    background-image: url(../../../imges/svg/calculator.svg);
+    /* background-image: url(../../../imges/svg/calculator.svg);
     background-position: right 15% top 50%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
   }
 
   .wrapperBtn {
@@ -187,8 +177,20 @@
   }
 
   .wrapperIcon {
+    position: relative;
     width: 100%;
     border: 0;
+  }
+
+  .modalCalc {
+    top: 60px;
+    left: -120px;
+  }
+
+  .btnSvgWrap {
+    position: absolute;
+    top: 20px;
+    left: 20px;
   }
 }
 
@@ -250,7 +252,20 @@
   .wrapperBtn {
     margin-bottom: 0;
   }
-  /* .wrapperFD {
-  margin-right: 23px;
- */
+
+  .calculatorIcon {
+    cursor: pointer;
+  }
+
+  .iconForm {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+  }
+
+  .modalCalc {
+    position: absolute;
+    top: 60px;
+    left: -50px;
+  }
 }
