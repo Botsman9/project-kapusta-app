@@ -1,6 +1,6 @@
 const getIncomeMonthTotal = state => state.statistics.incomes.total;
-
 const getExpenseMonthTotal = state => state.statistics.expense.total;
+
 const getExpenseMonthTransactions = state => state.statistics.expense.data;
 
 const getIncomeStatisticsCategories = state => state.statistics.incomes.data;

@@ -5,7 +5,7 @@ import sprite from '../iconCategories/icon.svg';
 import category from './expense.json';
 import s from './ExperencesReportList.module.css';
 
-const ExpencesReportList = () => {
+const ExpencesReportList = ({ setCategoryRender }) => {
   const expenseData = useSelector(
     statisticsSelectors.getExpenseStatisticsCategories,
   );
@@ -14,7 +14,11 @@ const ExpencesReportList = () => {
   return (
     <ul className={s.expenceReport}>
       {expenseArray.map((el, idx) => (
-        <li key={idx} className={s.expenceReportItem}>
+        <li
+          key={idx}
+          className={s.expenceReportItem}
+          onClick={() => setCategoryRender(el[0])}
+        >
           <p className={s.expenceValue}>{el[1].total}.00</p>
           <svg className={s.expenceIcon}>
             <use xlinkHref={`${sprite}#${el[0]}`} />
