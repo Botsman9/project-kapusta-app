@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Chart as ChartJS,
@@ -14,26 +14,27 @@ import statisticsSelectors from '../../redux/statistics/statisticsSelectors';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement);
 
-export function ChartComp() {
-  const [widthS, setWidthS] = useState(window.screen.width);
+export function ChartComp({ categoryRender }) {
   const incomesData = useSelector(
     statisticsSelectors.getIncomeStatisticsCategories,
   );
+
   const expenseData = useSelector(
     statisticsSelectors.getExpenseStatisticsCategories,
   );
+
   const isExpense = useSelector(state => state.statistics.isExpense);
-  const handleResizeWindow = () => setWidthS(window.screen.width);
   const viewPort = useWResize();
+
   const options = {
-    aspectRatio: viewPort.width <= 320 ? 0.8 : 2,
+    aspectRatio: viewPort.width <= 768 ? 0.8 : 2,
     plugins: {
       datalabels: {
         color: '#52555F',
-        align: viewPort.width <= 320 ? 'right' : 'top',
+        align: viewPort.width <= 768 ? 'right' : 'top',
         anchor: 'end',
         padding: {
-          top: viewPort.width <= 320 ? -15 : 15,
+          top: viewPort.width <= 768 ? -15 : 30,
           right: 10,
           bottom: 0,
         },
@@ -42,7 +43,7 @@ export function ChartComp() {
         },
       },
     },
-    indexAxis: viewPort.width > 320 ? 'x' : 'y',
+    indexAxis: viewPort.width > 768 ? 'x' : 'y',
 
     scales: {
       x: {
@@ -52,18 +53,18 @@ export function ChartComp() {
         },
         ticks: {
           LayoutPosition: 'top',
-          display: viewPort.width > 320,
+          display: viewPort.width > 768,
         },
       },
       y: {
         grid: {
-          display: viewPort.width > 320,
+          display: viewPort.width > 768,
           drawBorder: false,
         },
 
         ticks: {
           LayoutPosition: 'top',
-          display: viewPort.width <= 320,
+          display: viewPort.width <= 768,
         },
       },
     },
@@ -73,24 +74,38 @@ export function ChartComp() {
     return arr.map((_, index) => (index % 3 === 0 ? '#FF751D' : '#FFDAC0'));
   };
 
-  const exData = Object.values(expenseData).map(el => el.total);
-  const labels = Object.keys(expenseData);
+  const getTotalData = data => {
+    const props = Object.entries(data).sort((a, b) => b[1].total - a[1].total);
+    const labels = props.map(([label]) => label);
+    const values = props.map(([, stats]) => stats.total);
+    return { labels, values };
+  };
 
-  const inData = Object.values(incomesData).map(el => el.total);
-  const lab = Object.keys(incomesData);
+  const getCategoryData = data => {
+    const { total, ...categoryData } = data[categoryRender];
+    const props = Object.entries(categoryData).sort((a, b) => b[1] - a[1]);
+    const labels = props.map(([label]) => label);
+    const values = props.map(([, stats]) => stats);
+    return { labels, values };
+  };
+  const chartData = isExpense ? expenseData : incomesData;
+  const { labels, values } = categoryRender
+    ? getCategoryData(chartData)
+    : getTotalData(chartData);
 
   const data = {
-    labels: isExpense ? labels : lab,
+    labels,
     datasets: [
       {
-        data: isExpense ? exData : inData,
-        maxBarThickness: viewPort.width <= 320 ? 20 : 30,
+        data: values,
+        maxBarThickness: viewPort.width <= 768 ? 20 : 30,
         backgroundColor: chooseBgColor(labels),
         borderRadius: 10,
-        inflateAmount: viewPort.width <= 320 ? 2 : 10,
+        inflateAmount: viewPort.width <= 768 ? 2 : 10,
       },
     ],
   };
+
   return (
     <div className={s.barWrapper}>
       <Bar options={options} data={data} plugins={[ChartDataLabels]} />

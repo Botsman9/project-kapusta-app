@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllStatistics } from '../../../redux/statistics/statisticsOperations.js';
 import statisticsSelectors from '../../../redux/statistics/statisticsSelectors.js';
@@ -13,12 +13,12 @@ import useWResize from '../../../hooks/useWResize';
 import { ChartComp } from './../../../components/ChartReport/ChartReport';
 
 const StatisticsPage = () => {
+  const [categoryRender, setCategoryRender] = useState(null);
   const dispatch = useDispatch();
   const isRefresh = useSelector(getIsRefresh);
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   const currentMonth = useSelector(statisticsSelectors.getCurrentMonth);
-
   useEffect(() => {
     if (isRefresh || !isLoggedIn || !currentMonth) return;
     dispatch(fetchAllStatistics(currentMonth));
@@ -30,8 +30,8 @@ const StatisticsPage = () => {
         <>
           <ReportNavigation />
           <ReportAmount />
-          <Report />
-          <ChartComp />
+          <Report setCategoryRender={setCategoryRender} />
+          <ChartComp categoryRender={categoryRender} />
         </>
       )}
 
@@ -39,8 +39,8 @@ const StatisticsPage = () => {
         <>
           <ReportNavigation />
           <ReportAmount />
-          <Report />
-          <ChartComp />
+          <Report setCategoryRender={setCategoryRender} />
+          <ChartComp categoryRender={categoryRender} />
         </>
       )}
     </>

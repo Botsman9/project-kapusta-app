@@ -7,7 +7,7 @@ import ArrowForwardIos from '@mui/icons-material/ArrowForwardIos';
 import { useDispatch } from 'react-redux';
 import { changeIsExpense } from '../../redux/statistics/statisticsSlice';
 
-const Report = () => {
+const Report = ({ setCategoryRender }) => {
   const [change, setChange] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -32,7 +32,11 @@ const Report = () => {
             onClick={() => setChange(!change)}
           />
         </div>
-        {change ? <ExpencesReportList /> : <IncomesReportList />}
+        {change ? (
+          <ExpencesReportList setCategoryRender={setCategoryRender} />
+        ) : (
+          <IncomesReportList setCategoryRender={setCategoryRender} />
+        )}
       </div>
     </>
   );
