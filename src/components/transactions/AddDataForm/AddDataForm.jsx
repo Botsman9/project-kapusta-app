@@ -90,7 +90,7 @@ const AddDataForm = () => {
         return;
       case 'amount':
         if (isNaN(Number(value))) {
-          return setAmount('');
+          return setAmount(Number(amount));
         }
         setAmount(Number(value));
         return;

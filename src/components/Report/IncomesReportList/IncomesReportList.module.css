@@ -36,6 +36,13 @@
   position: relative;
 }
 
+.activeItem::before {
+  background-color: #ffdac0;
+}
+.activeItem .expenceIcon {
+  fill: #ff751d;
+}
+
 @media screen and (min-width: 768px) {
   .expenceReportItem {
     width: 100px;

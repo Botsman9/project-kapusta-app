@@ -17,6 +17,7 @@
 .expenceIcon:hover {
   fill: #ff751d;
 }
+
 .expenceReportItem::before {
   content: '';
   width: 56px;
@@ -34,6 +35,12 @@
   align-items: center;
   width: 85px;
   position: relative;
+}
+.activeItem::before {
+  background-color: #ffdac0;
+}
+.activeItem .expenceIcon {
+  fill: #ff751d;
 }
 
 @media screen and (min-width: 768px) {

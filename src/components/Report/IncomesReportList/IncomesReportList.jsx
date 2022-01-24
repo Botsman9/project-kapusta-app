@@ -4,7 +4,7 @@ import statisticsSelectors from '../../../redux/statistics/statisticsSelectors';
 import category from './income.json';
 import s from './IncomesReportList.module.css';
 
-const IncomesReportList = ({ setCategoryRender }) => {
+const IncomesReportList = ({ setCategoryRender, categoryRender }) => {
   const incomeData = useSelector(
     statisticsSelectors.getIncomeStatisticsCategories,
   );
@@ -14,7 +14,9 @@ const IncomesReportList = ({ setCategoryRender }) => {
       {incomeArray.map((el, idx) => (
         <li
           key={idx}
-          className={s.expenceReportItem}
+          className={`${s.expenceReportItem} ${
+            el[0] === categoryRender ? s.activeItem : ''
+          }`}
           onClick={() => setCategoryRender(el[0])}
         >
           <p className={s.expenceValue}>{el[1].total}.00</p>
