@@ -84,6 +84,7 @@ const authSlice = createSlice({
       state.isRefresh = false;
     },
     [authOperations.refresh.rejected](state, payload) {
+      state.isLoggedIn = false;
       state.error = payload;
       state.isRefresh = false;
     },
