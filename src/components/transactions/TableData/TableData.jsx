@@ -46,7 +46,7 @@ const TableData = ({
           toggleModal={toggleModal}
           onClick={() => onChangeDel(idTransaction)}
         >
-          Вы действительно хотите выйти?
+          Вы уверенны?
         </MyModal>
       </CSSTransition>
 
