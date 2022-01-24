@@ -70,7 +70,7 @@ const Balance = ({ hide, width }) => {
                     : `${s.balanceInput}`
                 }
               >
-                {`${balance.toLocaleString('ru')}.00`} UAH
+                {`${balance.toLocaleString('ru')}`} UAH
               </p>
               <button className={`${s.balanceButton} ${hide}`} disabled>
                 ПОДТВЕРДИТЬ
