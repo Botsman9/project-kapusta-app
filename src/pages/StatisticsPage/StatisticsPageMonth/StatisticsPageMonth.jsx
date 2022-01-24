@@ -33,23 +33,6 @@ const StatisticsPage = () => {
         categoryRender={categoryRender}
       />
       <ChartComp categoryRender={categoryRender} />
-      {/* {viewPort.width >= 768 && (
-        <>
-          <ReportNavigation />
-          <ReportAmount />
-          <Report setCategoryRender={setCategoryRender} categoryRender={categoryRender} />
-          <ChartComp categoryRender={categoryRender} />
-        </>
-      )}
-
-      {viewPort.width < 768 && (
-        <>
-          <ReportNavigation />
-          <ReportAmount />
-          <Report setCategoryRender={setCategoryRender} categoryRender={categoryRender} />
-          <ChartComp categoryRender={categoryRender} />
-        </>
-      )} */}
     </>
   );
 };
