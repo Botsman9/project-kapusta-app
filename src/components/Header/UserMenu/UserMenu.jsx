@@ -32,11 +32,17 @@ const UserMenu = () => {
 
   return (
     <div className={classes.container}>
-      <UserIcon />
-      <p>{`Wellcome ${name ? name : 'User'}`}</p>
-      <span>
-        <img src={line} alt="icon" className={classes.iconLine} />
-      </span>
+      {name && (
+        <>
+          <UserIcon />
+          <p>
+            Wellcome, <span className={classes.name}>{name}</span>
+          </p>
+          <span>
+            <img src={line} alt="icon" className={classes.iconLine} />
+          </span>
+        </>
+      )}
       <span onClick={() => toggleModal()} className={classes.exit}>
         Выйти
       </span>
