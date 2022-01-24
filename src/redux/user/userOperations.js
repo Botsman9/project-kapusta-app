@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as API from '../../api/api';
 import { token } from '../../api/Axios';
+import { toast } from 'react-toastify';
 
 const fetchIncome = createAsyncThunk(
   'transaction/fetchIncome',
@@ -56,8 +57,16 @@ const createIncome = createAsyncThunk(
     try {
       const income = await API.createIncome(obj);
       const data = await API.fetchIncome();
+      toast.success('Транзакция дохода выполнена успешно!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return { income, data };
     } catch (error) {
+      toast.error('Не удалось добавить транзакцию, попробуйте ещё раз!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return rejectWithValue(error.message || error);
     }
   },
@@ -69,8 +78,16 @@ const createExpense = createAsyncThunk(
     try {
       const expense = await API.createExpense(obj);
       const data = await API.fetchExpense();
+      toast.success('Транзакция расхода выполнена успешно!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return { expense, data };
     } catch (error) {
+      toast.error('Не удалось добавить транзакцию, попробуйте ещё раз!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return rejectWithValue(error.message || error);
     }
   },
@@ -82,8 +99,16 @@ const deleteIncomeTransaction = createAsyncThunk(
     try {
       const newBalance = await API.deleteTransaction(id);
       const data = await API.fetchIncome();
+      toast.success('Транзакция дохода была успешно удалена!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return { id, newBalance, data };
     } catch (error) {
+      toast.error('Не удалось удалить транзакцию, попробуйте ещё раз!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return rejectWithValue(error.message || error);
     }
   },
@@ -95,8 +120,16 @@ const deleteExpenseTransaction = createAsyncThunk(
     try {
       const newBalance = await API.deleteTransaction(id);
       const data = await API.fetchExpense();
+      toast.success('Транзакция расхода была успешно удалена!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return { id, newBalance, data };
     } catch (error) {
+      toast.error('Не удалось удалить транзакцию, попробуйте ещё раз!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return rejectWithValue(error.message || error);
     }
   },
@@ -122,6 +155,10 @@ const patchNewBalance = createAsyncThunk(
   async (balance, { rejectWithValue }) => {
     try {
       const data = await API.chengeUserBalance(balance);
+      toast.success('Баланс успешно добавлен!', {
+        theme: 'colored',
+        autoClose: 2000,
+      });
       return data.newBalance;
     } catch (error) {
       return rejectWithValue(error.message || error);
