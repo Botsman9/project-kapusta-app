@@ -31,6 +31,7 @@ const authSlice = createSlice({
     },
     [authOperations.register.fulfilled](state, { payload }) {
       state.token = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
       state.sid = payload.sid;
       state.isLoggedIn = true;
       state.isRefresh = false;
@@ -48,6 +49,7 @@ const authSlice = createSlice({
     [authOperations.logIn.fulfilled](state, { payload }) {
       state.token = payload.accessToken;
       state.sid = payload.sid;
+      state.refreshToken = payload.refreshToken;
       state.isLoggedIn = true;
       state.isRefresh = false;
     },
