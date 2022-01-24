@@ -4,6 +4,8 @@ import { token } from '../../api/Axios';
 import { getToken } from './auth-slise';
 import { resetStatisticsUSer } from '../statistics/statisticsSlice';
 import { resetUserInfo } from '../user/userSlice';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const register = createAsyncThunk(
   'auth/register',
@@ -26,7 +28,15 @@ const logIn = createAsyncThunk(
       token.set(data.accessToken);
       return data;
     } catch (error) {
-      alert(error.response.data.message);
+      toast.error('Неправивльно введен пароль или Email', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return rejectWithValue(error.response.data.message);
     }
   },
