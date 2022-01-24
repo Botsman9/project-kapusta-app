@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
 import * as userActions from '../../../../redux/user/userSlice';
+import { PropTypes } from 'prop-types';
 import s from './DatePickerForm.module.css';
 
 const DatePickerForm = ({ piker }) => {
@@ -48,6 +49,10 @@ const DatePickerForm = ({ piker }) => {
       </div>
     </>
   );
+};
+
+DatePickerForm.propTypes = {
+  piker: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default DatePickerForm;

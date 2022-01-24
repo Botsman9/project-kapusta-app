@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import s from './SelectCategory.module.css';
+import { PropTypes } from 'prop-types';
 
 const SelectCategory = props => {
   const { category, allCategories = [], setCategory, isExpense } = props;
@@ -67,6 +68,13 @@ const SelectCategory = props => {
       )}
     </div>
   );
+};
+
+SelectCategory.propTypes = {
+  category: PropTypes.string.isRequired,
+  allCategories: PropTypes.array,
+  setCategory: PropTypes.func.isRequired,
+  isExpense: PropTypes.bool.isRequired,
 };
 
 export default SelectCategory;

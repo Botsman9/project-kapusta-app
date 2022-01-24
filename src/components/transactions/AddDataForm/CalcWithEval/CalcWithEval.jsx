@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import { PropTypes } from 'prop-types';
 import s from './CalcWithEval.module.css';
 
 const CalcWithEval = ({ onCloseModal, addAmount, amount }) => {
-  const [calculateInfo, setcalculateInfo] = useState(() => amount);
+  const [calculateInfo, setcalculateInfo] = useState(() =>
+    amount ? amount : '',
+  );
 
   const numbVal = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   const firstSymbol = ['0', '+', '/', '*', ')'];
@@ -28,16 +31,19 @@ const CalcWithEval = ({ onCloseModal, addAmount, amount }) => {
       if (error.message === "Unexpected token ')'") {
         toast.error('Проверьте наличие открывающей скобки', {
           theme: 'colored',
+          autoClose: 2000,
         });
         return;
       } else if (error.message === 'Unexpected end of input') {
         toast.error('Проверьте правильность введенного выражения', {
           theme: 'colored',
+          autoClose: 2000,
         });
         return;
       }
       toast.error('Проверьте правильность написанного', {
         theme: 'colored',
+        autoClose: 2000,
       });
       return;
     }
@@ -58,6 +64,7 @@ const CalcWithEval = ({ onCloseModal, addAmount, amount }) => {
     const isParOpenLastOne = '(' === lastOne;
     const isParenthesesClose = ')' === value;
     const isParCloseLastOne = ')' === lastOne;
+    const isValueZer0 = '0' === value;
 
     const calculatorCondition =
       (!calculateInfo && isFirstSymb) ||
@@ -65,10 +72,12 @@ const CalcWithEval = ({ onCloseModal, addAmount, amount }) => {
       (isParenthesesOpen && isParOpenLastOne) ||
       (isParCloseLastOne && isParenthesesOpen) ||
       (isParCloseLastOne && isNumb) ||
+      (isFirstSymb && isParOpenLastOne) ||
       (isParenthesesClose && isParCloseLastOne) ||
       (isParOpenLastOne && isParenthesesClose) ||
       (isParOpenLastOne && symbValue) ||
       (symbValueLastOne && symbValue) ||
+      (symbValueLastOne && isValueZer0) ||
       (symbValueLastOne && isParenthesesClose);
 
     if (calculatorCondition) return false;
@@ -156,6 +165,12 @@ const CalcWithEval = ({ onCloseModal, addAmount, amount }) => {
       </div>
     </div>
   );
+};
+
+CalcWithEval.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
+  addAmount: PropTypes.func.isRequired,
+  amount: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default CalcWithEval;
