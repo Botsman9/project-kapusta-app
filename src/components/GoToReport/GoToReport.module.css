@@ -7,16 +7,30 @@
 
 .link {
   display: flex;
-
+  align-items: baseline;
   letter-spacing: 0.04em;
 
   color: #52555f;
   cursor: pointer;
 }
 
+.link:focus,
+.link:hover {
+  color: #ff751d;
+}
+
+.iconReport {
+  fill: #52555f;
+}
+
+.link:focus .iconReport,
+.link:hover .iconReport {
+  fill: #ff751d;
+}
+
 @media screen and (min-width: 768px) {
   .goToReport {
-    display: flex;
+    /* display: flex; */
     width: 154px;
     height: 24px;
     align-items: center;
@@ -26,12 +40,11 @@
     letter-spacing: 0.04em;
   }
 
-  .link {
+  /* .link {
     display: flex;
 
     letter-spacing: 0.04em;
 
-    color: #52555f;
-    cursor: pointer;
-  }
+
+  } */
 }

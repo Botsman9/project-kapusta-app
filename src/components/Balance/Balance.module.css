@@ -49,9 +49,10 @@
   }
 
   .balanceButton:hover {
-    background-color: #cfd1d4;
+    background-color: #ff751d;
     color: #f5f6fb;
-    transition: 0.5s linear;
+    transition: 0.25s linear;
+    transform: scale3d(1.1, 1.1, 1.1);
   }
 
   .buttonsGroup {
