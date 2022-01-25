@@ -1,8 +1,6 @@
 .icon {
   width: 32px;
   height: 32px;
-
-  margin-right: 16px;
 }
 
 .iconExit {
@@ -10,6 +8,11 @@
   height: 16px;
 
   cursor: pointer;
+}
+
+.exitBtn {
+  padding: 20px 19px 20px 15px;
+  background: none;
 }
 
 /* .iconExit:focus,

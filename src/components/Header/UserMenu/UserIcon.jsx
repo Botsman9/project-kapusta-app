@@ -34,7 +34,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 function UserIcon() {
   return (
     <StyledBadge
-      style={{ width: 32, height: 32, marginRight: 10 }}
+      style={{ width: 32, height: 32 }}
       overlap="circular"
       anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"

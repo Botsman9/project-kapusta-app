@@ -53,7 +53,6 @@ const Balance = ({ hide, width, disabled }) => {
                 autoComplete="off"
               />
               <button
-                disabled
                 className={
                   width
                     ? `${s.balanceInputReport} ${s.balanceButton}`
@@ -75,7 +74,7 @@ const Balance = ({ hide, width, disabled }) => {
               >
                 {`${balance.toLocaleString('ru')}`} UAH
               </p>
-              <button disabled className={`${s.balanceButton} ${hide}`}>
+              <button className={`${s.balanceButton} ${hide}`} disabled>
                 ПОДТВЕРДИТЬ
               </button>
             </>
