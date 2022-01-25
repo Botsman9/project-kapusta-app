@@ -1,28 +1,17 @@
-.toGoBack {
+.link {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-.toGoBackTitle {
-  text-decoration: none;
+  gap: 18px;
+  color: rgba(82, 85, 95, 0.7);
+  padding: 15px 0 15px 3px;
 }
 
-.toGoBackTitle:hover,
-.toGoBackTitle:focus {
+.link:hover,
+.link:focus {
   color: #ff751d;
 }
 
-.link {
-  display: flex;
-  font-size: 12px;
-  line-height: 10px;
-  letter-spacing: 0.04em;
-  color: rgba(82, 85, 95, 0.7);
-}
-
 @media screen and (max-width: 1279px) {
-  .toGoBack {
+  /* .toGoBack {
     margin-right: auto;
-  }
+  } */
 }

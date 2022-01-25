@@ -11,7 +11,7 @@ function Header() {
   const [height, width] = useWindowSize();
   return (
     <div className={s.HeaderContainer}>
-      <Link to={'/'}>
+      <Link to={'/'} class={s.logoLink}>
         <img src={logo} alt="logo" className={s.logo} />
       </Link>
 

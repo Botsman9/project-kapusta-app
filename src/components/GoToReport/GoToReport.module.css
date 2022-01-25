@@ -1,17 +1,6 @@
-.goToReport {
-  display: flex;
-  /* width: 154px;
-  height: 24px; */
-  align-items: baseline;
-}
-
 .link {
-  display: flex;
-  align-items: baseline;
-  letter-spacing: 0.04em;
-
+  padding: 15px 5px 15px 0;
   color: #52555f;
-  cursor: pointer;
 }
 
 .link:focus,
@@ -21,6 +10,7 @@
 
 .iconReport {
   fill: #52555f;
+  margin-left: 20px;
 }
 
 .link:focus .iconReport,
@@ -29,16 +19,9 @@
 }
 
 @media screen and (min-width: 768px) {
-  .goToReport {
-    /* display: flex; */
-    width: 154px;
-    height: 24px;
-    align-items: center;
-  }
-
-  .title {
+  /* .title {
     letter-spacing: 0.04em;
-  }
+  } */
 
   /* .link {
     display: flex;

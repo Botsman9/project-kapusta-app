@@ -24,9 +24,10 @@ const StatisticsPage = () => {
     dispatch(fetchAllStatistics(currentMonth));
   }, [dispatch, isRefresh, isLoggedIn, currentMonth]);
   const viewPort = useWResize();
+
   return (
     <>
-      <ReportNavigation />
+      <ReportNavigation disabled="disabled" />
       <ReportAmount />
       <Report
         setCategoryRender={setCategoryRender}
