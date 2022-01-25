@@ -5,7 +5,7 @@ import ReportPeriod from './ReportPeriod';
 import useWResize from '../../../hooks/useWResize';
 import mob from './ReportNavigationMob.module.css';
 
-const ReportNavigation = () => {
+const ReportNavigation = ({ disabled }) => {
   const viewPort = useWResize();
 
   return (
@@ -13,7 +13,7 @@ const ReportNavigation = () => {
       {viewPort.width >= 768 ? (
         <section className={s.reportNav}>
           <ToGoBack />
-          <Balance />
+          <Balance disabled={disabled} />
           <ReportPeriod />
         </section>
       ) : (
@@ -21,7 +21,7 @@ const ReportNavigation = () => {
           <ToGoBack />
           <ReportPeriod />
           <div className={mob.wrapperMobileBalance}>
-            <Balance />
+            <Balance disabled={disabled} />
           </div>
         </section>
       )}

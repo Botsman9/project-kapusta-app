@@ -35,11 +35,9 @@ const UserMenu = () => {
       {name && (
         <>
           <UserIcon />
-          <p>
-            <span className={classes.name}>{name}</span>
-          </p>
+          <p className={classes.name}>{name}</p>
           <span>
-            <img src={line} alt="icon" className={classes.iconLine} />
+            <img src={line} alt="icon" />
           </span>
         </>
       )}

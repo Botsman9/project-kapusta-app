@@ -7,7 +7,7 @@ import * as userOperations from '../../redux/user/userOperations';
 
 import ModalBalance from './balanceWarning';
 
-const Balance = ({ hide, width }) => {
+const Balance = ({ hide, width, disabled }) => {
   const balance = useSelector(userSelectors.getUserBalance);
   const dispatch = useDispatch();
   const [sum, setSum] = useState(() => balance);
@@ -53,6 +53,7 @@ const Balance = ({ hide, width }) => {
                 autoComplete="off"
               />
               <button
+                disabled
                 className={
                   width
                     ? `${s.balanceInputReport} ${s.balanceButton}`
@@ -74,7 +75,7 @@ const Balance = ({ hide, width }) => {
               >
                 {`${balance.toLocaleString('ru')}`} UAH
               </p>
-              <button className={`${s.balanceButton} ${hide}`} disabled>
+              <button disabled className={`${s.balanceButton} ${hide}`}>
                 ПОДТВЕРДИТЬ
               </button>
             </>
