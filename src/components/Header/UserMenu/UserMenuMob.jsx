@@ -19,9 +19,13 @@ const UserMenuMob = () => {
   return (
     <div className={classes.container}>
       <UserIcon />
-      <span onClick={() => toggleModal()}>
+      <button
+        type="button"
+        className={classes.exitBtn}
+        onClick={() => toggleModal()}
+      >
         <img src={logout} alt="icon" className={classes.iconExit} />
-      </span>
+      </button>
 
       {/* {isOpenModal && (
         <MyModal
