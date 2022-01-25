@@ -158,7 +158,6 @@
   .wrapperInput {
     display: flex;
     align-items: center;
-    justify-content: baseline;
     width: 467px;
   }
 
@@ -230,7 +229,7 @@
   .wrapperInput {
     display: flex;
     justify-content: center;
-    align-items: baseline;
+    width: 601px;
   }
 
   .lDescriptions {

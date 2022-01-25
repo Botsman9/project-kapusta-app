@@ -129,7 +129,6 @@ const AddDataForm = () => {
             <div>
               <DatePickerForm piker={currentDay} />
             </div>
-
             <div className={s.wrapperInput}>
               <label className={s.lDescriptions}>
                 <input
