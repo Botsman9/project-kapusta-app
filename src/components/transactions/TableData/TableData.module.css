@@ -1,36 +1,3 @@
-/* .table {
-  width: 760px;
-}
-.title {
-  display: flex;
-  font-weight: 700;
-  text-transform: uppercase;
-  align-items: center;
-}
-
-.titleLeft {
-  composes: title;
-  justify-content: flex-start;
-}
-
-.amount {
-  font-weight: 700;
-  text-align: right;
-}
-.expenseText {
-  composes: amount;
-  color: #e7192e;
-}
-
-.incomeText {
-  composes: amount;
-  color: #407946;
-}
-
-.center {
-  text-align: center;
-} */
-
 .bodyTable {
   width: 97%;
   table-layout: fixed;
